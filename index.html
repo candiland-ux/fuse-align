@@ -11,9 +11,9 @@
   --ink: #0a0a0a;
   --ink2: #1a1a1a;
   --charcoal: #2c2c2c;
-  --mid: #3a3a3a;
-  --soft: #5a5a5a;
-  --faint: #888888;
+  --mid: #222222;
+  --soft: #3d3d3d;
+  --faint: #666666;
   --rule: #e2e2e2;
   --off: #f7f5f3;
   --cream: #faf8f6;
@@ -109,9 +109,9 @@ body { background: var(--white); color: var(--ink); font-family: var(--fs); min-
 .splash-footer .btn { padding: 18px; font-size: 10px; letter-spacing: 4px; }
 .btn-cream { background: var(--cream); color: var(--ink); }
 .btn-cream:hover { background: var(--white); }
-.btn-naked { background: transparent; color: rgba(255,255,255,.80); border: 1px solid rgba(255,255,255,.45); font-size: 10px; letter-spacing: 3px; }
-.btn-naked:hover { border-color: rgba(255,255,255,.80); color: rgba(255,255,255,.7); }
-.splash-meta { text-align: center; font-family: var(--fm); font-size: 8px; letter-spacing: 3px; color: rgba(255,255,255,.50); text-transform: uppercase; margin-top: 8px; }
+.btn-naked { background: transparent; color: rgba(255,255,255,.94); border: 1px solid rgba(255,255,255,.45); font-size: 10px; letter-spacing: 3px; }
+.btn-naked:hover { border-color: rgba(255,255,255,.94); color: rgba(255,255,255,.92); }
+.splash-meta { text-align: center; font-family: var(--fm); font-size: 8px; letter-spacing: 3px; color: rgba(255,255,255,.90); text-transform: uppercase; margin-top: 8px; }
 
 /* ═══════════════════════════════════
    ONBOARDING
@@ -129,7 +129,7 @@ body { background: var(--white); color: var(--ink); font-family: var(--fs); min-
 .om-label { font-family: var(--fm); font-size: 8px; letter-spacing: 4px; color: var(--gold); text-transform: uppercase; margin-bottom: 12px; }
 .om-title { font-family: var(--fb); font-size: 36px; font-weight: 300; color: var(--white); line-height: 1.2; }
 .om-title em { font-style: italic; color: rgba(255,255,255,.92); }
-.om-sub { font-family: var(--fs); font-size: 13px; font-weight: 400; color: rgba(255,255,255,.82); margin-top: 12px; line-height: 1.7; }
+.om-sub { font-family: var(--fs); font-size: 13px; font-weight: 400; color: rgba(255,255,255,.94); margin-top: 12px; line-height: 1.7; }
 .field-block { padding: 0 24px; margin-bottom: 16px; }
 .field-label { font-family: var(--fm); font-size: 8px; letter-spacing: 3px; color: var(--soft); text-transform: uppercase; margin-bottom: 8px; display: block; }
 .field-input { width: 100%; padding: 16px 0; background: transparent; border: none; border-bottom: 1px solid var(--rule); font-family: var(--fs); font-size: 16px; font-weight: 300; color: var(--ink); outline: none; transition: border-color .2s; }
@@ -158,13 +158,13 @@ body { background: var(--white); color: var(--ink); font-family: var(--fs); min-
 .sf-bg { position: absolute; right: -10px; bottom: -20px; font-family: var(--fb); font-size: 100px; font-weight: 300; color: rgba(255,255,255,.04); pointer-events: none; line-height: 1; }
 .sf-label { font-family: var(--fm); font-size: 8px; letter-spacing: 3px; color: var(--gold); text-transform: uppercase; margin-bottom: 10px; }
 .sf-score { font-family: var(--fb); font-size: 64px; font-weight: 300; color: var(--white); line-height: 1; }
-.sf-score sup { font-size: 22px; color: rgba(255,255,255,.78); vertical-align: super; }
-.sf-sub { font-size: 12px; font-weight: 400; color: rgba(255,255,255,.80); margin-top: 8px; line-height: 1.6; }
+.sf-score sup { font-size: 22px; color: rgba(255,255,255,.93); vertical-align: super; }
+.sf-sub { font-size: 12px; font-weight: 400; color: rgba(255,255,255,.94); margin-top: 8px; line-height: 1.6; }
 .sf-bar-wrap { margin-top: 20px; }
 .sf-bar { height: 1px; background: rgba(255,255,255,.40); }
 .sf-fill { height: 100%; width: 72%; background: linear-gradient(90deg, var(--gold), rgba(184,150,90,.4)); }
 .sf-dims { display: flex; justify-content: space-between; margin-top: 8px; }
-.sf-dim { font-family: var(--fm); font-size: 7px; color: rgba(255,255,255,.80); letter-spacing: 1px; text-transform: uppercase; }
+.sf-dim { font-family: var(--fm); font-size: 7px; color: rgba(255,255,255,.94); letter-spacing: 1px; text-transform: uppercase; }
 
 /* CATEGORY LIST — editorial table style */
 .cat-table { margin: 0 24px 24px; }
@@ -194,10 +194,10 @@ body { background: var(--white); color: var(--ink); font-family: var(--fs); min-
 .cm-num { font-family: var(--fm); font-size: 8px; letter-spacing: 4px; color: var(--gold); text-transform: uppercase; margin-bottom: 10px; display: flex; align-items: center; gap: 12px; }
 .cm-num::before { content: ''; width: 20px; height: 1px; background: var(--gold); }
 .cm-name { font-family: var(--fb); font-size: 28px; font-weight: 300; color: var(--white); line-height: 1.2; }
-.cm-sub { font-size: 13px; font-weight: 400; color: rgba(255,255,255,.80); margin-top: 8px; line-height: 1.6; }
+.cm-sub { font-size: 13px; font-weight: 400; color: rgba(255,255,255,.94); margin-top: 8px; line-height: 1.6; }
 .private-seal { display: flex; align-items: center; gap: 10px; margin-top: 18px; padding: 10px 14px; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1); }
 .ps-icon { font-family: var(--fm); font-size: 8px; letter-spacing: 1px; color: var(--gold); }
-.ps-text-inner { font-size: 11px; font-weight: 300; color: rgba(255,255,255,.78); }
+.ps-text-inner { font-size: 11px; font-weight: 400; color: rgba(255,255,255,.93); }
 .q-section { margin: 24px; }
 .q-rule { width: 24px; height: 1px; background: var(--gold); margin-bottom: 12px; }
 .q-label-text { font-family: var(--fm); font-size: 8px; letter-spacing: 3px; color: var(--soft); text-transform: uppercase; margin-bottom: 14px; }
@@ -213,8 +213,8 @@ body { background: var(--white); color: var(--ink); font-family: var(--fs); min-
 .fo.sel { background: var(--ink); border-color: var(--ink); }
 .fo-name { font-family: var(--fb); font-size: 14px; font-weight: 400; color: var(--ink); }
 .fo.sel .fo-name { color: var(--white); }
-.fo-sub { font-size: 10px; font-weight: 300; color: var(--soft); margin-top: 3px; }
-.fo.sel .fo-sub { color: rgba(255,255,255,.80); }
+.fo-sub { font-size: 10px; font-weight: 400; color: var(--soft); margin-top: 3px; }
+.fo.sel .fo-sub { color: rgba(255,255,255,.94); }
 .priority-block { margin: 0 24px 24px; }
 .priority-row { display: flex; align-items: center; gap: 16px; border-bottom: 1px solid var(--rule); padding-bottom: 16px; }
 .priority-text { font-size: 13px; font-weight: 400; color: var(--mid); flex: 1; }
@@ -234,12 +234,12 @@ body { background: var(--white); color: var(--ink); font-family: var(--fs); min-
 @keyframes wr-pulse { 0%,100% { transform: scale(1); opacity: .5; } 50% { transform: scale(1.12); opacity: .15; } }
 .wait-overline { font-family: var(--fm); font-size: 8px; letter-spacing: 4px; color: var(--gold); text-transform: uppercase; margin-bottom: 16px; }
 .wait-title { font-family: var(--fb); font-size: 34px; font-weight: 300; color: var(--white); line-height: 1.2; }
-.wait-title em { font-style: italic; color: rgba(255,255,255,.82); }
-.wait-sub { font-size: 13px; font-weight: 400; color: rgba(255,255,255,.78); margin-top: 14px; line-height: 1.7; max-width: 280px; }
+.wait-title em { font-style: italic; color: rgba(255,255,255,.94); }
+.wait-sub { font-size: 13px; font-weight: 400; color: rgba(255,255,255,.93); margin-top: 14px; line-height: 1.7; max-width: 280px; }
 .wait-quote { margin-top: 36px; padding: 24px 28px; border: 1px solid rgba(255,255,255,.08); text-align: left; max-width: 320px; }
 .wq-rule { width: 20px; height: 1px; background: var(--gold); margin-bottom: 12px; }
-.wq-text { font-family: var(--fb); font-size: 15px; font-weight: 300; font-style: italic; color: rgba(255,255,255,.80); line-height: 1.7; }
-.wait-demo { margin-top: 28px; padding: 12px 28px; background: transparent; border: 1px solid rgba(255,255,255,.40); font-family: var(--fm); font-size: 8px; letter-spacing: 3px; color: rgba(255,255,255,.75); cursor: pointer; text-transform: uppercase; transition: all .2s; }
+.wq-text { font-family: var(--fb); font-size: 15px; font-weight: 300; font-style: italic; color: rgba(255,255,255,.94); line-height: 1.7; }
+.wait-demo { margin-top: 28px; padding: 12px 28px; background: transparent; border: 1px solid rgba(255,255,255,.40); font-family: var(--fm); font-size: 8px; letter-spacing: 3px; color: rgba(255,255,255,.92); cursor: pointer; text-transform: uppercase; transition: all .2s; }
 .wait-demo:hover { border-color: var(--gold); color: var(--gold); }
 .wait-ab { padding: 20px 24px; border-top: 1px solid rgba(255,255,255,.08); display: flex; gap: 12px; }
 
@@ -252,9 +252,9 @@ body { background: var(--white); color: var(--ink); font-family: var(--fs); min-
 .rm-eyebrow::before { content: ''; width: 20px; height: 1px; background: var(--gold); }
 .rm-score-wrap { display: flex; align-items: baseline; gap: 6px; margin-bottom: 12px; }
 .rm-score { font-family: var(--fb); font-size: 80px; font-weight: 300; color: var(--white); line-height: 1; }
-.rm-pct { font-family: var(--fb); font-size: 32px; font-weight: 300; color: rgba(255,255,255,.70); }
-.rm-title { font-family: var(--fb); font-size: 20px; font-weight: 300; font-style: italic; color: rgba(255,255,255,.5); }
-.rm-sub { font-size: 12px; font-weight: 400; color: rgba(255,255,255,.75); margin-top: 8px; line-height: 1.6; }
+.rm-pct { font-family: var(--fb); font-size: 32px; font-weight: 300; color: rgba(255,255,255,.92); }
+.rm-title { font-family: var(--fb); font-size: 20px; font-weight: 400; font-style: italic; color: var(--white); }
+.rm-sub { font-size: 12px; font-weight: 400; color: rgba(255,255,255,.92); margin-top: 8px; line-height: 1.6; }
 .reveal-items { padding: 8px 24px 24px; display: flex; flex-direction: column; gap: 0; }
 .rev-item { padding: 24px 0; border-bottom: 1px solid var(--rule); }
 .rev-item:last-child { border-bottom: none; }
@@ -311,7 +311,7 @@ body { background: var(--white); color: var(--ink); font-family: var(--fs); min-
 .hf-bg { position: absolute; right: -10px; bottom: -20px; font-family: var(--fb); font-size: 100px; color: rgba(255,255,255,.03); pointer-events: none; line-height: 1; }
 .hf-label { font-family: var(--fm); font-size: 8px; letter-spacing: 3px; color: var(--gold); text-transform: uppercase; margin-bottom: 10px; }
 .hf-score { font-family: var(--fb); font-size: 64px; font-weight: 300; color: var(--white); line-height: 1; }
-.hf-score sup { font-size: 22px; color: rgba(255,255,255,.75); }
+.hf-score sup { font-size: 22px; color: rgba(255,255,255,.92); }
 .hf-status { font-family: var(--fm); font-size: 8px; letter-spacing: 3px; color: var(--gold); text-transform: uppercase; margin-top: 6px; }
 .hf-bar { height: 1px; background: rgba(255,255,255,.1); margin-top: 20px; }
 .hf-fill { height: 100%; width: 84%; background: var(--gold); }
@@ -354,19 +354,19 @@ body { background: var(--white); color: var(--ink); font-family: var(--fs); min-
 .cd-content { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 40px 32px; text-align: center; }
 .cd-overline { font-family: var(--fm); font-size: 8px; letter-spacing: 4px; color: var(--gold); text-transform: uppercase; margin-bottom: 16px; }
 .cd-title { font-family: var(--fb); font-size: 34px; font-weight: 300; color: var(--white); line-height: 1.3; }
-.cd-title em { font-style: italic; color: rgba(255,255,255,.82); }
-.cd-sub { font-size: 12px; font-weight: 400; color: rgba(255,255,255,.75); margin-top: 10px; line-height: 1.7; max-width: 260px; }
+.cd-title em { font-style: italic; color: rgba(255,255,255,.94); }
+.cd-sub { font-size: 12px; font-weight: 400; color: rgba(255,255,255,.92); margin-top: 10px; line-height: 1.7; max-width: 260px; }
 .cd-clock { position: relative; width: 150px; height: 150px; margin: 36px auto; }
 .cd-track { position: absolute; inset: 0; border-radius: 50%; border: 1px solid rgba(255,255,255,.08); }
 .cd-prog { position: absolute; inset: 0; border-radius: 50%; border: 1px solid var(--gold); border-right-color: transparent; border-bottom-color: transparent; animation: cd-turn 20s linear; transform: rotate(-90deg); }
 @keyframes cd-turn { to { transform: rotate(270deg); } }
 .cd-face { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
 .cd-num { font-family: var(--fb); font-size: 48px; font-weight: 300; color: var(--white); line-height: 1; }
-.cd-unit { font-family: var(--fm); font-size: 7px; letter-spacing: 3px; color: rgba(255,255,255,.70); text-transform: uppercase; margin-top: 2px; }
+.cd-unit { font-family: var(--fm); font-size: 7px; letter-spacing: 3px; color: rgba(255,255,255,.92); text-transform: uppercase; margin-top: 2px; }
 .cd-reflect { margin-top: 8px; padding: 24px 28px; border: 1px solid rgba(255,255,255,.08); text-align: left; max-width: 320px; }
 .cr-rule { width: 20px; height: 1px; background: var(--gold); margin-bottom: 12px; }
-.cr-label { font-family: var(--fm); font-size: 7px; letter-spacing: 3px; color: rgba(255,255,255,.65); text-transform: uppercase; margin-bottom: 10px; }
-.cr-text { font-family: var(--fb); font-size: 15px; font-weight: 300; font-style: italic; color: rgba(255,255,255,.78); line-height: 1.7; }
+.cr-label { font-family: var(--fm); font-size: 7px; letter-spacing: 3px; color: rgba(255,255,255,.92); text-transform: uppercase; margin-bottom: 10px; }
+.cr-text { font-family: var(--fb); font-size: 15px; font-weight: 300; font-style: italic; color: rgba(255,255,255,.93); line-height: 1.7; }
 .cd-ab { padding: 20px 24px; border-top: 1px solid rgba(255,255,255,.08); display: flex; gap: 12px; }
 
 /* ═══════════════════════════════════
@@ -380,7 +380,7 @@ body { background: var(--white); color: var(--ink); font-family: var(--fs); min-
 .stage-row:hover { background: var(--off); }
 .stage-row.sel { background: var(--ink); }
 .stage-row.sel .stage-name { color: var(--white); }
-.stage-row.sel .stage-sub { color: rgba(255,255,255,.6); }
+.stage-row.sel .stage-sub { color: rgba(255,255,255,.85); }
 .stage-row.sel .stage-num { color: var(--gold); }
 .stage-num { font-family: var(--fm); font-size: 9px; color: var(--faint); width: 20px; flex-shrink: 0; }
 .stage-info { flex: 1; }
@@ -398,15 +398,15 @@ body { background: var(--white); color: var(--ink); font-family: var(--fs); min-
 .pw-num { font-family: var(--fb); font-size: 80px; font-weight: 300; color: rgba(255,255,255,.06); line-height: 1; margin-bottom: -20px; }
 .pw-overline { font-family: var(--fm); font-size: 8px; letter-spacing: 4px; color: var(--gold); text-transform: uppercase; margin-bottom: 16px; }
 .pw-title { font-family: var(--fb); font-size: 32px; font-weight: 300; color: var(--white); line-height: 1.3; }
-.pw-title em { font-style: italic; color: rgba(255,255,255,.55); }
-.pw-sub { font-size: 13px; font-weight: 400; color: rgba(255,255,255,.65); margin-top: 14px; line-height: 1.7; max-width: 280px; }
+.pw-title em { font-style: italic; color: var(--white); }
+.pw-sub { font-size: 13px; font-weight: 400; color: rgba(255,255,255,.92); margin-top: 14px; line-height: 1.7; max-width: 280px; }
 .pw-divider { width: 40px; height: 1px; background: var(--gold); margin: 28px auto; }
 .pw-features { text-align: left; max-width: 300px; width: 100%; margin-bottom: 32px; }
 .pw-feature { display: flex; align-items: flex-start; gap: 14px; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,.06); }
 .pw-feature:last-child { border-bottom: none; }
 .pw-check { font-family: var(--fm); font-size: 10px; color: var(--gold); flex-shrink: 0; margin-top: 2px; }
-.pw-feature-text { font-size: 13px; font-weight: 400; color: rgba(255,255,255,.75); line-height: 1.5; }
-.pw-price { font-family: var(--fm); font-size: 8px; letter-spacing: 3px; color: rgba(255,255,255,.4); text-transform: uppercase; margin-top: 12px; }
+.pw-feature-text { font-size: 13px; font-weight: 400; color: rgba(255,255,255,.92); line-height: 1.5; }
+.pw-price { font-family: var(--fm); font-size: 8px; letter-spacing: 3px; color: rgba(255,255,255,.85); text-transform: uppercase; margin-top: 12px; }
 .pw-ab { padding: 20px 24px; border-top: 1px solid rgba(255,255,255,.08); display: flex; gap: 12px; }
 
 /* ═══════════════════════════════════
@@ -418,10 +418,10 @@ body { background: var(--white); color: var(--ink); font-family: var(--fs); min-
 .cap-overline::before, .cap-overline::after { content: ''; width: 20px; height: 1px; background: var(--gold); }
 .cap-question { font-family: var(--fb); font-size: clamp(20px, 5vw, 28px); font-weight: 300; font-style: italic; color: var(--white); line-height: 1.6; max-width: 320px; }
 .cap-rule { width: 40px; height: 1px; background: var(--gold); margin: 32px auto; }
-.cap-context { font-size: 13px; font-weight: 400; color: rgba(255,255,255,.65); line-height: 1.7; max-width: 280px; }
+.cap-context { font-size: 13px; font-weight: 400; color: rgba(255,255,255,.92); line-height: 1.7; max-width: 280px; }
 .cap-input-wrap { width: 100%; max-width: 320px; margin-top: 28px; }
-.cap-textarea { width: 100%; background: rgba(255,255,255,.04); border: none; border-bottom: 1px solid rgba(255,255,255,.2); padding: 16px 0; font-family: var(--fb); font-size: 16px; font-weight: 300; font-style: italic; color: var(--white); outline: none; resize: none; line-height: 1.7; min-height: 80px; text-align: center; }
-.cap-textarea::placeholder { color: rgba(255,255,255,.2); }
+.cap-textarea { width: 100%; background: rgba(255,255,255,.04); border: none; border-bottom: 1px solid rgba(255,255,255,.4); padding: 16px 0; font-family: var(--fb); font-size: 16px; font-weight: 400; font-style: italic; color: var(--white); outline: none; resize: none; line-height: 1.7; min-height: 80px; text-align: center; }
+.cap-textarea::placeholder { color: rgba(255,255,255,.45); }
 .cap-textarea:focus { border-color: var(--gold); }
 .cap-ab { padding: 20px 24px; border-top: 1px solid rgba(255,255,255,.08); display: flex; gap: 12px; }
 
@@ -432,7 +432,7 @@ body { background: var(--white); color: var(--ink); font-family: var(--fs); min-
 .bridge-masthead { background: var(--ink); padding: 36px 24px 28px; }
 .bm-label { font-family: var(--fm); font-size: 8px; letter-spacing: 4px; color: var(--gold); text-transform: uppercase; margin-bottom: 10px; }
 .bm-title { font-family: var(--fb); font-size: 26px; font-weight: 300; color: var(--white); line-height: 1.3; }
-.bm-sub { font-size: 12px; font-weight: 400; color: rgba(255,255,255,.7); margin-top: 8px; line-height: 1.6; }
+.bm-sub { font-size: 12px; font-weight: 400; color: rgba(255,255,255,.92); margin-top: 8px; line-height: 1.6; }
 .bridge-progress { margin: 20px 24px; background: var(--white); border: 1px solid var(--rule); padding: 18px 20px; }
 .bp-label { font-family: var(--fm); font-size: 8px; letter-spacing: 3px; color: var(--soft); text-transform: uppercase; margin-bottom: 10px; }
 .bp-bar-wrap { display: flex; align-items: center; gap: 12px; }
@@ -466,7 +466,7 @@ body { background: var(--white); color: var(--ink); font-family: var(--fs); min-
 .ci-masthead { background: var(--ink); padding: 40px 24px 32px; }
 .ci-label { font-family: var(--fm); font-size: 8px; letter-spacing: 4px; color: var(--gold); text-transform: uppercase; margin-bottom: 10px; }
 .ci-title { font-family: var(--fb); font-size: 28px; font-weight: 300; color: var(--white); line-height: 1.3; }
-.ci-sub { font-size: 13px; font-weight: 400; color: rgba(255,255,255,.7); margin-top: 8px; line-height: 1.6; }
+.ci-sub { font-size: 13px; font-weight: 400; color: rgba(255,255,255,.92); margin-top: 8px; line-height: 1.6; }
 .ci-event-prompt { margin: 20px 24px 0; padding: 16px 18px; background: var(--white); border: 1px solid var(--rule); border-left: 3px solid var(--gold); }
 .ci-ep-label { font-family: var(--fm); font-size: 8px; letter-spacing: 2px; color: var(--gold); text-transform: uppercase; margin-bottom: 6px; }
 .ci-ep-text { font-size: 13px; font-weight: 400; color: var(--mid); line-height: 1.6; font-style: italic; }
@@ -476,7 +476,7 @@ body { background: var(--white); color: var(--ink); font-family: var(--fs); min-
 .ci-cat-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
 .ci-cat-name { font-family: var(--fb); font-size: 18px; font-weight: 400; color: var(--ink); }
 .ci-prev { font-family: var(--fm); font-size: 9px; color: var(--faint); }
-.ci-question { font-family: var(--fb); font-size: 15px; font-weight: 300; font-style: italic; color: var(--mid); line-height: 1.5; margin-bottom: 14px; }
+.ci-question { font-family: var(--fb); font-size: 15px; font-weight: 400; font-style: italic; color: var(--ink); line-height: 1.5; margin-bottom: 14px; }
 .ci-options { display: flex; gap: 6px; }
 .ci-opt { flex: 1; padding: 10px 6px; text-align: center; border: 1px solid var(--rule); font-family: var(--fm); font-size: 8px; letter-spacing: 1px; text-transform: uppercase; cursor: pointer; transition: all .2s; color: var(--soft); background: var(--white); }
 .ci-opt:hover { border-color: var(--ink); color: var(--ink); }
@@ -527,7 +527,7 @@ body { background: var(--white); color: var(--ink); font-family: var(--fs); min-
 <!-- ONBOARDING -->
 <div id="s-onboard" class="screen">
   <div class="tb" style="background:var(--ink);border-color:rgba(255,255,255,.08);">
-    <button class="bk" style="color:rgba(255,255,255,.75);" onclick="nav('s-splash')">← Back</button>
+    <button class="bk" style="color:rgba(255,255,255,.94);" onclick="nav('s-splash')">← Back</button>
     <div class="tb-wordmark" style="color:var(--white);font-size:14px;letter-spacing:5px;">FUSE <em>Align</em></div>
     <div></div>
   </div>
@@ -731,7 +731,7 @@ body { background: var(--white); color: var(--ink); font-family: var(--fs); min-
 <!-- WAITING -->
 <div id="s-waiting" class="screen" style="background:var(--ink);">
   <div class="tb" style="background:var(--ink);border-color:rgba(255,255,255,.07);">
-    <button class="bk" style="color:rgba(255,255,255,.70);" onclick="nav('s-home')">← Home</button>
+    <button class="bk" style="color:rgba(255,255,255,.92);" onclick="nav('s-home')">← Home</button>
     <div class="tb-wordmark" style="color:var(--white);font-size:14px;letter-spacing:5px;">FUSE <em>Align</em></div>
     <div></div>
   </div>
@@ -750,7 +750,7 @@ body { background: var(--white); color: var(--ink); font-family: var(--fs); min-
     <button class="wait-demo" onclick="nav('s-reveal')">Preview alignment reveal →</button>
   </div>
   <div class="wait-ab">
-    <button class="btn btn-ghost" style="border-color:rgba(255,255,255,.1);color:rgba(255,255,255,.75);" onclick="nav('s-home')">Back to home</button>
+    <button class="btn btn-ghost" style="border-color:rgba(255,255,255,.1);color:rgba(255,255,255,.94);" onclick="nav('s-home')">Back to home</button>
   </div>
 </div>
 
@@ -1021,8 +1021,8 @@ body { background: var(--white); color: var(--ink); font-family: var(--fs); min-
 <!-- COOLDOWN TIMER -->
 <div id="s-cooldown" class="screen">
   <div class="tb" style="background:var(--ink);border-color:rgba(255,255,255,.07);">
-    <button class="bk" style="color:rgba(255,255,255,.70);" onclick="nav('s-tools')">← Tools</button>
-    <div class="tb-label" style="color:rgba(255,255,255,.70);">Cool-Down Timer</div>
+    <button class="bk" style="color:rgba(255,255,255,.92);" onclick="nav('s-tools')">← Tools</button>
+    <div class="tb-label" style="color:rgba(255,255,255,.92);">Cool-Down Timer</div>
     <div></div>
   </div>
   <div class="cd-content">
@@ -1042,10 +1042,10 @@ body { background: var(--white); color: var(--ink); font-family: var(--fs); min-
       <div class="cr-label">While You Wait — Reflect On This</div>
       <div class="cr-text">"What am I actually feeling underneath the frustration — and what do I need right now that I have not said out loud?"</div>
     </div>
-    <div style="font-family:var(--fm);font-size:7px;letter-spacing:3px;color:rgba(255,255,255,.45);text-transform:uppercase;margin-top:20px;">Based on Gottman Research</div>
+    <div style="font-family:var(--fm);font-size:7px;letter-spacing:3px;color:rgba(255,255,255,.80);text-transform:uppercase;margin-top:20px;">Based on Gottman Research</div>
   </div>
   <div class="cd-ab">
-    <button class="btn btn-ghost" style="border-color:rgba(255,255,255,.1);color:rgba(255,255,255,.75);" onclick="nav('s-tools')">End early</button>
+    <button class="btn btn-ghost" style="border-color:rgba(255,255,255,.1);color:rgba(255,255,255,.94);" onclick="nav('s-tools')">End early</button>
     <button class="btn btn-gold" onclick="showToast('Timer started')">Start timer</button>
   </div>
 </div>
@@ -1053,14 +1053,14 @@ body { background: var(--white); color: var(--ink); font-family: var(--fs); min-
 <!-- RELATIONSHIP STAGE SELECTOR -->
 <div id="s-stage" class="screen">
   <div class="tb" style="background:var(--ink);border-color:rgba(255,255,255,.08);">
-    <button class="bk" style="color:rgba(255,255,255,.75);" onclick="nav('s-onboard')">← Back</button>
+    <button class="bk" style="color:rgba(255,255,255,.94);" onclick="nav('s-onboard')">← Back</button>
     <div class="tb-wordmark" style="color:var(--white);font-size:14px;letter-spacing:5px;">FUSE <em>Align</em></div>
     <div></div>
   </div>
   <div class="stage-masthead">
     <div class="stage-masthead-bg">STAGE</div>
     <div class="om-label">Step 02 — Your Relationship</div>
-    <div class="om-title" style="color:var(--white);">Where are you<br><em style="color:rgba(255,255,255,.75)">right now?</em></div>
+    <div class="om-title" style="color:var(--white);">Where are you<br><em style="color:rgba(255,255,255,.94)">right now?</em></div>
     <div class="om-sub">FUSE Align adapts its categories, prompts, and check-in rhythm to where you actually are. This changes how the app talks to you.</div>
   </div>
   <div class="scroll" style="background:var(--cream);">
@@ -1110,8 +1110,8 @@ body { background: var(--white); color: var(--ink); font-family: var(--fs); min-
 <!-- PAYWALL -->
 <div id="s-paywall" class="screen">
   <div class="tb" style="background:var(--ink);border-color:rgba(255,255,255,.08);">
-    <button class="bk" style="color:rgba(255,255,255,.75);" onclick="nav('s-home')">← Back</button>
-    <div class="tb-label" style="color:rgba(255,255,255,.5);">Upgrade</div>
+    <button class="bk" style="color:rgba(255,255,255,.94);" onclick="nav('s-home')">← Back</button>
+    <div class="tb-label" style="color:rgba(255,255,255,.92);">Upgrade</div>
     <div></div>
   </div>
   <div class="pw-content">
@@ -1131,7 +1131,7 @@ body { background: var(--white); color: var(--ink); font-family: var(--fs); min-
     </div>
   </div>
   <div class="pw-ab">
-    <button class="btn btn-ghost" style="border-color:rgba(255,255,255,.15);color:rgba(255,255,255,.6);" onclick="nav('s-home')">Not now</button>
+    <button class="btn btn-ghost" style="border-color:rgba(255,255,255,.15);color:rgba(255,255,255,.93);" onclick="nav('s-home')">Not now</button>
     <button class="btn btn-gold" onclick="showToast('Welcome to FUSE Align Premium')">$9.99 / month</button>
   </div>
   <div style="padding:0 24px 20px;text-align:center;">
@@ -1142,8 +1142,8 @@ body { background: var(--white); color: var(--ink); font-family: var(--fs); min-
 <!-- CAPSTONE QUESTION -->
 <div id="s-capstone" class="screen">
   <div class="tb" style="background:var(--ink);border-color:rgba(255,255,255,.08);">
-    <button class="bk" style="color:rgba(255,255,255,.75);" onclick="nav('s-reveal')">← Reveal</button>
-    <div class="tb-label" style="color:rgba(255,255,255,.5);">The Capstone</div>
+    <button class="bk" style="color:rgba(255,255,255,.94);" onclick="nav('s-reveal')">← Reveal</button>
+    <div class="tb-label" style="color:rgba(255,255,255,.92);">The Capstone</div>
     <div></div>
   </div>
   <div class="cap-content">
@@ -1154,10 +1154,10 @@ body { background: var(--white); color: var(--ink); font-family: var(--fs); min-
     <div class="cap-input-wrap">
       <textarea class="cap-textarea" placeholder="Write your answer here..." rows="4"></textarea>
     </div>
-    <div style="font-family:var(--fm);font-size:7px;letter-spacing:3px;color:rgba(255,255,255,.3);text-transform:uppercase;margin-top:20px;">Your answer is private until you choose to share it</div>
+    <div style="font-family:var(--fm);font-size:7px;letter-spacing:3px;color:rgba(255,255,255,.88);text-transform:uppercase;margin-top:20px;">Your answer is private until you choose to share it</div>
   </div>
   <div class="cap-ab">
-    <button class="btn btn-ghost" style="border-color:rgba(255,255,255,.15);color:rgba(255,255,255,.6);" onclick="nav('s-reveal')">← Back</button>
+    <button class="btn btn-ghost" style="border-color:rgba(255,255,255,.15);color:rgba(255,255,255,.93);" onclick="nav('s-reveal')">← Back</button>
     <button class="btn btn-ink" style="background:var(--gold);border:none;" onclick="nav('s-convo')">Continue to Conversation →</button>
   </div>
 </div>
