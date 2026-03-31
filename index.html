@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FUSE ALIGN</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,300;0,6..96,400;0,6..96,500;1,6..96,300;1,6..96,400&family=Jost:wght@200;300;400;500&family=DM+Mono:wght@300;400&display=swap');
+
+:root {
+  --ink: #0a0a0a;
+  --ink2: #1a1a1a;
+  --charcoal: #2c2c2c;
+  --mid: #6b6b6b;
+  --soft: #9e9e9e;
+  --faint: #c8c8c8;
+  --rule: #e2e2e2;
+  --off: #f7f5f3;
+  --cream: #faf8f6;
+  --white: #ffffff;
+  --gold: #b8965a;
+  --gold-light: rgba(184,150,90,0.08);
+  --rouge: #8b1a2e;
+  --rouge-light: rgba(139,26,46,0.07);
+  --fb: 'Bodoni Moda', serif;
+  --fs: 'Jost', sans-serif;
+  --fm: 'DM Mono', monospace;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { font-size: 16px; }
+body { background: var(--white); color: var(--ink); font-family: var(--fs); min-height: 100vh; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+
+.screen { display: none; min-height: 100vh; animation: reveal .4s cubic-bezier(.16,1,.3,1); }
+.screen.active { display: flex; flex-direction: column; }
+@keyframes reveal { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+.scroll { overflow-y: auto; flex: 1; }
+
+/* RULE LINES */
+.rule { width: 100%; height: 1px; background: var(--rule); }
+.rule-gold { width: 40px; height: 1px; background: var(--gold); }
+.rule-ink { width: 100%; height: 1px; background: var(--ink); }
+
+/* TOP BAR */
+.tb { display: flex; align-items: center; justify-content: space-between; padding: 18px 24px;
+  background: var(--white); border-bottom: 1px solid var(--rule); position: sticky; top: 0; z-index: 100; flex-shrink: 0; }
+.tb-wordmark { font-family: var(--fb); font-size: 18px; font-weight: 300; letter-spacing: 8px; color: var(--ink); text-transform: uppercase; }
+.tb-wordmark em { font-style: italic; font-weight: 300; }
+.tb-label { font-family: var(--fm); font-size: 8px; letter-spacing: 3px; color: var(--soft); text-transform: uppercase; }
+.bk { font-family: var(--fm); font-size: 9px; letter-spacing: 2px; color: var(--soft); background: none; border: none; cursor: pointer; text-transform: uppercase; transition: color .2s; padding: 0; }
+.bk:hover { color: var(--ink); }
+
+/* ACTION BAR */
+.ab { padding: 20px 24px; background: var(--white); border-top: 1px solid var(--rule); flex-shrink: 0; display: flex; gap: 12px; }
+.btn { flex: 1; padding: 16px; font-family: var(--fs); font-size: 11px; font-weight: 400; letter-spacing: 3px; text-transform: uppercase; border: none; cursor: pointer; transition: all .25s; }
+.btn-ink { background: var(--ink); color: var(--white); }
+.btn-ink:hover { background: var(--charcoal); }
+.btn-outline { background: transparent; color: var(--ink); border: 1px solid var(--ink); }
+.btn-outline:hover { background: var(--ink); color: var(--white); }
+.btn-ghost { background: transparent; color: var(--soft); border: 1px solid var(--rule); }
+.btn-ghost:hover { border-color: var(--ink); color: var(--ink); }
+.btn-gold { background: var(--gold); color: var(--white); }
+.btn-gold:hover { background: #a07840; }
+
+/* NAV */
+.nt { display: flex; background: var(--white); border-top: 1px solid var(--rule); flex-shrink: 0; }
+.ntb { flex: 1; padding: 14px 4px; text-align: center; cursor: pointer; border: none; background: none; position: relative; transition: all .2s; }
+.ntb.act::after { content: ''; position: absolute; bottom: 0; left: 30%; right: 30%; height: 1px; background: var(--ink); }
+.nti { font-size: 16px; display: block; }
+.ntl { font-family: var(--fm); font-size: 7px; color: var(--faint); margin-top: 3px; letter-spacing: 2px; text-transform: uppercase; }
+.ntb.act .ntl { color: var(--ink); }
+
+/* SECTION HEADERS */
+.sh { padding: 24px 24px 12px; }
+.sh-rule { width: 24px; height: 1px; background: var(--gold); margin-bottom: 8px; }
+.sh-text { font-family: var(--fm); font-size: 8px; letter-spacing: 4px; color: var(--soft); text-transform: uppercase; }
+
+/* TOAST */
+.toast { position: fixed; bottom: 100px; left: 50%; transform: translateX(-50%) translateY(10px);
+  background: var(--ink); color: var(--white); padding: 12px 24px;
+  font-family: var(--fm); font-size: 9px; letter-spacing: 2px; text-transform: uppercase;
+  opacity: 0; transition: all .3s; z-index: 300; white-space: nowrap; pointer-events: none; }
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+/* ═══════════════════════════════════
+   SPLASH
+═══════════════════════════════════ */
+#s-splash {
+  background: var(--ink);
+  align-items: stretch; justify-content: flex-start; flex-direction: column;
+  position: relative; min-height: 100vh;
+}
+.splash-editorial {
+  flex: 1; display: flex; flex-direction: column; justify-content: center;
+  padding: 60px 32px 40px; position: relative; overflow: hidden;
+}
+.splash-bg-text {
+  position: absolute; bottom: -20px; right: -10px;
+  font-family: var(--fb); font-size: 180px; font-weight: 300; color: rgba(255,255,255,.03);
+  line-height: 1; pointer-events: none; letter-spacing: -4px; white-space: nowrap;
+}
+.splash-overline { font-family: var(--fm); font-size: 9px; letter-spacing: 5px; color: var(--gold); text-transform: uppercase; margin-bottom: 28px; display: flex; align-items: center; gap: 14px; }
+.splash-overline::before { content: ''; width: 30px; height: 1px; background: var(--gold); }
+.splash-wordmark { font-family: var(--fb); font-size: clamp(52px, 14vw, 80px); font-weight: 300; color: var(--white); letter-spacing: 12px; text-transform: uppercase; line-height: .95; }
+.splash-wordmark em { display: block; font-style: italic; font-weight: 300; color: rgba(255,255,255,.55); font-size: .6em; letter-spacing: 16px; margin-top: 8px; }
+.splash-rule { width: 40px; height: 1px; background: var(--gold); margin: 36px 0; }
+.splash-tagline { font-family: var(--fb); font-size: 18px; font-weight: 300; font-style: italic; color: rgba(255,255,255,.6); line-height: 1.6; max-width: 260px; }
+.splash-footer { padding: 0 32px 48px; display: flex; flex-direction: column; gap: 12px; }
+.splash-footer .btn { padding: 18px; font-size: 10px; letter-spacing: 4px; }
+.btn-cream { background: var(--cream); color: var(--ink); }
+.btn-cream:hover { background: var(--white); }
+.btn-naked { background: transparent; color: rgba(255,255,255,.4); border: 1px solid rgba(255,255,255,.15); font-size: 10px; letter-spacing: 3px; }
+.btn-naked:hover { border-color: rgba(255,255,255,.4); color: rgba(255,255,255,.7); }
+.splash-meta { text-align: center; font-family: var(--fm); font-size: 8px; letter-spacing: 3px; color: rgba(255,255,255,.18); text-transform: uppercase; margin-top: 8px; }
+
+/* ═══════════════════════════════════
+   ONBOARDING
+═══════════════════════════════════ */
+#s-onboard { background: var(--cream); }
+.onboard-masthead {
+  background: var(--ink); padding: 48px 24px 36px;
+  position: relative; overflow: hidden;
+}
+.onboard-masthead-bg {
+  position: absolute; right: -20px; top: 50%; transform: translateY(-50%);
+  font-family: var(--fb); font-size: 120px; font-weight: 300; color: rgba(255,255,255,.04);
+  pointer-events: none; white-space: nowrap;
+}
+.om-label { font-family: var(--fm); font-size: 8px; letter-spacing: 4px; color: var(--gold); text-transform: uppercase; margin-bottom: 12px; }
+.om-title { font-family: var(--fb); font-size: 36px; font-weight: 300; color: var(--white); line-height: 1.2; }
+.om-title em { font-style: italic; color: rgba(255,255,255,.55); }
+.om-sub { font-family: var(--fs); font-size: 13px; font-weight: 300; color: rgba(255,255,255,.45); margin-top: 12px; line-height: 1.7; }
+.field-block { padding: 0 24px; margin-bottom: 16px; }
+.field-label { font-family: var(--fm); font-size: 8px; letter-spacing: 3px; color: var(--soft); text-transform: uppercase; margin-bottom: 8px; display: block; }
+.field-input { width: 100%; padding: 16px 0; background: transparent; border: none; border-bottom: 1px solid var(--rule); font-family: var(--fs); font-size: 16px; font-weight: 300; color: var(--ink); outline: none; transition: border-color .2s; }
+.field-input:focus { border-color: var(--ink); }
+.field-input::placeholder { color: var(--faint); }
+.invite-block { margin: 28px 24px 0; padding: 28px; background: var(--white); border: 1px solid var(--rule); position: relative; }
+.ib-corner { position: absolute; top: -1px; right: -1px; width: 20px; height: 20px; background: var(--gold); }
+.ib-label { font-family: var(--fm); font-size: 8px; letter-spacing: 3px; color: var(--gold); text-transform: uppercase; margin-bottom: 10px; }
+.ib-title { font-family: var(--fb); font-size: 22px; font-weight: 300; color: var(--ink); margin-bottom: 8px; }
+.ib-sub { font-size: 13px; font-weight: 300; color: var(--soft); line-height: 1.6; }
+.ib-link { display: flex; align-items: center; gap: 10px; margin-top: 20px; padding: 14px 18px; background: var(--off); border: 1px solid var(--rule); cursor: pointer; font-family: var(--fm); font-size: 9px; letter-spacing: 2px; color: var(--mid); transition: all .2s; }
+.ib-link:hover { background: var(--cream); border-color: var(--ink); color: var(--ink); }
+
+/* ═══════════════════════════════════
+   HOME DASHBOARD
+═══════════════════════════════════ */
+#s-home { background: var(--cream); }
+.home-masthead { background: var(--white); padding: 28px 24px 24px; border-bottom: 1px solid var(--rule); }
+.hm-greeting { font-family: var(--fb); font-size: 28px; font-weight: 300; color: var(--ink); }
+.hm-greeting em { font-style: italic; }
+.partner-status { display: flex; align-items: center; gap: 10px; margin-top: 14px; padding: 14px 16px; background: var(--off); border-left: 2px solid var(--gold); }
+.ps-dot { width: 6px; height: 6px; border-radius: 50%; background: #4caf4c; flex-shrink: 0; }
+.ps-text { font-size: 12px; font-weight: 300; color: var(--mid); flex: 1; letter-spacing: .3px; }
+.ps-label { font-family: var(--fm); font-size: 8px; letter-spacing: 2px; color: var(--gold); text-transform: uppercase; }
+.score-feature { margin: 20px 24px; background: var(--ink); padding: 28px; position: relative; overflow: hidden; }
+.sf-bg { position: absolute; right: -10px; bottom: -20px; font-family: var(--fb); font-size: 100px; font-weight: 300; color: rgba(255,255,255,.04); pointer-events: none; line-height: 1; }
+.sf-label { font-family: var(--fm); font-size: 8px; letter-spacing: 3px; color: var(--gold); text-transform: uppercase; margin-bottom: 10px; }
+.sf-score { font-family: var(--fb); font-size: 64px; font-weight: 300; color: var(--white); line-height: 1; }
+.sf-score sup { font-size: 22px; color: rgba(255,255,255,.35); vertical-align: super; }
+.sf-sub { font-size: 12px; font-weight: 300; color: rgba(255,255,255,.4); margin-top: 8px; line-height: 1.6; }
+.sf-bar-wrap { margin-top: 20px; }
+.sf-bar { height: 1px; background: rgba(255,255,255,.12); }
+.sf-fill { height: 100%; width: 72%; background: linear-gradient(90deg, var(--gold), rgba(184,150,90,.4)); }
+.sf-dims { display: flex; justify-content: space-between; margin-top: 8px; }
+.sf-dim { font-family: var(--fm); font-size: 7px; color: rgba(255,255,255,.2); letter-spacing: 1px; text-transform: uppercase; }
+
+/* CATEGORY LIST — editorial table style */
+.cat-table { margin: 0 24px 24px; }
+.cat-row { display: flex; align-items: center; gap: 16px; padding: 18px 0; border-bottom: 1px solid var(--rule); cursor: pointer; transition: all .2s; }
+.cat-row:first-child { border-top: 1px solid var(--rule); }
+.cat-row:hover .cat-row-name { color: var(--gold); }
+.cat-row.locked { opacity: .35; cursor: default; }
+.cat-row-num { font-family: var(--fm); font-size: 9px; color: var(--faint); letter-spacing: 1px; width: 20px; flex-shrink: 0; }
+.cat-row-icon { font-size: 18px; width: 28px; text-align: center; flex-shrink: 0; }
+.cat-row-info { flex: 1; }
+.cat-row-name { font-family: var(--fb); font-size: 17px; font-weight: 400; color: var(--ink); transition: color .2s; }
+.cat-row-sub { font-size: 11px; font-weight: 300; color: var(--soft); margin-top: 2px; letter-spacing: .2px; }
+.cat-row-right { text-align: right; flex-shrink: 0; }
+.cat-status-pill { font-family: var(--fm); font-size: 7px; letter-spacing: 2px; text-transform: uppercase; }
+.st-done { color: var(--gold); }
+.st-wait { color: var(--soft); }
+.st-new { color: var(--ink); }
+.st-lock { color: var(--faint); }
+.cat-score-num { font-family: var(--fb); font-size: 18px; font-weight: 300; color: var(--ink); margin-top: 4px; }
+
+/* ═══════════════════════════════════
+   CATEGORY DETAIL
+═══════════════════════════════════ */
+#s-category { background: var(--cream); }
+.cat-masthead { background: var(--ink); padding: 40px 24px 32px; position: relative; overflow: hidden; }
+.cm-bg { position: absolute; right: 16px; bottom: -10px; font-size: 72px; opacity: .06; }
+.cm-num { font-family: var(--fm); font-size: 8px; letter-spacing: 4px; color: var(--gold); text-transform: uppercase; margin-bottom: 10px; display: flex; align-items: center; gap: 12px; }
+.cm-num::before { content: ''; width: 20px; height: 1px; background: var(--gold); }
+.cm-name { font-family: var(--fb); font-size: 28px; font-weight: 300; color: var(--white); line-height: 1.2; }
+.cm-sub { font-size: 13px; font-weight: 300; color: rgba(255,255,255,.4); margin-top: 8px; line-height: 1.6; }
+.private-seal { display: flex; align-items: center; gap: 10px; margin-top: 18px; padding: 10px 14px; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1); }
+.ps-icon { font-family: var(--fm); font-size: 8px; letter-spacing: 1px; color: var(--gold); }
+.ps-text-inner { font-size: 11px; font-weight: 300; color: rgba(255,255,255,.35); }
+.q-section { margin: 24px; }
+.q-rule { width: 24px; height: 1px; background: var(--gold); margin-bottom: 12px; }
+.q-label-text { font-family: var(--fm); font-size: 8px; letter-spacing: 3px; color: var(--soft); text-transform: uppercase; margin-bottom: 14px; }
+.q-text-display { font-family: var(--fb); font-size: 20px; font-weight: 300; font-style: italic; color: var(--ink); line-height: 1.6; }
+.q-textarea { width: 100%; margin-top: 20px; padding: 16px 0; background: transparent; border: none; border-bottom: 1px solid var(--rule); font-family: var(--fs); font-size: 14px; font-weight: 300; color: var(--ink); outline: none; resize: none; line-height: 1.7; min-height: 80px; transition: border-color .2s; }
+.q-textarea:focus { border-color: var(--ink); }
+.q-textarea::placeholder { color: var(--faint); font-style: italic; }
+.flex-section { margin: 0 24px 20px; }
+.flex-label { font-family: var(--fm); font-size: 8px; letter-spacing: 3px; color: var(--soft); text-transform: uppercase; margin-bottom: 14px; }
+.flex-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.fo { padding: 16px 14px; background: var(--white); border: 1px solid var(--rule); cursor: pointer; transition: all .2s; }
+.fo:hover { border-color: var(--ink); }
+.fo.sel { background: var(--ink); border-color: var(--ink); }
+.fo-name { font-family: var(--fb); font-size: 14px; font-weight: 400; color: var(--ink); }
+.fo.sel .fo-name { color: var(--white); }
+.fo-sub { font-size: 10px; font-weight: 300; color: var(--soft); margin-top: 3px; }
+.fo.sel .fo-sub { color: rgba(255,255,255,.4); }
+.priority-block { margin: 0 24px 24px; }
+.priority-row { display: flex; align-items: center; gap: 16px; border-bottom: 1px solid var(--rule); padding-bottom: 16px; }
+.priority-text { font-size: 13px; font-weight: 300; color: var(--mid); flex: 1; }
+.priority-sel { padding: 10px 16px; background: transparent; border: none; border-bottom: 2px solid var(--ink); font-family: var(--fb); font-size: 18px; color: var(--ink); outline: none; cursor: pointer; -webkit-appearance: none; }
+
+/* ═══════════════════════════════════
+   WAITING
+═══════════════════════════════════ */
+#s-waiting { background: var(--ink); }
+.wait-content { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 48px 32px; text-align: center; }
+.wait-rings { position: relative; width: 90px; height: 90px; margin: 0 auto 40px; }
+.wr { position: absolute; border-radius: 50%; border: 1px solid rgba(184,150,90,.2); animation: wr-pulse 2.5s ease-out infinite; }
+.wr:nth-child(1) { inset: 36px; }
+.wr:nth-child(2) { inset: 24px; animation-delay: .6s; }
+.wr:nth-child(3) { inset: 10px; animation-delay: 1.2s; }
+.wr-core { position: absolute; inset: 40px; border-radius: 50%; background: var(--gold); opacity: .6; }
+@keyframes wr-pulse { 0%,100% { transform: scale(1); opacity: .5; } 50% { transform: scale(1.12); opacity: .15; } }
+.wait-overline { font-family: var(--fm); font-size: 8px; letter-spacing: 4px; color: var(--gold); text-transform: uppercase; margin-bottom: 16px; }
+.wait-title { font-family: var(--fb); font-size: 34px; font-weight: 300; color: var(--white); line-height: 1.2; }
+.wait-title em { font-style: italic; color: rgba(255,255,255,.45); }
+.wait-sub { font-size: 13px; font-weight: 300; color: rgba(255,255,255,.35); margin-top: 14px; line-height: 1.7; max-width: 280px; }
+.wait-quote { margin-top: 36px; padding: 24px 28px; border: 1px solid rgba(255,255,255,.08); text-align: left; max-width: 320px; }
+.wq-rule { width: 20px; height: 1px; background: var(--gold); margin-bottom: 12px; }
+.wq-text { font-family: var(--fb); font-size: 15px; font-weight: 300; font-style: italic; color: rgba(255,255,255,.4); line-height: 1.7; }
+.wait-demo { margin-top: 28px; padding: 12px 28px; background: transparent; border: 1px solid rgba(255,255,255,.12); font-family: var(--fm); font-size: 8px; letter-spacing: 3px; color: rgba(255,255,255,.3); cursor: pointer; text-transform: uppercase; transition: all .2s; }
+.wait-demo:hover { border-color: var(--gold); color: var(--gold); }
+.wait-ab { padding: 20px 24px; border-top: 1px solid rgba(255,255,255,.08); display: flex; gap: 12px; }
+
+/* ═══════════════════════════════════
+   ALIGNMENT REVEAL
+═══════════════════════════════════ */
+#s-reveal { background: var(--cream); }
+.reveal-masthead { background: var(--ink); padding: 36px 24px 32px; text-align: left; }
+.rm-eyebrow { font-family: var(--fm); font-size: 8px; letter-spacing: 4px; color: var(--gold); text-transform: uppercase; margin-bottom: 20px; display: flex; align-items: center; gap: 12px; }
+.rm-eyebrow::before { content: ''; width: 20px; height: 1px; background: var(--gold); }
+.rm-score-wrap { display: flex; align-items: baseline; gap: 6px; margin-bottom: 12px; }
+.rm-score { font-family: var(--fb); font-size: 80px; font-weight: 300; color: var(--white); line-height: 1; }
+.rm-pct { font-family: var(--fb); font-size: 32px; font-weight: 300; color: rgba(255,255,255,.25); }
+.rm-title { font-family: var(--fb); font-size: 20px; font-weight: 300; font-style: italic; color: rgba(255,255,255,.5); }
+.rm-sub { font-size: 12px; font-weight: 300; color: rgba(255,255,255,.3); margin-top: 8px; line-height: 1.6; }
+.reveal-items { padding: 8px 24px 24px; display: flex; flex-direction: column; gap: 0; }
+.rev-item { padding: 24px 0; border-bottom: 1px solid var(--rule); }
+.rev-item:last-child { border-bottom: none; }
+.ri-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 14px; }
+.ri-name { font-family: var(--fb); font-size: 18px; font-weight: 400; color: var(--ink); }
+.ri-verdict { font-family: var(--fm); font-size: 7px; letter-spacing: 2px; text-transform: uppercase; padding: 4px 10px; border: 1px solid; }
+.rv-align { color: var(--gold); border-color: rgba(184,150,90,.3); }
+.rv-gap { color: var(--rouge); border-color: rgba(139,26,46,.25); }
+.rv-explore { color: var(--soft); border-color: var(--rule); }
+.ri-sides { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+.ri-side { padding: 14px; }
+.ri-side.a { background: var(--off); border-left: 2px solid var(--ink); }
+.ri-side.b { background: var(--off); border-left: 2px solid var(--gold); }
+.ri-side-who { font-family: var(--fm); font-size: 7px; letter-spacing: 2px; color: var(--soft); text-transform: uppercase; margin-bottom: 6px; }
+.ri-side.b .ri-side-who { color: var(--gold); }
+.ri-side-val { font-size: 12px; font-weight: 300; color: var(--mid); line-height: 1.5; }
+.ri-flex-row { display: flex; gap: 8px; margin-bottom: 10px; }
+.ri-flex-pill { flex: 1; padding: 5px 8px; text-align: center; font-family: var(--fm); font-size: 7px; letter-spacing: 1px; text-transform: uppercase; }
+.rfp-nn { background: var(--ink); color: var(--white); }
+.rfp-sp { background: var(--charcoal); color: var(--white); }
+.rfp-fl { background: var(--off); color: var(--ink); border: 1px solid var(--rule); }
+.rfp-un { background: var(--off); color: var(--soft); border: 1px solid var(--rule); }
+.ri-insight { padding: 12px 14px; border-left: 2px solid var(--gold); background: var(--gold-light); font-size: 12px; font-weight: 300; color: var(--mid); line-height: 1.6; font-style: italic; }
+
+/* ═══════════════════════════════════
+   GUIDED CONVERSATION
+═══════════════════════════════════ */
+#s-convo { background: var(--cream); }
+.convo-masthead { background: var(--white); padding: 32px 24px 28px; border-bottom: 1px solid var(--rule); }
+.cv-label { font-family: var(--fm); font-size: 8px; letter-spacing: 4px; color: var(--gold); text-transform: uppercase; margin-bottom: 8px; }
+.cv-title { font-family: var(--fb); font-size: 28px; font-weight: 300; color: var(--ink); line-height: 1.2; }
+.cv-sub { font-size: 13px; font-weight: 300; color: var(--soft); margin-top: 8px; line-height: 1.6; }
+.prompt-tabs { display: flex; padding: 20px 24px 0; gap: 4px; }
+.ptab { padding: 8px 16px; font-family: var(--fm); font-size: 8px; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; border: 1px solid var(--rule); background: transparent; color: var(--soft); transition: all .2s; }
+.ptab.act { background: var(--ink); border-color: var(--ink); color: var(--white); }
+.ptab:hover:not(.act) { border-color: var(--ink); color: var(--ink); }
+.prompt-body { margin: 20px 24px; background: var(--white); border: 1px solid var(--rule); padding: 28px; position: relative; }
+.pb-corner { position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: var(--gold); }
+.pb-step { font-family: var(--fm); font-size: 8px; letter-spacing: 3px; color: var(--gold); text-transform: uppercase; margin-bottom: 14px; }
+.pb-q { font-family: var(--fb); font-size: 20px; font-weight: 300; font-style: italic; color: var(--ink); line-height: 1.6; }
+.pb-sub { font-size: 12px; font-weight: 300; color: var(--soft); margin-top: 12px; line-height: 1.6; }
+.ground-rules { margin: 0 24px 20px; }
+.gr-rule { width: 24px; height: 1px; background: var(--rule); margin-bottom: 12px; }
+.gr-label { font-family: var(--fm); font-size: 8px; letter-spacing: 3px; color: var(--soft); text-transform: uppercase; margin-bottom: 12px; }
+.gr-item { display: flex; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--off); font-size: 12px; font-weight: 300; color: var(--mid); line-height: 1.5; }
+.gr-item:last-child { border-bottom: none; }
+.gr-num { font-family: var(--fm); font-size: 8px; color: var(--faint); flex-shrink: 0; margin-top: 2px; }
+
+/* ═══════════════════════════════════
+   HEALTH DASHBOARD
+═══════════════════════════════════ */
+#s-health { background: var(--cream); }
+.health-feature { margin: 20px 24px; background: var(--ink); padding: 28px; position: relative; overflow: hidden; }
+.hf-bg { position: absolute; right: -10px; bottom: -20px; font-family: var(--fb); font-size: 100px; color: rgba(255,255,255,.03); pointer-events: none; line-height: 1; }
+.hf-label { font-family: var(--fm); font-size: 8px; letter-spacing: 3px; color: var(--gold); text-transform: uppercase; margin-bottom: 10px; }
+.hf-score { font-family: var(--fb); font-size: 64px; font-weight: 300; color: var(--white); line-height: 1; }
+.hf-score sup { font-size: 22px; color: rgba(255,255,255,.3); }
+.hf-status { font-family: var(--fm); font-size: 8px; letter-spacing: 3px; color: var(--gold); text-transform: uppercase; margin-top: 6px; }
+.hf-bar { height: 1px; background: rgba(255,255,255,.1); margin-top: 20px; }
+.hf-fill { height: 100%; width: 84%; background: var(--gold); }
+.trend-note { margin: 0 24px 20px; padding: 18px; border-left: 2px solid var(--gold); background: var(--gold-light); }
+.tn-label { font-family: var(--fm); font-size: 7px; letter-spacing: 3px; color: var(--gold); text-transform: uppercase; margin-bottom: 6px; }
+.tn-text { font-size: 13px; font-weight: 300; color: var(--mid); line-height: 1.6; }
+.dim-table { margin: 0 24px 24px; }
+.dim-row { padding: 16px 0; border-bottom: 1px solid var(--rule); display: flex; flex-direction: column; gap: 8px; }
+.dim-row:first-child { border-top: 1px solid var(--rule); }
+.dim-top { display: flex; justify-content: space-between; align-items: baseline; }
+.dim-name { font-family: var(--fb); font-size: 16px; font-weight: 400; color: var(--ink); }
+.dim-val { font-family: var(--fb); font-size: 20px; font-weight: 300; }
+.dim-bar-track { height: 1px; background: var(--rule); }
+.dim-bar-fill { height: 100%; transition: width .4s; }
+.dim-note { font-size: 11px; font-weight: 300; color: var(--soft); }
+
+/* ═══════════════════════════════════
+   QUICK TOOLS
+═══════════════════════════════════ */
+#s-tools { background: var(--cream); }
+.tool-row { display: flex; align-items: flex-start; gap: 16px; padding: 22px 24px; border-bottom: 1px solid var(--rule); cursor: pointer; transition: background .2s; background: var(--white); }
+.tool-row:first-child { border-top: 1px solid var(--rule); }
+.tool-row:hover { background: var(--off); }
+.tool-num { font-family: var(--fm); font-size: 8px; color: var(--faint); width: 20px; flex-shrink: 0; margin-top: 4px; }
+.tool-body { flex: 1; }
+.tool-name { font-family: var(--fb); font-size: 20px; font-weight: 400; color: var(--ink); }
+.tool-sub { font-size: 12px; font-weight: 300; color: var(--soft); margin-top: 4px; line-height: 1.5; }
+.tool-tag { display: inline-block; margin-top: 8px; font-family: var(--fm); font-size: 7px; letter-spacing: 2px; text-transform: uppercase; padding: 3px 10px; }
+.tt-now { background: var(--ink); color: var(--white); }
+.tt-quick { border: 1px solid var(--rule); color: var(--soft); }
+.tt-after { background: var(--rouge); color: var(--white); }
+.tt-joint { border: 1px solid var(--gold); color: var(--gold); }
+.tt-any { background: var(--off); color: var(--mid); border: 1px solid var(--rule); }
+.tool-arrow { font-size: 18px; color: var(--faint); margin-top: 4px; flex-shrink: 0; }
+
+/* ═══════════════════════════════════
+   COOLDOWN TIMER
+═══════════════════════════════════ */
+#s-cooldown { background: var(--ink); }
+.cd-content { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 40px 32px; text-align: center; }
+.cd-overline { font-family: var(--fm); font-size: 8px; letter-spacing: 4px; color: var(--gold); text-transform: uppercase; margin-bottom: 16px; }
+.cd-title { font-family: var(--fb); font-size: 34px; font-weight: 300; color: var(--white); line-height: 1.3; }
+.cd-title em { font-style: italic; color: rgba(255,255,255,.45); }
+.cd-sub { font-size: 12px; font-weight: 300; color: rgba(255,255,255,.3); margin-top: 10px; line-height: 1.7; max-width: 260px; }
+.cd-clock { position: relative; width: 150px; height: 150px; margin: 36px auto; }
+.cd-track { position: absolute; inset: 0; border-radius: 50%; border: 1px solid rgba(255,255,255,.08); }
+.cd-prog { position: absolute; inset: 0; border-radius: 50%; border: 1px solid var(--gold); border-right-color: transparent; border-bottom-color: transparent; animation: cd-turn 20s linear; transform: rotate(-90deg); }
+@keyframes cd-turn { to { transform: rotate(270deg); } }
+.cd-face { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.cd-num { font-family: var(--fb); font-size: 48px; font-weight: 300; color: var(--white); line-height: 1; }
+.cd-unit { font-family: var(--fm); font-size: 7px; letter-spacing: 3px; color: rgba(255,255,255,.25); text-transform: uppercase; margin-top: 2px; }
+.cd-reflect { margin-top: 8px; padding: 24px 28px; border: 1px solid rgba(255,255,255,.08); text-align: left; max-width: 320px; }
+.cr-rule { width: 20px; height: 1px; background: var(--gold); margin-bottom: 12px; }
+.cr-label { font-family: var(--fm); font-size: 7px; letter-spacing: 3px; color: rgba(255,255,255,.2); text-transform: uppercase; margin-bottom: 10px; }
+.cr-text { font-family: var(--fb); font-size: 15px; font-weight: 300; font-style: italic; color: rgba(255,255,255,.35); line-height: 1.7; }
+.cd-ab { padding: 20px 24px; border-top: 1px solid rgba(255,255,255,.08); display: flex; gap: 12px; }
+</style>
+</head>
+<body>
+
+<!-- SPLASH -->
+<div id="s-splash" class="screen active">
+  <div class="splash-editorial">
+    <div class="splash-bg-text">ALIGN</div>
+    <div class="splash-overline">Relationship Intelligence</div>
+    <div class="splash-wordmark">FUSE<em>Align</em></div>
+    <div class="splash-rule"></div>
+    <div class="splash-tagline">Understand each other before you assume each other.</div>
+  </div>
+  <div class="splash-footer">
+    <button class="btn btn-cream" onclick="nav('s-onboard')">Begin</button>
+    <button class="btn btn-naked" onclick="nav('s-home')">Sign In</button>
+    <div class="splash-meta">Free to start · No card required</div>
+  </div>
+</div>
+
+<!-- ONBOARDING -->
+<div id="s-onboard" class="screen">
+  <div class="tb" style="background:var(--ink);border-color:rgba(255,255,255,.08);">
+    <button class="bk" style="color:rgba(255,255,255,.3);" onclick="nav('s-splash')">← Back</button>
+    <div class="tb-wordmark" style="color:var(--white);font-size:14px;letter-spacing:5px;">FUSE <em>Align</em></div>
+    <div></div>
+  </div>
+  <div class="onboard-masthead">
+    <div class="onboard-masthead-bg">YOU + THEM</div>
+    <div class="om-label">Step 01 — Create Account</div>
+    <div class="om-title">You,<br><em>and your partner.</em></div>
+    <div class="om-sub">Each of you answers independently. Neither sees the other's responses until both are complete. No anchoring. No performance.</div>
+  </div>
+  <div class="scroll" style="background:var(--cream);">
+    <div style="height:28px;"></div>
+    <div class="field-block">
+      <label class="field-label">Your first name</label>
+      <input class="field-input" type="text" placeholder="Jordan" />
+    </div>
+    <div class="field-block">
+      <label class="field-label">Email address</label>
+      <input class="field-input" type="email" placeholder="you@email.com" />
+    </div>
+    <div class="field-block">
+      <label class="field-label">Password</label>
+      <input class="field-input" type="password" placeholder="••••••••" />
+    </div>
+    <div style="padding:0 24px;margin-bottom:28px;">
+      <div class="invite-block">
+        <div class="ib-corner"></div>
+        <div class="ib-label">Invite Your Partner</div>
+        <div class="ib-title">Send the link.<br>They answer on their own.</div>
+        <div class="ib-sub">Your partner creates their own account. Their answers are private to them until you've both completed a category. The reveal only happens together.</div>
+        <div class="ib-link" onclick="showToast('Invite link copied')">
+          <span style="font-size:14px;">🔗</span>
+          <span>Copy invite link</span>
+          <span style="margin-left:auto;font-size:9px;color:var(--faint);">→</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ab">
+    <button class="btn btn-ghost" onclick="nav('s-splash')">Back</button>
+    <button class="btn btn-ink" onclick="nav('s-home')">Continue →</button>
+  </div>
+</div>
+
+<!-- HOME DASHBOARD -->
+<div id="s-home" class="screen">
+  <div class="tb">
+    <div class="tb-wordmark">FUSE <em>Align</em></div>
+    <div></div>
+    <button style="background:none;border:none;cursor:pointer;font-size:18px;" onclick="showToast('Profile')">◯</button>
+  </div>
+  <div class="scroll">
+    <div class="home-masthead">
+      <div class="hm-greeting">Good evening, <em>Jordan.</em></div>
+      <div class="partner-status">
+        <div class="ps-dot"></div>
+        <div class="ps-text">Alex is active · Last seen 2 hours ago</div>
+        <div class="ps-label">Connected</div>
+      </div>
+    </div>
+    <div class="score-feature">
+      <div class="sf-bg">72</div>
+      <div class="sf-label">Overall Alignment</div>
+      <div class="sf-score">72<sup>%</sup></div>
+      <div class="sf-sub">Strong foundation. Four of sixteen categories complete. Real areas to explore together.</div>
+      <div class="sf-bar-wrap">
+        <div class="sf-bar"><div class="sf-fill"></div></div>
+        <div class="sf-dims">
+          <span class="sf-dim">Critical</span>
+          <span class="sf-dim">Growing</span>
+          <span class="sf-dim">Aligned</span>
+          <span class="sf-dim">Deep</span>
+        </div>
+      </div>
+    </div>
+    <div class="sh"><div class="sh-rule"></div><div class="sh-text">MVP Launch Categories</div></div>
+    <div class="cat-table">
+      <div class="cat-row" onclick="openCat('money')">
+        <div class="cat-row-num">01</div>
+        <div class="cat-row-icon">💰</div>
+        <div class="cat-row-info">
+          <div class="cat-row-name">Money & Financial Philosophy</div>
+          <div class="cat-row-sub">Debt, risk, transparency, spending values</div>
+        </div>
+        <div class="cat-row-right">
+          <div class="cat-status-pill st-done">Complete</div>
+          <div class="cat-score-num">68%</div>
+        </div>
+      </div>
+      <div class="cat-row" onclick="openCat('children')">
+        <div class="cat-row-num">02</div>
+        <div class="cat-row-icon">👶</div>
+        <div class="cat-row-info">
+          <div class="cat-row-name">Children & Family</div>
+          <div class="cat-row-sub">Kids, timing, parenting philosophy</div>
+        </div>
+        <div class="cat-row-right">
+          <div class="cat-status-pill st-done">Complete</div>
+          <div class="cat-score-num">91%</div>
+        </div>
+      </div>
+      <div class="cat-row" onclick="openCat('conflict')">
+        <div class="cat-row-num">03</div>
+        <div class="cat-row-icon">🌀</div>
+        <div class="cat-row-info">
+          <div class="cat-row-name">Conflict & Emotional Regulation</div>
+          <div class="cat-row-sub">How you fight, repair, and recover</div>
+        </div>
+        <div class="cat-row-right">
+          <div class="cat-status-pill st-wait">Alex pending</div>
+        </div>
+      </div>
+      <div class="cat-row" onclick="openCat('trust')">
+        <div class="cat-row-num">04</div>
+        <div class="cat-row-icon">🔒</div>
+        <div class="cat-row-info">
+          <div class="cat-row-name">Trust & Digital Privacy</div>
+          <div class="cat-row-sub">Phone access, social media, transparency</div>
+        </div>
+        <div class="cat-row-right">
+          <div class="cat-status-pill st-new">Begin →</div>
+        </div>
+      </div>
+    </div>
+    <div class="sh"><div class="sh-rule"></div><div class="sh-text">Month 3 Release</div></div>
+    <div class="cat-table">
+      <div class="cat-row locked">
+        <div class="cat-row-num">05</div>
+        <div class="cat-row-icon">💼</div>
+        <div class="cat-row-info"><div class="cat-row-name">Career & Ambition</div><div class="cat-row-sub">Releasing next month</div></div>
+        <div class="cat-row-right"><div class="cat-status-pill st-lock">Locked</div></div>
+      </div>
+      <div class="cat-row locked">
+        <div class="cat-row-num">06</div>
+        <div class="cat-row-icon">🏙</div>
+        <div class="cat-row-info"><div class="cat-row-name">Location & Lifestyle</div><div class="cat-row-sub">Releasing next month</div></div>
+        <div class="cat-row-right"><div class="cat-status-pill st-lock">Locked</div></div>
+      </div>
+    </div>
+    <div style="height:16px;"></div>
+  </div>
+  <div class="nt">
+    <button class="ntb act" onclick="nav('s-home')"><span class="nti">⊹</span><div class="ntl">Home</div></button>
+    <button class="ntb" onclick="nav('s-health')"><span class="nti">◯</span><div class="ntl">Health</div></button>
+    <button class="ntb" onclick="nav('s-tools')"><span class="nti">⊞</span><div class="ntl">Tools</div></button>
+    <button class="ntb" onclick="showToast('Profile')"><span class="nti">△</span><div class="ntl">Profile</div></button>
+  </div>
+</div>
+
+<!-- CATEGORY DETAIL -->
+<div id="s-category" class="screen">
+  <div class="tb">
+    <button class="bk" onclick="nav('s-home')">← Home</button>
+    <div class="tb-label" id="cat-tab">Category</div>
+    <div></div>
+  </div>
+  <div class="scroll">
+    <div class="cat-masthead">
+      <div class="cm-bg" id="cat-cm-bg">💰</div>
+      <div class="cm-num" id="cat-cm-num">Category 01</div>
+      <div class="cm-name" id="cat-cm-name">Money & Financial Philosophy</div>
+      <div class="cm-sub" id="cat-cm-sub">How you think about money, debt tolerance, risk appetite, and financial transparency.</div>
+      <div class="private-seal">
+        <div class="ps-icon">PRIVATE</div>
+        <div class="ps-text-inner">Your answer is sealed until Alex completes theirs. No peeking. No anchoring.</div>
+      </div>
+    </div>
+    <div class="q-section">
+      <div class="q-rule"></div>
+      <div class="q-label-text">Core Question</div>
+      <div class="q-text-display" id="cat-q">"What role does money play in your sense of security — and how much financial transparency do you need from a partner?"</div>
+      <textarea class="q-textarea" placeholder="Write your honest answer. There is no right answer — only yours." rows="3"></textarea>
+    </div>
+    <div class="flex-section">
+      <div class="flex-label">How flexible are you on this dimension?</div>
+      <div class="flex-grid">
+        <div class="fo" id="fo-nn" onclick="selFo('nn')"><div class="fo-name">Non-Negotiable</div><div class="fo-sub">This is a dealbreaker</div></div>
+        <div class="fo" id="fo-sp" onclick="selFo('sp')"><div class="fo-name">Strong Preference</div><div class="fo-sub">Very important, little room</div></div>
+        <div class="fo" id="fo-fl" onclick="selFo('fl')"><div class="fo-name">Flexible</div><div class="fo-sub">Important but I can adapt</div></div>
+        <div class="fo" id="fo-un" onclick="selFo('un')"><div class="fo-name">Unsure</div><div class="fo-sub">Haven't fully decided</div></div>
+      </div>
+    </div>
+    <div class="priority-block">
+      <div class="flex-label">Priority rank across all 16 categories</div>
+      <div class="priority-row">
+        <div class="priority-text">Where does this category rank in importance to you?</div>
+        <select class="priority-sel">
+          <option>1</option><option>2</option><option selected>3</option><option>4</option>
+          <option>5</option><option>6</option><option>7</option><option>8</option>
+          <option>9</option><option>10</option><option>11</option><option>12</option>
+          <option>13</option><option>14</option><option>15</option><option>16</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <div class="ab">
+    <button class="btn btn-ghost" onclick="nav('s-home')">Save draft</button>
+    <button class="btn btn-ink" onclick="nav('s-waiting')">Submit answer →</button>
+  </div>
+</div>
+
+<!-- WAITING -->
+<div id="s-waiting" class="screen" style="background:var(--ink);">
+  <div class="tb" style="background:var(--ink);border-color:rgba(255,255,255,.07);">
+    <button class="bk" style="color:rgba(255,255,255,.25);" onclick="nav('s-home')">← Home</button>
+    <div class="tb-wordmark" style="color:var(--white);font-size:14px;letter-spacing:5px;">FUSE <em>Align</em></div>
+    <div></div>
+  </div>
+  <div class="wait-content">
+    <div class="wait-rings">
+      <div class="wr"></div><div class="wr"></div><div class="wr"></div>
+      <div class="wr-core"></div>
+    </div>
+    <div class="wait-overline">Answer Sealed</div>
+    <div class="wait-title">Waiting for<br><em>Alex.</em></div>
+    <div class="wait-sub">Your response is locked. The moment Alex submits theirs, the reveal opens — and you'll see exactly where you align and where you diverge.</div>
+    <div class="wait-quote">
+      <div class="wq-rule"></div>
+      <div class="wq-text">"The goal isn't to agree on everything. It's to understand each other's actual positions before they become assumptions."</div>
+    </div>
+    <button class="wait-demo" onclick="nav('s-reveal')">Preview alignment reveal →</button>
+  </div>
+  <div class="wait-ab">
+    <button class="btn btn-ghost" style="border-color:rgba(255,255,255,.1);color:rgba(255,255,255,.3);" onclick="nav('s-home')">Back to home</button>
+  </div>
+</div>
+
+<!-- ALIGNMENT REVEAL -->
+<div id="s-reveal" class="screen">
+  <div class="tb">
+    <button class="bk" onclick="nav('s-home')">← Home</button>
+    <div class="tb-label">Alignment Reveal</div>
+    <div></div>
+  </div>
+  <div class="scroll">
+    <div class="reveal-masthead">
+      <div class="rm-eyebrow">Money & Financial Philosophy</div>
+      <div class="rm-score-wrap">
+        <div class="rm-score">68</div>
+        <div class="rm-pct">%</div>
+      </div>
+      <div class="rm-title">Strong foundation. Meaningful gaps.</div>
+      <div class="rm-sub">You share core values around security but diverge on transparency and risk. These gaps are real — and workable.</div>
+    </div>
+    <div class="reveal-items">
+      <div class="sh"><div class="sh-rule"></div><div class="sh-text">Where You Stand</div></div>
+      <!-- ALIGNED -->
+      <div class="rev-item">
+        <div class="ri-header">
+          <div class="ri-name">Financial Security Mindset</div>
+          <div class="ri-verdict rv-align">Aligned</div>
+        </div>
+        <div class="ri-sides">
+          <div class="ri-side a">
+            <div class="ri-side-who">You</div>
+            <div class="ri-side-val">"Security comes from savings and knowing we have a cushion for the unexpected."</div>
+          </div>
+          <div class="ri-side b">
+            <div class="ri-side-who">Alex</div>
+            <div class="ri-side-val">"I need financial stability before I can feel free and present in a relationship."</div>
+          </div>
+        </div>
+        <div class="ri-flex-row">
+          <div class="ri-flex-pill rfp-nn">You: Non-Negotiable</div>
+          <div class="ri-flex-pill rfp-nn">Alex: Non-Negotiable</div>
+        </div>
+        <div class="ri-insight">"Both partners ranked this Non-Negotiable. You are building from the same foundation — this is a genuine strength."</div>
+      </div>
+      <!-- GAP -->
+      <div class="rev-item">
+        <div class="ri-header">
+          <div class="ri-name">Financial Transparency</div>
+          <div class="ri-verdict rv-gap">Gap to explore</div>
+        </div>
+        <div class="ri-sides">
+          <div class="ri-side a">
+            <div class="ri-side-who">You</div>
+            <div class="ri-side-val">"I want full shared access. No financial secrets between partners — ever."</div>
+          </div>
+          <div class="ri-side b">
+            <div class="ri-side-who">Alex</div>
+            <div class="ri-side-val">"I want transparency on major things, but some personal spending privacy feels important."</div>
+          </div>
+        </div>
+        <div class="ri-flex-row">
+          <div class="ri-flex-pill rfp-nn">You: Non-Negotiable</div>
+          <div class="ri-flex-pill rfp-fl">Alex: Flexible</div>
+        </div>
+        <div class="ri-insight">"You ranked this Non-Negotiable; Alex ranked it Flexible. The gap is real — but Alex's flexibility means there is room for an honest conversation."</div>
+      </div>
+      <!-- EXPLORE -->
+      <div class="rev-item">
+        <div class="ri-header">
+          <div class="ri-name">Risk Appetite</div>
+          <div class="ri-verdict rv-explore">Worth exploring</div>
+        </div>
+        <div class="ri-sides">
+          <div class="ri-side a">
+            <div class="ri-side-who">You</div>
+            <div class="ri-side-val">"I would rather miss an opportunity than risk what we have built together."</div>
+          </div>
+          <div class="ri-side b">
+            <div class="ri-side-who">Alex</div>
+            <div class="ri-side-val">"Some risk is necessary for growth. Calculated bets are not recklessness."</div>
+          </div>
+        </div>
+        <div class="ri-flex-row">
+          <div class="ri-flex-pill rfp-sp">You: Strong Preference</div>
+          <div class="ri-flex-pill rfp-fl">Alex: Flexible</div>
+        </div>
+        <div class="ri-insight">"Different risk orientations often create productive tension — but this needs to be named before you face a real financial decision together."</div>
+      </div>
+    </div>
+  </div>
+  <div class="ab">
+    <button class="btn btn-ghost" onclick="nav('s-home')">Close</button>
+    <button class="btn btn-ink" onclick="nav('s-convo')">Begin guided conversation →</button>
+  </div>
+</div>
+
+<!-- GUIDED CONVERSATION -->
+<div id="s-convo" class="screen">
+  <div class="tb">
+    <button class="bk" onclick="nav('s-reveal')">← Reveal</button>
+    <div class="tb-label">Guided Conversation</div>
+    <div></div>
+  </div>
+  <div class="scroll">
+    <div class="convo-masthead">
+      <div class="cv-label">Financial Transparency Gap</div>
+      <div class="cv-title">A structured<br>conversation guide.</div>
+      <div class="cv-sub">Each prompt is specific to what your alignment data revealed — not generic advice. Work through them together at your own pace.</div>
+    </div>
+    <div class="prompt-tabs">
+      <button class="ptab act" onclick="showP(0,this)">01</button>
+      <button class="ptab" onclick="showP(1,this)">02</button>
+      <button class="ptab" onclick="showP(2,this)">03</button>
+      <button class="ptab" onclick="showP(3,this)">Capstone</button>
+    </div>
+    <div class="prompt-body" id="prompt-body">
+      <div class="pb-corner"></div>
+      <div class="pb-step">Prompt 01 of 04</div>
+      <div class="pb-q">"When you imagine full financial transparency in a relationship, what specifically do you picture — and what does having that tell you about trust?"</div>
+      <div class="pb-sub">Answer independently first, then share. The goal is to understand where each position comes from — not to resolve it in one conversation.</div>
+    </div>
+    <div class="ground-rules">
+      <div class="gr-rule"></div>
+      <div class="gr-label">Conversation Ground Rules</div>
+      <div class="gr-item"><div class="gr-num">—</div>No interrupting while the other person is speaking</div>
+      <div class="gr-item"><div class="gr-num">—</div>Speak from your own experience. Use "I," not "you always"</div>
+      <div class="gr-item"><div class="gr-num">—</div>If it escalates, activate the Cool-Down Timer in Tools</div>
+      <div class="gr-item"><div class="gr-num">—</div>The goal is understanding, not winning</div>
+    </div>
+    <div style="height:16px;"></div>
+  </div>
+  <div class="ab">
+    <button class="btn btn-ghost" onclick="nav('s-home')">Done for now</button>
+    <button class="btn btn-gold" onclick="showToast('Conversation marked complete')">Mark complete</button>
+  </div>
+</div>
+
+<!-- RELATIONSHIP HEALTH -->
+<div id="s-health" class="screen">
+  <div class="tb">
+    <button class="bk" onclick="nav('s-home')">← Home</button>
+    <div class="tb-label">Relationship Health</div>
+    <div></div>
+  </div>
+  <div class="scroll">
+    <div class="health-feature">
+      <div class="hf-bg">84</div>
+      <div class="hf-label">Relationship Health Score</div>
+      <div class="hf-score">84<sup>/100</sup></div>
+      <div class="hf-status">Growing Together</div>
+      <div class="hf-bar"><div class="hf-fill"></div></div>
+    </div>
+    <div class="trend-note">
+      <div class="tn-label">3-Month Trend</div>
+      <div class="tn-text">Your score has risen from 71 to 84 since you began. The biggest shift is in Conflict & Emotional Regulation — completing that conversation guide made a measurable difference.</div>
+    </div>
+    <div class="sh"><div class="sh-rule"></div><div class="sh-text">Alignment by Category</div></div>
+    <div class="dim-table">
+      <div class="dim-row">
+        <div class="dim-top"><div class="dim-name">Children & Family</div><div class="dim-val" style="color:var(--gold)">91%</div></div>
+        <div class="dim-bar-track"><div class="dim-bar-fill" style="width:91%;background:var(--gold)"></div></div>
+        <div class="dim-note">Deeply aligned. Both partners ranked this Non-Negotiable and share the same vision.</div>
+      </div>
+      <div class="dim-row">
+        <div class="dim-top"><div class="dim-name">Money & Financial Philosophy</div><div class="dim-val" style="color:var(--mid)">68%</div></div>
+        <div class="dim-bar-track"><div class="dim-bar-fill" style="width:68%;background:var(--ink)"></div></div>
+        <div class="dim-note">Conversation guide in progress. Transparency gap is the key area to work through together.</div>
+      </div>
+      <div class="dim-row">
+        <div class="dim-top"><div class="dim-name">Conflict & Emotional Regulation</div><div class="dim-val" style="color:var(--faint)">—</div></div>
+        <div class="dim-bar-track"><div class="dim-bar-fill" style="width:0%"></div></div>
+        <div class="dim-note">Waiting for Alex to complete their response.</div>
+      </div>
+      <div class="dim-row">
+        <div class="dim-top"><div class="dim-name">Trust & Digital Privacy</div><div class="dim-val" style="color:var(--faint)">—</div></div>
+        <div class="dim-bar-track"><div class="dim-bar-fill" style="width:0%"></div></div>
+        <div class="dim-note">Not yet started. Tap to begin your response.</div>
+      </div>
+    </div>
+    <div style="margin:0 24px 24px;padding:20px;background:var(--white);border:1px solid var(--rule);">
+      <div style="font-family:var(--fm);font-size:8px;letter-spacing:3px;color:var(--soft);text-transform:uppercase;margin-bottom:8px;">Next Check-In</div>
+      <div style="font-size:13px;font-weight:300;color:var(--mid);line-height:1.7;">Your 3-month relationship check-in is in <strong style="color:var(--ink);font-weight:400;">18 days.</strong> You will revisit completed categories to see if anything has shifted.</div>
+    </div>
+    <div style="height:16px;"></div>
+  </div>
+  <div class="nt">
+    <button class="ntb" onclick="nav('s-home')"><span class="nti">⊹</span><div class="ntl">Home</div></button>
+    <button class="ntb act"><span class="nti">◯</span><div class="ntl">Health</div></button>
+    <button class="ntb" onclick="nav('s-tools')"><span class="nti">⊞</span><div class="ntl">Tools</div></button>
+    <button class="ntb" onclick="showToast('Profile')"><span class="nti">△</span><div class="ntl">Profile</div></button>
+  </div>
+</div>
+
+<!-- QUICK TOOLS -->
+<div id="s-tools" class="screen">
+  <div class="tb">
+    <button class="bk" onclick="nav('s-home')">← Home</button>
+    <div class="tb-label">Quick Tools</div>
+    <div></div>
+  </div>
+  <div class="scroll">
+    <div class="sh"><div class="sh-rule"></div><div class="sh-text">For Right Now</div></div>
+    <div class="tool-row" onclick="nav('s-cooldown')">
+      <div class="tool-num">01</div>
+      <div class="tool-body">
+        <div class="tool-name">Cool-Down Timer</div>
+        <div class="tool-sub">A structured 20-minute pause during a heated moment. Guided breathing and a reflection prompt when time is up.</div>
+        <div class="tool-tag tt-now">Use now</div>
+      </div>
+      <div class="tool-arrow">→</div>
+    </div>
+    <div class="tool-row" onclick="showToast('Quick Check-In opened')">
+      <div class="tool-num">02</div>
+      <div class="tool-body">
+        <div class="tool-name">Quick Check-In</div>
+        <div class="tool-sub">A 2-minute pulse check. Both partners rate how connected, heard, and appreciated they feel right now.</div>
+        <div class="tool-tag tt-quick">2 minutes</div>
+      </div>
+      <div class="tool-arrow">→</div>
+    </div>
+    <div class="tool-row" onclick="showToast('Repair Toolkit opened')">
+      <div class="tool-num">03</div>
+      <div class="tool-body">
+        <div class="tool-name">Repair Toolkit</div>
+        <div class="tool-sub">After a fight: a 3-step process to turn conflict into understanding. Write, reflect, reconnect.</div>
+        <div class="tool-tag tt-after">After a fight</div>
+      </div>
+      <div class="tool-arrow">→</div>
+    </div>
+    <div class="tool-row" onclick="showToast('Decision Helper opened')">
+      <div class="tool-num">04</div>
+      <div class="tool-body">
+        <div class="tool-name">Decision Helper</div>
+        <div class="tool-sub">Stuck on a joint decision? Both weigh in independently then compare. Surfaces where you agree and where the real tension is.</div>
+        <div class="tool-tag tt-joint">Joint decisions</div>
+      </div>
+      <div class="tool-arrow">→</div>
+    </div>
+    <div class="tool-row" onclick="showToast('Appreciation Generator opened')">
+      <div class="tool-num">05</div>
+      <div class="tool-body">
+        <div class="tool-name">Appreciation Generator</div>
+        <div class="tool-sub">Personalized prompts based on your partner's love language and what your relationship data shows they need most.</div>
+        <div class="tool-tag tt-any">Anytime</div>
+      </div>
+      <div class="tool-arrow">→</div>
+    </div>
+    <div style="height:16px;"></div>
+  </div>
+  <div class="nt">
+    <button class="ntb" onclick="nav('s-home')"><span class="nti">⊹</span><div class="ntl">Home</div></button>
+    <button class="ntb" onclick="nav('s-health')"><span class="nti">◯</span><div class="ntl">Health</div></button>
+    <button class="ntb act"><span class="nti">⊞</span><div class="ntl">Tools</div></button>
+    <button class="ntb" onclick="showToast('Profile')"><span class="nti">△</span><div class="ntl">Profile</div></button>
+  </div>
+</div>
+
+<!-- COOLDOWN TIMER -->
+<div id="s-cooldown" class="screen">
+  <div class="tb" style="background:var(--ink);border-color:rgba(255,255,255,.07);">
+    <button class="bk" style="color:rgba(255,255,255,.25);" onclick="nav('s-tools')">← Tools</button>
+    <div class="tb-label" style="color:rgba(255,255,255,.25);">Cool-Down Timer</div>
+    <div></div>
+  </div>
+  <div class="cd-content">
+    <div class="cd-overline">Pause. Breathe. Return.</div>
+    <div class="cd-title">Take<br><em>twenty minutes</em><br>apart.</div>
+    <div class="cd-sub">The conversation is not over. It is pausing so you can both come back ready to hear each other.</div>
+    <div class="cd-clock">
+      <div class="cd-track"></div>
+      <div class="cd-prog"></div>
+      <div class="cd-face">
+        <div class="cd-num">20</div>
+        <div class="cd-unit">Minutes</div>
+      </div>
+    </div>
+    <div class="cd-reflect">
+      <div class="cr-rule"></div>
+      <div class="cr-label">While You Wait — Reflect On This</div>
+      <div class="cr-text">"What am I actually feeling underneath the frustration — and what do I need right now that I have not said out loud?"</div>
+    </div>
+    <div style="font-family:var(--fm);font-size:7px;letter-spacing:3px;color:rgba(255,255,255,.15);text-transform:uppercase;margin-top:20px;">Based on Gottman Research</div>
+  </div>
+  <div class="cd-ab">
+    <button class="btn btn-ghost" style="border-color:rgba(255,255,255,.1);color:rgba(255,255,255,.3);" onclick="nav('s-tools')">End early</button>
+    <button class="btn btn-gold" onclick="showToast('Timer started')">Start timer</button>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const cats = {
+  money:    { num:'Category 01', icon:'💰', name:'Money & Financial Philosophy', sub:'How you think about money, debt, risk appetite, and financial transparency in a partnership.', q:'"What role does money play in your sense of security — and how much financial transparency do you need from a partner?"' },
+  children: { num:'Category 02', icon:'👶', name:'Children & Family',             sub:'Whether you want children, timing, and the philosophy of how you would raise them.',          q:'"Do you want children? When? And what kind of parent do you imagine being — and needing your partner to be?"' },
+  conflict: { num:'Category 03', icon:'🌀', name:'Conflict & Emotional Regulation', sub:'How you fight, how you repair, and how you recover from rupture as a couple.',               q:'"In the middle of a real fight, what do you need from your partner — and what do you tend to do that makes things worse?"' },
+  trust:    { num:'Category 04', icon:'🔒', name:'Trust & Digital Privacy',          sub:'Phone access, social media boundaries, and what loyalty actually looks like in practice.',    q:'"What does loyalty look like for you in practice — and where are your personal limits around phones, social media, and privacy?"' }
+};
+
+const prompts = [
+  { step:'Prompt 01 of 04', q:'"When you imagine full financial transparency in a relationship, what specifically do you picture — and what does having that tell you about trust?"', sub:'Answer independently first, then share. The goal is to understand where each position comes from.' },
+  { step:'Prompt 02 of 04', q:'"Think of a time money caused tension — in a past relationship or in your family growing up. What did that teach you about how finances should work between partners?"', sub:'Past experience shapes current expectations more than we realize. This is a place to name it.' },
+  { step:'Prompt 03 of 04', q:'"If we had completely different spending styles — one a saver, one a spender — what would you need in place to feel secure and not resentful over time?"', sub:'Listen for what each of you actually needs, not just what you prefer.' },
+  { step:'Capstone',        q:'"If we choose each other, what are we committing to protect in our financial life together — even when it is inconvenient?"', sub:'This is the capstone question. How you answer it reveals character, maturity, and readiness for partnership.' }
+];
+
+function nav(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo(0, 0);
+}
+
+function openCat(key) {
+  const c = cats[key];
+  document.getElementById('cat-tab').textContent = c.name;
+  document.getElementById('cat-cm-bg').textContent = c.icon;
+  document.getElementById('cat-cm-num').innerHTML = c.num;
+  document.getElementById('cat-cm-name').textContent = c.name;
+  document.getElementById('cat-cm-sub').textContent = c.sub;
+  document.getElementById('cat-q').textContent = c.q;
+  document.querySelectorAll('.fo').forEach(o => o.classList.remove('sel'));
+  nav('s-category');
+}
+
+function selFo(v) {
+  document.querySelectorAll('.fo').forEach(o => o.classList.remove('sel'));
+  document.getElementById('fo-' + v).classList.add('sel');
+}
+
+function showP(i, btn) {
+  const p = prompts[i];
+  document.getElementById('prompt-body').innerHTML = `
+    <div class="pb-corner"></div>
+    <div class="pb-step">${p.step}</div>
+    <div class="pb-q">${p.q}</div>
+    <div class="pb-sub">${p.sub}</div>`;
+  document.querySelectorAll('.ptab').forEach(t => t.classList.remove('act'));
+  btn.classList.add('act');
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2600);
+}
+</script>
+</body>
+</html>
