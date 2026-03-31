@@ -11,9 +11,9 @@
   --ink: #0a0a0a;
   --ink2: #1a1a1a;
   --charcoal: #2c2c2c;
-  --mid: #6b6b6b;
-  --soft: #9e9e9e;
-  --faint: #c8c8c8;
+  --mid: #3a3a3a;
+  --soft: #5a5a5a;
+  --faint: #888888;
   --rule: #e2e2e2;
   --off: #f7f5f3;
   --cream: #faf8f6;
@@ -102,16 +102,16 @@ body { background: var(--white); color: var(--ink); font-family: var(--fs); min-
 .splash-overline { font-family: var(--fm); font-size: 9px; letter-spacing: 5px; color: var(--gold); text-transform: uppercase; margin-bottom: 28px; display: flex; align-items: center; gap: 14px; }
 .splash-overline::before { content: ''; width: 30px; height: 1px; background: var(--gold); }
 .splash-wordmark { font-family: var(--fb); font-size: clamp(52px, 14vw, 80px); font-weight: 300; color: var(--white); letter-spacing: 12px; text-transform: uppercase; line-height: .95; }
-.splash-wordmark em { display: block; font-style: italic; font-weight: 300; color: rgba(255,255,255,.55); font-size: .6em; letter-spacing: 16px; margin-top: 8px; }
+.splash-wordmark em { display: block; font-style: italic; font-weight: 300; color: rgba(255,255,255,.92); font-size: .6em; letter-spacing: 16px; margin-top: 8px; }
 .splash-rule { width: 40px; height: 1px; background: var(--gold); margin: 36px 0; }
-.splash-tagline { font-family: var(--fb); font-size: 18px; font-weight: 300; font-style: italic; color: rgba(255,255,255,.6); line-height: 1.6; max-width: 260px; }
+.splash-tagline { font-family: var(--fb); font-size: 18px; font-weight: 300; font-style: italic; color: rgba(255,255,255,.92); line-height: 1.6; max-width: 260px; }
 .splash-footer { padding: 0 32px 48px; display: flex; flex-direction: column; gap: 12px; }
 .splash-footer .btn { padding: 18px; font-size: 10px; letter-spacing: 4px; }
 .btn-cream { background: var(--cream); color: var(--ink); }
 .btn-cream:hover { background: var(--white); }
-.btn-naked { background: transparent; color: rgba(255,255,255,.4); border: 1px solid rgba(255,255,255,.15); font-size: 10px; letter-spacing: 3px; }
-.btn-naked:hover { border-color: rgba(255,255,255,.4); color: rgba(255,255,255,.7); }
-.splash-meta { text-align: center; font-family: var(--fm); font-size: 8px; letter-spacing: 3px; color: rgba(255,255,255,.18); text-transform: uppercase; margin-top: 8px; }
+.btn-naked { background: transparent; color: rgba(255,255,255,.80); border: 1px solid rgba(255,255,255,.45); font-size: 10px; letter-spacing: 3px; }
+.btn-naked:hover { border-color: rgba(255,255,255,.80); color: rgba(255,255,255,.7); }
+.splash-meta { text-align: center; font-family: var(--fm); font-size: 8px; letter-spacing: 3px; color: rgba(255,255,255,.50); text-transform: uppercase; margin-top: 8px; }
 
 /* ═══════════════════════════════════
    ONBOARDING
@@ -128,8 +128,8 @@ body { background: var(--white); color: var(--ink); font-family: var(--fs); min-
 }
 .om-label { font-family: var(--fm); font-size: 8px; letter-spacing: 4px; color: var(--gold); text-transform: uppercase; margin-bottom: 12px; }
 .om-title { font-family: var(--fb); font-size: 36px; font-weight: 300; color: var(--white); line-height: 1.2; }
-.om-title em { font-style: italic; color: rgba(255,255,255,.55); }
-.om-sub { font-family: var(--fs); font-size: 13px; font-weight: 300; color: rgba(255,255,255,.45); margin-top: 12px; line-height: 1.7; }
+.om-title em { font-style: italic; color: rgba(255,255,255,.92); }
+.om-sub { font-family: var(--fs); font-size: 13px; font-weight: 400; color: rgba(255,255,255,.82); margin-top: 12px; line-height: 1.7; }
 .field-block { padding: 0 24px; margin-bottom: 16px; }
 .field-label { font-family: var(--fm); font-size: 8px; letter-spacing: 3px; color: var(--soft); text-transform: uppercase; margin-bottom: 8px; display: block; }
 .field-input { width: 100%; padding: 16px 0; background: transparent; border: none; border-bottom: 1px solid var(--rule); font-family: var(--fs); font-size: 16px; font-weight: 300; color: var(--ink); outline: none; transition: border-color .2s; }
@@ -139,7 +139,7 @@ body { background: var(--white); color: var(--ink); font-family: var(--fs); min-
 .ib-corner { position: absolute; top: -1px; right: -1px; width: 20px; height: 20px; background: var(--gold); }
 .ib-label { font-family: var(--fm); font-size: 8px; letter-spacing: 3px; color: var(--gold); text-transform: uppercase; margin-bottom: 10px; }
 .ib-title { font-family: var(--fb); font-size: 22px; font-weight: 300; color: var(--ink); margin-bottom: 8px; }
-.ib-sub { font-size: 13px; font-weight: 300; color: var(--soft); line-height: 1.6; }
+.ib-sub { font-size: 13px; font-weight: 400; color: var(--soft); line-height: 1.6; }
 .ib-link { display: flex; align-items: center; gap: 10px; margin-top: 20px; padding: 14px 18px; background: var(--off); border: 1px solid var(--rule); cursor: pointer; font-family: var(--fm); font-size: 9px; letter-spacing: 2px; color: var(--mid); transition: all .2s; }
 .ib-link:hover { background: var(--cream); border-color: var(--ink); color: var(--ink); }
 
@@ -152,19 +152,19 @@ body { background: var(--white); color: var(--ink); font-family: var(--fs); min-
 .hm-greeting em { font-style: italic; }
 .partner-status { display: flex; align-items: center; gap: 10px; margin-top: 14px; padding: 14px 16px; background: var(--off); border-left: 2px solid var(--gold); }
 .ps-dot { width: 6px; height: 6px; border-radius: 50%; background: #4caf4c; flex-shrink: 0; }
-.ps-text { font-size: 12px; font-weight: 300; color: var(--mid); flex: 1; letter-spacing: .3px; }
+.ps-text { font-size: 12px; font-weight: 400; color: var(--mid); flex: 1; letter-spacing: .3px; }
 .ps-label { font-family: var(--fm); font-size: 8px; letter-spacing: 2px; color: var(--gold); text-transform: uppercase; }
 .score-feature { margin: 20px 24px; background: var(--ink); padding: 28px; position: relative; overflow: hidden; }
 .sf-bg { position: absolute; right: -10px; bottom: -20px; font-family: var(--fb); font-size: 100px; font-weight: 300; color: rgba(255,255,255,.04); pointer-events: none; line-height: 1; }
 .sf-label { font-family: var(--fm); font-size: 8px; letter-spacing: 3px; color: var(--gold); text-transform: uppercase; margin-bottom: 10px; }
 .sf-score { font-family: var(--fb); font-size: 64px; font-weight: 300; color: var(--white); line-height: 1; }
-.sf-score sup { font-size: 22px; color: rgba(255,255,255,.35); vertical-align: super; }
-.sf-sub { font-size: 12px; font-weight: 300; color: rgba(255,255,255,.4); margin-top: 8px; line-height: 1.6; }
+.sf-score sup { font-size: 22px; color: rgba(255,255,255,.78); vertical-align: super; }
+.sf-sub { font-size: 12px; font-weight: 400; color: rgba(255,255,255,.80); margin-top: 8px; line-height: 1.6; }
 .sf-bar-wrap { margin-top: 20px; }
-.sf-bar { height: 1px; background: rgba(255,255,255,.12); }
+.sf-bar { height: 1px; background: rgba(255,255,255,.40); }
 .sf-fill { height: 100%; width: 72%; background: linear-gradient(90deg, var(--gold), rgba(184,150,90,.4)); }
 .sf-dims { display: flex; justify-content: space-between; margin-top: 8px; }
-.sf-dim { font-family: var(--fm); font-size: 7px; color: rgba(255,255,255,.2); letter-spacing: 1px; text-transform: uppercase; }
+.sf-dim { font-family: var(--fm); font-size: 7px; color: rgba(255,255,255,.80); letter-spacing: 1px; text-transform: uppercase; }
 
 /* CATEGORY LIST — editorial table style */
 .cat-table { margin: 0 24px 24px; }
@@ -176,7 +176,7 @@ body { background: var(--white); color: var(--ink); font-family: var(--fs); min-
 .cat-row-icon { font-size: 18px; width: 28px; text-align: center; flex-shrink: 0; }
 .cat-row-info { flex: 1; }
 .cat-row-name { font-family: var(--fb); font-size: 17px; font-weight: 400; color: var(--ink); transition: color .2s; }
-.cat-row-sub { font-size: 11px; font-weight: 300; color: var(--soft); margin-top: 2px; letter-spacing: .2px; }
+.cat-row-sub { font-size: 11px; font-weight: 400; color: var(--soft); margin-top: 2px; letter-spacing: .2px; }
 .cat-row-right { text-align: right; flex-shrink: 0; }
 .cat-status-pill { font-family: var(--fm); font-size: 7px; letter-spacing: 2px; text-transform: uppercase; }
 .st-done { color: var(--gold); }
@@ -194,10 +194,10 @@ body { background: var(--white); color: var(--ink); font-family: var(--fs); min-
 .cm-num { font-family: var(--fm); font-size: 8px; letter-spacing: 4px; color: var(--gold); text-transform: uppercase; margin-bottom: 10px; display: flex; align-items: center; gap: 12px; }
 .cm-num::before { content: ''; width: 20px; height: 1px; background: var(--gold); }
 .cm-name { font-family: var(--fb); font-size: 28px; font-weight: 300; color: var(--white); line-height: 1.2; }
-.cm-sub { font-size: 13px; font-weight: 300; color: rgba(255,255,255,.4); margin-top: 8px; line-height: 1.6; }
+.cm-sub { font-size: 13px; font-weight: 400; color: rgba(255,255,255,.80); margin-top: 8px; line-height: 1.6; }
 .private-seal { display: flex; align-items: center; gap: 10px; margin-top: 18px; padding: 10px 14px; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1); }
 .ps-icon { font-family: var(--fm); font-size: 8px; letter-spacing: 1px; color: var(--gold); }
-.ps-text-inner { font-size: 11px; font-weight: 300; color: rgba(255,255,255,.35); }
+.ps-text-inner { font-size: 11px; font-weight: 300; color: rgba(255,255,255,.78); }
 .q-section { margin: 24px; }
 .q-rule { width: 24px; height: 1px; background: var(--gold); margin-bottom: 12px; }
 .q-label-text { font-family: var(--fm); font-size: 8px; letter-spacing: 3px; color: var(--soft); text-transform: uppercase; margin-bottom: 14px; }
@@ -214,10 +214,10 @@ body { background: var(--white); color: var(--ink); font-family: var(--fs); min-
 .fo-name { font-family: var(--fb); font-size: 14px; font-weight: 400; color: var(--ink); }
 .fo.sel .fo-name { color: var(--white); }
 .fo-sub { font-size: 10px; font-weight: 300; color: var(--soft); margin-top: 3px; }
-.fo.sel .fo-sub { color: rgba(255,255,255,.4); }
+.fo.sel .fo-sub { color: rgba(255,255,255,.80); }
 .priority-block { margin: 0 24px 24px; }
 .priority-row { display: flex; align-items: center; gap: 16px; border-bottom: 1px solid var(--rule); padding-bottom: 16px; }
-.priority-text { font-size: 13px; font-weight: 300; color: var(--mid); flex: 1; }
+.priority-text { font-size: 13px; font-weight: 400; color: var(--mid); flex: 1; }
 .priority-sel { padding: 10px 16px; background: transparent; border: none; border-bottom: 2px solid var(--ink); font-family: var(--fb); font-size: 18px; color: var(--ink); outline: none; cursor: pointer; -webkit-appearance: none; }
 
 /* ═══════════════════════════════════
@@ -234,12 +234,12 @@ body { background: var(--white); color: var(--ink); font-family: var(--fs); min-
 @keyframes wr-pulse { 0%,100% { transform: scale(1); opacity: .5; } 50% { transform: scale(1.12); opacity: .15; } }
 .wait-overline { font-family: var(--fm); font-size: 8px; letter-spacing: 4px; color: var(--gold); text-transform: uppercase; margin-bottom: 16px; }
 .wait-title { font-family: var(--fb); font-size: 34px; font-weight: 300; color: var(--white); line-height: 1.2; }
-.wait-title em { font-style: italic; color: rgba(255,255,255,.45); }
-.wait-sub { font-size: 13px; font-weight: 300; color: rgba(255,255,255,.35); margin-top: 14px; line-height: 1.7; max-width: 280px; }
+.wait-title em { font-style: italic; color: rgba(255,255,255,.82); }
+.wait-sub { font-size: 13px; font-weight: 400; color: rgba(255,255,255,.78); margin-top: 14px; line-height: 1.7; max-width: 280px; }
 .wait-quote { margin-top: 36px; padding: 24px 28px; border: 1px solid rgba(255,255,255,.08); text-align: left; max-width: 320px; }
 .wq-rule { width: 20px; height: 1px; background: var(--gold); margin-bottom: 12px; }
-.wq-text { font-family: var(--fb); font-size: 15px; font-weight: 300; font-style: italic; color: rgba(255,255,255,.4); line-height: 1.7; }
-.wait-demo { margin-top: 28px; padding: 12px 28px; background: transparent; border: 1px solid rgba(255,255,255,.12); font-family: var(--fm); font-size: 8px; letter-spacing: 3px; color: rgba(255,255,255,.3); cursor: pointer; text-transform: uppercase; transition: all .2s; }
+.wq-text { font-family: var(--fb); font-size: 15px; font-weight: 300; font-style: italic; color: rgba(255,255,255,.80); line-height: 1.7; }
+.wait-demo { margin-top: 28px; padding: 12px 28px; background: transparent; border: 1px solid rgba(255,255,255,.40); font-family: var(--fm); font-size: 8px; letter-spacing: 3px; color: rgba(255,255,255,.75); cursor: pointer; text-transform: uppercase; transition: all .2s; }
 .wait-demo:hover { border-color: var(--gold); color: var(--gold); }
 .wait-ab { padding: 20px 24px; border-top: 1px solid rgba(255,255,255,.08); display: flex; gap: 12px; }
 
@@ -252,9 +252,9 @@ body { background: var(--white); color: var(--ink); font-family: var(--fs); min-
 .rm-eyebrow::before { content: ''; width: 20px; height: 1px; background: var(--gold); }
 .rm-score-wrap { display: flex; align-items: baseline; gap: 6px; margin-bottom: 12px; }
 .rm-score { font-family: var(--fb); font-size: 80px; font-weight: 300; color: var(--white); line-height: 1; }
-.rm-pct { font-family: var(--fb); font-size: 32px; font-weight: 300; color: rgba(255,255,255,.25); }
+.rm-pct { font-family: var(--fb); font-size: 32px; font-weight: 300; color: rgba(255,255,255,.70); }
 .rm-title { font-family: var(--fb); font-size: 20px; font-weight: 300; font-style: italic; color: rgba(255,255,255,.5); }
-.rm-sub { font-size: 12px; font-weight: 300; color: rgba(255,255,255,.3); margin-top: 8px; line-height: 1.6; }
+.rm-sub { font-size: 12px; font-weight: 400; color: rgba(255,255,255,.75); margin-top: 8px; line-height: 1.6; }
 .reveal-items { padding: 8px 24px 24px; display: flex; flex-direction: column; gap: 0; }
 .rev-item { padding: 24px 0; border-bottom: 1px solid var(--rule); }
 .rev-item:last-child { border-bottom: none; }
@@ -270,14 +270,14 @@ body { background: var(--white); color: var(--ink); font-family: var(--fs); min-
 .ri-side.b { background: var(--off); border-left: 2px solid var(--gold); }
 .ri-side-who { font-family: var(--fm); font-size: 7px; letter-spacing: 2px; color: var(--soft); text-transform: uppercase; margin-bottom: 6px; }
 .ri-side.b .ri-side-who { color: var(--gold); }
-.ri-side-val { font-size: 12px; font-weight: 300; color: var(--mid); line-height: 1.5; }
+.ri-side-val { font-size: 12px; font-weight: 400; color: var(--mid); line-height: 1.5; }
 .ri-flex-row { display: flex; gap: 8px; margin-bottom: 10px; }
 .ri-flex-pill { flex: 1; padding: 5px 8px; text-align: center; font-family: var(--fm); font-size: 7px; letter-spacing: 1px; text-transform: uppercase; }
 .rfp-nn { background: var(--ink); color: var(--white); }
 .rfp-sp { background: var(--charcoal); color: var(--white); }
 .rfp-fl { background: var(--off); color: var(--ink); border: 1px solid var(--rule); }
 .rfp-un { background: var(--off); color: var(--soft); border: 1px solid var(--rule); }
-.ri-insight { padding: 12px 14px; border-left: 2px solid var(--gold); background: var(--gold-light); font-size: 12px; font-weight: 300; color: var(--mid); line-height: 1.6; font-style: italic; }
+.ri-insight { padding: 12px 14px; border-left: 2px solid var(--gold); background: var(--gold-light); font-size: 12px; font-weight: 400; color: var(--mid); line-height: 1.6; font-style: italic; }
 
 /* ═══════════════════════════════════
    GUIDED CONVERSATION
@@ -286,7 +286,7 @@ body { background: var(--white); color: var(--ink); font-family: var(--fs); min-
 .convo-masthead { background: var(--white); padding: 32px 24px 28px; border-bottom: 1px solid var(--rule); }
 .cv-label { font-family: var(--fm); font-size: 8px; letter-spacing: 4px; color: var(--gold); text-transform: uppercase; margin-bottom: 8px; }
 .cv-title { font-family: var(--fb); font-size: 28px; font-weight: 300; color: var(--ink); line-height: 1.2; }
-.cv-sub { font-size: 13px; font-weight: 300; color: var(--soft); margin-top: 8px; line-height: 1.6; }
+.cv-sub { font-size: 13px; font-weight: 400; color: var(--soft); margin-top: 8px; line-height: 1.6; }
 .prompt-tabs { display: flex; padding: 20px 24px 0; gap: 4px; }
 .ptab { padding: 8px 16px; font-family: var(--fm); font-size: 8px; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; border: 1px solid var(--rule); background: transparent; color: var(--soft); transition: all .2s; }
 .ptab.act { background: var(--ink); border-color: var(--ink); color: var(--white); }
@@ -295,11 +295,11 @@ body { background: var(--white); color: var(--ink); font-family: var(--fs); min-
 .pb-corner { position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: var(--gold); }
 .pb-step { font-family: var(--fm); font-size: 8px; letter-spacing: 3px; color: var(--gold); text-transform: uppercase; margin-bottom: 14px; }
 .pb-q { font-family: var(--fb); font-size: 20px; font-weight: 300; font-style: italic; color: var(--ink); line-height: 1.6; }
-.pb-sub { font-size: 12px; font-weight: 300; color: var(--soft); margin-top: 12px; line-height: 1.6; }
+.pb-sub { font-size: 12px; font-weight: 400; color: var(--soft); margin-top: 12px; line-height: 1.6; }
 .ground-rules { margin: 0 24px 20px; }
 .gr-rule { width: 24px; height: 1px; background: var(--rule); margin-bottom: 12px; }
 .gr-label { font-family: var(--fm); font-size: 8px; letter-spacing: 3px; color: var(--soft); text-transform: uppercase; margin-bottom: 12px; }
-.gr-item { display: flex; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--off); font-size: 12px; font-weight: 300; color: var(--mid); line-height: 1.5; }
+.gr-item { display: flex; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--off); font-size: 12px; font-weight: 400; color: var(--mid); line-height: 1.5; }
 .gr-item:last-child { border-bottom: none; }
 .gr-num { font-family: var(--fm); font-size: 8px; color: var(--faint); flex-shrink: 0; margin-top: 2px; }
 
@@ -311,13 +311,13 @@ body { background: var(--white); color: var(--ink); font-family: var(--fs); min-
 .hf-bg { position: absolute; right: -10px; bottom: -20px; font-family: var(--fb); font-size: 100px; color: rgba(255,255,255,.03); pointer-events: none; line-height: 1; }
 .hf-label { font-family: var(--fm); font-size: 8px; letter-spacing: 3px; color: var(--gold); text-transform: uppercase; margin-bottom: 10px; }
 .hf-score { font-family: var(--fb); font-size: 64px; font-weight: 300; color: var(--white); line-height: 1; }
-.hf-score sup { font-size: 22px; color: rgba(255,255,255,.3); }
+.hf-score sup { font-size: 22px; color: rgba(255,255,255,.75); }
 .hf-status { font-family: var(--fm); font-size: 8px; letter-spacing: 3px; color: var(--gold); text-transform: uppercase; margin-top: 6px; }
 .hf-bar { height: 1px; background: rgba(255,255,255,.1); margin-top: 20px; }
 .hf-fill { height: 100%; width: 84%; background: var(--gold); }
 .trend-note { margin: 0 24px 20px; padding: 18px; border-left: 2px solid var(--gold); background: var(--gold-light); }
 .tn-label { font-family: var(--fm); font-size: 7px; letter-spacing: 3px; color: var(--gold); text-transform: uppercase; margin-bottom: 6px; }
-.tn-text { font-size: 13px; font-weight: 300; color: var(--mid); line-height: 1.6; }
+.tn-text { font-size: 13px; font-weight: 400; color: var(--mid); line-height: 1.6; }
 .dim-table { margin: 0 24px 24px; }
 .dim-row { padding: 16px 0; border-bottom: 1px solid var(--rule); display: flex; flex-direction: column; gap: 8px; }
 .dim-row:first-child { border-top: 1px solid var(--rule); }
@@ -326,7 +326,7 @@ body { background: var(--white); color: var(--ink); font-family: var(--fs); min-
 .dim-val { font-family: var(--fb); font-size: 20px; font-weight: 300; }
 .dim-bar-track { height: 1px; background: var(--rule); }
 .dim-bar-fill { height: 100%; transition: width .4s; }
-.dim-note { font-size: 11px; font-weight: 300; color: var(--soft); }
+.dim-note { font-size: 11px; font-weight: 400; color: var(--soft); }
 
 /* ═══════════════════════════════════
    QUICK TOOLS
@@ -338,7 +338,7 @@ body { background: var(--white); color: var(--ink); font-family: var(--fs); min-
 .tool-num { font-family: var(--fm); font-size: 8px; color: var(--faint); width: 20px; flex-shrink: 0; margin-top: 4px; }
 .tool-body { flex: 1; }
 .tool-name { font-family: var(--fb); font-size: 20px; font-weight: 400; color: var(--ink); }
-.tool-sub { font-size: 12px; font-weight: 300; color: var(--soft); margin-top: 4px; line-height: 1.5; }
+.tool-sub { font-size: 12px; font-weight: 400; color: var(--soft); margin-top: 4px; line-height: 1.5; }
 .tool-tag { display: inline-block; margin-top: 8px; font-family: var(--fm); font-size: 7px; letter-spacing: 2px; text-transform: uppercase; padding: 3px 10px; }
 .tt-now { background: var(--ink); color: var(--white); }
 .tt-quick { border: 1px solid var(--rule); color: var(--soft); }
@@ -354,20 +354,139 @@ body { background: var(--white); color: var(--ink); font-family: var(--fs); min-
 .cd-content { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 40px 32px; text-align: center; }
 .cd-overline { font-family: var(--fm); font-size: 8px; letter-spacing: 4px; color: var(--gold); text-transform: uppercase; margin-bottom: 16px; }
 .cd-title { font-family: var(--fb); font-size: 34px; font-weight: 300; color: var(--white); line-height: 1.3; }
-.cd-title em { font-style: italic; color: rgba(255,255,255,.45); }
-.cd-sub { font-size: 12px; font-weight: 300; color: rgba(255,255,255,.3); margin-top: 10px; line-height: 1.7; max-width: 260px; }
+.cd-title em { font-style: italic; color: rgba(255,255,255,.82); }
+.cd-sub { font-size: 12px; font-weight: 400; color: rgba(255,255,255,.75); margin-top: 10px; line-height: 1.7; max-width: 260px; }
 .cd-clock { position: relative; width: 150px; height: 150px; margin: 36px auto; }
 .cd-track { position: absolute; inset: 0; border-radius: 50%; border: 1px solid rgba(255,255,255,.08); }
 .cd-prog { position: absolute; inset: 0; border-radius: 50%; border: 1px solid var(--gold); border-right-color: transparent; border-bottom-color: transparent; animation: cd-turn 20s linear; transform: rotate(-90deg); }
 @keyframes cd-turn { to { transform: rotate(270deg); } }
 .cd-face { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
 .cd-num { font-family: var(--fb); font-size: 48px; font-weight: 300; color: var(--white); line-height: 1; }
-.cd-unit { font-family: var(--fm); font-size: 7px; letter-spacing: 3px; color: rgba(255,255,255,.25); text-transform: uppercase; margin-top: 2px; }
+.cd-unit { font-family: var(--fm); font-size: 7px; letter-spacing: 3px; color: rgba(255,255,255,.70); text-transform: uppercase; margin-top: 2px; }
 .cd-reflect { margin-top: 8px; padding: 24px 28px; border: 1px solid rgba(255,255,255,.08); text-align: left; max-width: 320px; }
 .cr-rule { width: 20px; height: 1px; background: var(--gold); margin-bottom: 12px; }
-.cr-label { font-family: var(--fm); font-size: 7px; letter-spacing: 3px; color: rgba(255,255,255,.2); text-transform: uppercase; margin-bottom: 10px; }
-.cr-text { font-family: var(--fb); font-size: 15px; font-weight: 300; font-style: italic; color: rgba(255,255,255,.35); line-height: 1.7; }
+.cr-label { font-family: var(--fm); font-size: 7px; letter-spacing: 3px; color: rgba(255,255,255,.65); text-transform: uppercase; margin-bottom: 10px; }
+.cr-text { font-family: var(--fb); font-size: 15px; font-weight: 300; font-style: italic; color: rgba(255,255,255,.78); line-height: 1.7; }
 .cd-ab { padding: 20px 24px; border-top: 1px solid rgba(255,255,255,.08); display: flex; gap: 12px; }
+
+/* ═══════════════════════════════════
+   RELATIONSHIP STAGE SELECTOR
+═══════════════════════════════════ */
+#s-stage { background: var(--cream); }
+.stage-masthead { background: var(--ink); padding: 44px 24px 36px; position: relative; overflow: hidden; }
+.stage-masthead-bg { position: absolute; right: -20px; top: 50%; transform: translateY(-50%); font-family: var(--fb); font-size: 110px; font-weight: 300; color: rgba(255,255,255,.03); pointer-events: none; }
+.stage-row { display: flex; align-items: center; gap: 16px; padding: 18px 24px; border-bottom: 1px solid var(--rule); cursor: pointer; transition: background .2s; background: var(--white); }
+.stage-row:first-child { border-top: 1px solid var(--rule); }
+.stage-row:hover { background: var(--off); }
+.stage-row.sel { background: var(--ink); }
+.stage-row.sel .stage-name { color: var(--white); }
+.stage-row.sel .stage-sub { color: rgba(255,255,255,.6); }
+.stage-row.sel .stage-num { color: var(--gold); }
+.stage-num { font-family: var(--fm); font-size: 9px; color: var(--faint); width: 20px; flex-shrink: 0; }
+.stage-info { flex: 1; }
+.stage-name { font-family: var(--fb); font-size: 18px; font-weight: 400; color: var(--ink); }
+.stage-sub { font-size: 11px; font-weight: 400; color: var(--soft); margin-top: 3px; }
+.stage-arrow { font-size: 14px; color: var(--faint); flex-shrink: 0; transition: color .2s; }
+.stage-row:hover .stage-arrow { color: var(--ink); }
+.stage-row.sel .stage-arrow { color: var(--gold); }
+
+/* ═══════════════════════════════════
+   PAYWALL
+═══════════════════════════════════ */
+#s-paywall { background: var(--ink); }
+.pw-content { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 48px 32px; text-align: center; }
+.pw-num { font-family: var(--fb); font-size: 80px; font-weight: 300; color: rgba(255,255,255,.06); line-height: 1; margin-bottom: -20px; }
+.pw-overline { font-family: var(--fm); font-size: 8px; letter-spacing: 4px; color: var(--gold); text-transform: uppercase; margin-bottom: 16px; }
+.pw-title { font-family: var(--fb); font-size: 32px; font-weight: 300; color: var(--white); line-height: 1.3; }
+.pw-title em { font-style: italic; color: rgba(255,255,255,.55); }
+.pw-sub { font-size: 13px; font-weight: 400; color: rgba(255,255,255,.65); margin-top: 14px; line-height: 1.7; max-width: 280px; }
+.pw-divider { width: 40px; height: 1px; background: var(--gold); margin: 28px auto; }
+.pw-features { text-align: left; max-width: 300px; width: 100%; margin-bottom: 32px; }
+.pw-feature { display: flex; align-items: flex-start; gap: 14px; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,.06); }
+.pw-feature:last-child { border-bottom: none; }
+.pw-check { font-family: var(--fm); font-size: 10px; color: var(--gold); flex-shrink: 0; margin-top: 2px; }
+.pw-feature-text { font-size: 13px; font-weight: 400; color: rgba(255,255,255,.75); line-height: 1.5; }
+.pw-price { font-family: var(--fm); font-size: 8px; letter-spacing: 3px; color: rgba(255,255,255,.4); text-transform: uppercase; margin-top: 12px; }
+.pw-ab { padding: 20px 24px; border-top: 1px solid rgba(255,255,255,.08); display: flex; gap: 12px; }
+
+/* ═══════════════════════════════════
+   CAPSTONE QUESTION
+═══════════════════════════════════ */
+#s-capstone { background: var(--ink); }
+.cap-content { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 48px 32px; text-align: center; }
+.cap-overline { font-family: var(--fm); font-size: 8px; letter-spacing: 5px; color: var(--gold); text-transform: uppercase; margin-bottom: 28px; display: flex; align-items: center; gap: 14px; justify-content: center; }
+.cap-overline::before, .cap-overline::after { content: ''; width: 20px; height: 1px; background: var(--gold); }
+.cap-question { font-family: var(--fb); font-size: clamp(20px, 5vw, 28px); font-weight: 300; font-style: italic; color: var(--white); line-height: 1.6; max-width: 320px; }
+.cap-rule { width: 40px; height: 1px; background: var(--gold); margin: 32px auto; }
+.cap-context { font-size: 13px; font-weight: 400; color: rgba(255,255,255,.65); line-height: 1.7; max-width: 280px; }
+.cap-input-wrap { width: 100%; max-width: 320px; margin-top: 28px; }
+.cap-textarea { width: 100%; background: rgba(255,255,255,.04); border: none; border-bottom: 1px solid rgba(255,255,255,.2); padding: 16px 0; font-family: var(--fb); font-size: 16px; font-weight: 300; font-style: italic; color: var(--white); outline: none; resize: none; line-height: 1.7; min-height: 80px; text-align: center; }
+.cap-textarea::placeholder { color: rgba(255,255,255,.2); }
+.cap-textarea:focus { border-color: var(--gold); }
+.cap-ab { padding: 20px 24px; border-top: 1px solid rgba(255,255,255,.08); display: flex; gap: 12px; }
+
+/* ═══════════════════════════════════
+   ALIGNMENT BRIDGE
+═══════════════════════════════════ */
+#s-bridge { background: var(--cream); }
+.bridge-masthead { background: var(--ink); padding: 36px 24px 28px; }
+.bm-label { font-family: var(--fm); font-size: 8px; letter-spacing: 4px; color: var(--gold); text-transform: uppercase; margin-bottom: 10px; }
+.bm-title { font-family: var(--fb); font-size: 26px; font-weight: 300; color: var(--white); line-height: 1.3; }
+.bm-sub { font-size: 12px; font-weight: 400; color: rgba(255,255,255,.7); margin-top: 8px; line-height: 1.6; }
+.bridge-progress { margin: 20px 24px; background: var(--white); border: 1px solid var(--rule); padding: 18px 20px; }
+.bp-label { font-family: var(--fm); font-size: 8px; letter-spacing: 3px; color: var(--soft); text-transform: uppercase; margin-bottom: 10px; }
+.bp-bar-wrap { display: flex; align-items: center; gap: 12px; }
+.bp-bar { flex: 1; height: 2px; background: var(--rule); }
+.bp-fill { height: 100%; width: 25%; background: var(--gold); transition: width .4s; }
+.bp-pct { font-family: var(--fb); font-size: 20px; font-weight: 300; color: var(--ink); flex-shrink: 0; }
+.bp-sub { font-size: 11px; font-weight: 400; color: var(--soft); margin-top: 6px; }
+.bridge-steps { padding: 0 24px 24px; }
+.bs-week { margin-bottom: 8px; }
+.bs-week-label { font-family: var(--fm); font-size: 8px; letter-spacing: 3px; color: var(--gold); text-transform: uppercase; padding: 16px 0 8px; border-top: 1px solid var(--rule); }
+.bs-step { display: flex; align-items: flex-start; gap: 14px; padding: 14px; background: var(--white); border: 1px solid var(--rule); margin-bottom: 8px; cursor: pointer; transition: all .2s; }
+.bs-step:hover { border-color: var(--ink); }
+.bs-step.done { background: var(--off); opacity: .7; }
+.bs-step.active { border-left: 3px solid var(--gold); }
+.bs-check { width: 20px; height: 20px; border: 1px solid var(--rule); flex-shrink: 0; margin-top: 2px; display: flex; align-items: center; justify-content: center; font-family: var(--fm); font-size: 9px; color: var(--white); background: transparent; transition: all .2s; }
+.bs-step.done .bs-check { background: var(--gold); border-color: var(--gold); }
+.bs-step.done .bs-check::after { content: '✓'; }
+.bs-body { flex: 1; }
+.bs-title { font-family: var(--fb); font-size: 15px; font-weight: 400; color: var(--ink); }
+.bs-desc { font-size: 12px; font-weight: 400; color: var(--soft); margin-top: 4px; line-height: 1.5; }
+.bs-step.done .bs-title { color: var(--soft); text-decoration: line-through; }
+.bridge-no-progress { margin: 16px 24px; padding: 16px; border: 1px solid var(--rule); background: var(--white); }
+.bnp-label { font-family: var(--fm); font-size: 8px; letter-spacing: 2px; color: var(--soft); text-transform: uppercase; margin-bottom: 6px; }
+.bnp-text { font-size: 12px; font-weight: 400; color: var(--soft); line-height: 1.6; }
+.bnp-link { display: inline-block; margin-top: 8px; font-family: var(--fm); font-size: 9px; color: var(--gold); letter-spacing: 1px; cursor: pointer; border-bottom: 1px solid rgba(184,150,90,.3); }
+
+/* ═══════════════════════════════════
+   PERIODIC CHECK-IN
+═══════════════════════════════════ */
+#s-checkin { background: var(--cream); }
+.ci-masthead { background: var(--ink); padding: 40px 24px 32px; }
+.ci-label { font-family: var(--fm); font-size: 8px; letter-spacing: 4px; color: var(--gold); text-transform: uppercase; margin-bottom: 10px; }
+.ci-title { font-family: var(--fb); font-size: 28px; font-weight: 300; color: var(--white); line-height: 1.3; }
+.ci-sub { font-size: 13px; font-weight: 400; color: rgba(255,255,255,.7); margin-top: 8px; line-height: 1.6; }
+.ci-event-prompt { margin: 20px 24px 0; padding: 16px 18px; background: var(--white); border: 1px solid var(--rule); border-left: 3px solid var(--gold); }
+.ci-ep-label { font-family: var(--fm); font-size: 8px; letter-spacing: 2px; color: var(--gold); text-transform: uppercase; margin-bottom: 6px; }
+.ci-ep-text { font-size: 13px; font-weight: 400; color: var(--mid); line-height: 1.6; font-style: italic; }
+.ci-cats { padding: 0 24px 24px; }
+.ci-cat { padding: 20px 0; border-bottom: 1px solid var(--rule); }
+.ci-cat:first-of-type { border-top: 1px solid var(--rule); margin-top: 16px; }
+.ci-cat-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+.ci-cat-name { font-family: var(--fb); font-size: 18px; font-weight: 400; color: var(--ink); }
+.ci-prev { font-family: var(--fm); font-size: 9px; color: var(--faint); }
+.ci-question { font-family: var(--fb); font-size: 15px; font-weight: 300; font-style: italic; color: var(--mid); line-height: 1.5; margin-bottom: 14px; }
+.ci-options { display: flex; gap: 6px; }
+.ci-opt { flex: 1; padding: 10px 6px; text-align: center; border: 1px solid var(--rule); font-family: var(--fm); font-size: 8px; letter-spacing: 1px; text-transform: uppercase; cursor: pointer; transition: all .2s; color: var(--soft); background: var(--white); }
+.ci-opt:hover { border-color: var(--ink); color: var(--ink); }
+.ci-opt.sel { background: var(--ink); border-color: var(--ink); color: var(--white); }
+
+/* NOT THERAPY DISCLAIMER */
+.not-therapy { margin: 0 24px 16px; padding: 12px 16px; border: 1px solid var(--rule); background: var(--off); display: flex; gap: 10px; align-items: flex-start; }
+.nt-icon { font-family: var(--fm); font-size: 8px; color: var(--faint); flex-shrink: 0; margin-top: 1px; letter-spacing: 1px; }
+.nt-text { font-size: 10px; font-weight: 400; color: var(--soft); line-height: 1.6; }
+.nt-text a { color: var(--ink); text-decoration: underline; cursor: pointer; }
 </style>
 </head>
 <body>
@@ -379,7 +498,24 @@ body { background: var(--white); color: var(--ink); font-family: var(--fs); min-
     <div class="splash-overline">Relationship Intelligence</div>
     <div class="splash-wordmark">FUSE<em>Align</em></div>
     <div class="splash-rule"></div>
-    <div class="splash-tagline">Understand each other before you assume each other.</div>
+    <div style="display:flex;flex-direction:column;gap:10px;position:relative;z-index:1;">
+      <div style="display:flex;align-items:baseline;gap:14px;">
+        <span style="font-family:var(--fb);font-size:22px;font-weight:400;color:var(--gold);width:16px;flex-shrink:0;">F</span>
+        <span style="font-family:var(--fb);font-size:16px;font-weight:300;font-style:italic;color:rgba(255,255,255,.85);line-height:1.4;">Find real connection</span>
+      </div>
+      <div style="display:flex;align-items:baseline;gap:14px;">
+        <span style="font-family:var(--fb);font-size:22px;font-weight:400;color:var(--gold);width:16px;flex-shrink:0;">U</span>
+        <span style="font-family:var(--fb);font-size:16px;font-weight:300;font-style:italic;color:rgba(255,255,255,.85);line-height:1.4;">Understand true compatibility</span>
+      </div>
+      <div style="display:flex;align-items:baseline;gap:14px;">
+        <span style="font-family:var(--fb);font-size:22px;font-weight:400;color:var(--gold);width:16px;flex-shrink:0;">S</span>
+        <span style="font-family:var(--fb);font-size:16px;font-weight:300;font-style:italic;color:rgba(255,255,255,.85);line-height:1.4;">Shape a shared foundation</span>
+      </div>
+      <div style="display:flex;align-items:baseline;gap:14px;">
+        <span style="font-family:var(--fb);font-size:22px;font-weight:400;color:var(--gold);width:16px;flex-shrink:0;">E</span>
+        <span style="font-family:var(--fb);font-size:16px;font-weight:300;font-style:italic;color:rgba(255,255,255,.85);line-height:1.4;">Establish lasting partnership</span>
+      </div>
+    </div>
   </div>
   <div class="splash-footer">
     <button class="btn btn-cream" onclick="nav('s-onboard')">Begin</button>
@@ -391,7 +527,7 @@ body { background: var(--white); color: var(--ink); font-family: var(--fs); min-
 <!-- ONBOARDING -->
 <div id="s-onboard" class="screen">
   <div class="tb" style="background:var(--ink);border-color:rgba(255,255,255,.08);">
-    <button class="bk" style="color:rgba(255,255,255,.3);" onclick="nav('s-splash')">← Back</button>
+    <button class="bk" style="color:rgba(255,255,255,.75);" onclick="nav('s-splash')">← Back</button>
     <div class="tb-wordmark" style="color:var(--white);font-size:14px;letter-spacing:5px;">FUSE <em>Align</em></div>
     <div></div>
   </div>
@@ -431,7 +567,7 @@ body { background: var(--white); color: var(--ink); font-family: var(--fs); min-
   </div>
   <div class="ab">
     <button class="btn btn-ghost" onclick="nav('s-splash')">Back</button>
-    <button class="btn btn-ink" onclick="nav('s-home')">Continue →</button>
+    <button class="btn btn-ink" onclick="nav('s-stage')">Continue →</button>
   </div>
 </div>
 
@@ -517,17 +653,17 @@ body { background: var(--white); color: var(--ink); font-family: var(--fs); min-
     </div>
     <div class="sh"><div class="sh-rule"></div><div class="sh-text">Month 3 Release</div></div>
     <div class="cat-table">
-      <div class="cat-row locked">
+      <div class="cat-row locked" onclick="nav('s-paywall')" style="opacity:.5;cursor:pointer;">
         <div class="cat-row-num">05</div>
         <div class="cat-row-icon">💼</div>
-        <div class="cat-row-info"><div class="cat-row-name">Career & Ambition</div><div class="cat-row-sub">Releasing next month</div></div>
-        <div class="cat-row-right"><div class="cat-status-pill st-lock">Locked</div></div>
+        <div class="cat-row-info"><div class="cat-row-name">Career & Ambition</div><div class="cat-row-sub">Unlock with Premium</div></div>
+        <div class="cat-row-right"><div class="cat-status-pill st-lock">Upgrade</div></div>
       </div>
-      <div class="cat-row locked">
+      <div class="cat-row locked" onclick="nav('s-paywall')" style="opacity:.5;cursor:pointer;">
         <div class="cat-row-num">06</div>
         <div class="cat-row-icon">🏙</div>
-        <div class="cat-row-info"><div class="cat-row-name">Location & Lifestyle</div><div class="cat-row-sub">Releasing next month</div></div>
-        <div class="cat-row-right"><div class="cat-status-pill st-lock">Locked</div></div>
+        <div class="cat-row-info"><div class="cat-row-name">Location & Lifestyle</div><div class="cat-row-sub">Unlock with Premium</div></div>
+        <div class="cat-row-right"><div class="cat-status-pill st-lock">Upgrade</div></div>
       </div>
     </div>
     <div style="height:16px;"></div>
@@ -595,7 +731,7 @@ body { background: var(--white); color: var(--ink); font-family: var(--fs); min-
 <!-- WAITING -->
 <div id="s-waiting" class="screen" style="background:var(--ink);">
   <div class="tb" style="background:var(--ink);border-color:rgba(255,255,255,.07);">
-    <button class="bk" style="color:rgba(255,255,255,.25);" onclick="nav('s-home')">← Home</button>
+    <button class="bk" style="color:rgba(255,255,255,.70);" onclick="nav('s-home')">← Home</button>
     <div class="tb-wordmark" style="color:var(--white);font-size:14px;letter-spacing:5px;">FUSE <em>Align</em></div>
     <div></div>
   </div>
@@ -614,7 +750,7 @@ body { background: var(--white); color: var(--ink); font-family: var(--fs); min-
     <button class="wait-demo" onclick="nav('s-reveal')">Preview alignment reveal →</button>
   </div>
   <div class="wait-ab">
-    <button class="btn btn-ghost" style="border-color:rgba(255,255,255,.1);color:rgba(255,255,255,.3);" onclick="nav('s-home')">Back to home</button>
+    <button class="btn btn-ghost" style="border-color:rgba(255,255,255,.1);color:rgba(255,255,255,.75);" onclick="nav('s-home')">Back to home</button>
   </div>
 </div>
 
@@ -704,10 +840,14 @@ body { background: var(--white); color: var(--ink); font-family: var(--fs); min-
         <div class="ri-insight">"Different risk orientations often create productive tension — but this needs to be named before you face a real financial decision together."</div>
       </div>
     </div>
+    <div class="not-therapy">
+      <div class="nt-icon">ℹ</div>
+      <div class="nt-text">FUSE Align provides relationship intelligence and conversation tools. It is not therapy, counseling, or medical advice. If you or your partner are in crisis, <a onclick="showToast('Crisis resources: 988 · National DV Hotline: 1-800-799-7233')">contact a professional immediately.</a></div>
+    </div>
   </div>
   <div class="ab">
     <button class="btn btn-ghost" onclick="nav('s-home')">Close</button>
-    <button class="btn btn-ink" onclick="nav('s-convo')">Begin guided conversation →</button>
+    <button class="btn btn-ink" onclick="nav('s-capstone')">Continue to Capstone →</button>
   </div>
 </div>
 
@@ -745,10 +885,15 @@ body { background: var(--white); color: var(--ink); font-family: var(--fs); min-
       <div class="gr-item"><div class="gr-num">—</div>The goal is understanding, not winning</div>
     </div>
     <div style="height:16px;"></div>
+    <div class="not-therapy">
+      <div class="nt-icon">ℹ</div>
+      <div class="nt-text">These prompts are structured conversation tools, not therapy. FUSE Align does not diagnose, treat, or substitute for clinical care. <a onclick="showToast('Psychology Today · BetterHelp · Talkspace')">Find a couples therapist →</a></div>
+    </div>
+    <div style="height:16px;"></div>
   </div>
   <div class="ab">
     <button class="btn btn-ghost" onclick="nav('s-home')">Done for now</button>
-    <button class="btn btn-gold" onclick="showToast('Conversation marked complete')">Mark complete</button>
+    <button class="btn btn-gold" onclick="nav('s-bridge')">Start 30-Day Bridge →</button>
   </div>
 </div>
 
@@ -796,7 +941,8 @@ body { background: var(--white); color: var(--ink); font-family: var(--fs); min-
     </div>
     <div style="margin:0 24px 24px;padding:20px;background:var(--white);border:1px solid var(--rule);">
       <div style="font-family:var(--fm);font-size:8px;letter-spacing:3px;color:var(--soft);text-transform:uppercase;margin-bottom:8px;">Next Check-In</div>
-      <div style="font-size:13px;font-weight:300;color:var(--mid);line-height:1.7;">Your 3-month relationship check-in is in <strong style="color:var(--ink);font-weight:400;">18 days.</strong> You will revisit completed categories to see if anything has shifted.</div>
+      <div style="font-size:13px;font-weight:300;color:var(--mid);line-height:1.7;margin-bottom:14px;">Your 3-month relationship check-in is in <strong style="color:var(--ink);font-weight:400;">18 days.</strong> You will revisit completed categories to see if anything has shifted.</div>
+      <button class="btn btn-outline" style="width:100%;padding:12px;" onclick="nav('s-checkin')">Preview Check-In Experience →</button>
     </div>
     <div style="height:16px;"></div>
   </div>
@@ -875,8 +1021,8 @@ body { background: var(--white); color: var(--ink); font-family: var(--fs); min-
 <!-- COOLDOWN TIMER -->
 <div id="s-cooldown" class="screen">
   <div class="tb" style="background:var(--ink);border-color:rgba(255,255,255,.07);">
-    <button class="bk" style="color:rgba(255,255,255,.25);" onclick="nav('s-tools')">← Tools</button>
-    <div class="tb-label" style="color:rgba(255,255,255,.25);">Cool-Down Timer</div>
+    <button class="bk" style="color:rgba(255,255,255,.70);" onclick="nav('s-tools')">← Tools</button>
+    <div class="tb-label" style="color:rgba(255,255,255,.70);">Cool-Down Timer</div>
     <div></div>
   </div>
   <div class="cd-content">
@@ -896,11 +1042,254 @@ body { background: var(--white); color: var(--ink); font-family: var(--fs); min-
       <div class="cr-label">While You Wait — Reflect On This</div>
       <div class="cr-text">"What am I actually feeling underneath the frustration — and what do I need right now that I have not said out loud?"</div>
     </div>
-    <div style="font-family:var(--fm);font-size:7px;letter-spacing:3px;color:rgba(255,255,255,.15);text-transform:uppercase;margin-top:20px;">Based on Gottman Research</div>
+    <div style="font-family:var(--fm);font-size:7px;letter-spacing:3px;color:rgba(255,255,255,.45);text-transform:uppercase;margin-top:20px;">Based on Gottman Research</div>
   </div>
   <div class="cd-ab">
-    <button class="btn btn-ghost" style="border-color:rgba(255,255,255,.1);color:rgba(255,255,255,.3);" onclick="nav('s-tools')">End early</button>
+    <button class="btn btn-ghost" style="border-color:rgba(255,255,255,.1);color:rgba(255,255,255,.75);" onclick="nav('s-tools')">End early</button>
     <button class="btn btn-gold" onclick="showToast('Timer started')">Start timer</button>
+  </div>
+</div>
+
+<!-- RELATIONSHIP STAGE SELECTOR -->
+<div id="s-stage" class="screen">
+  <div class="tb" style="background:var(--ink);border-color:rgba(255,255,255,.08);">
+    <button class="bk" style="color:rgba(255,255,255,.75);" onclick="nav('s-onboard')">← Back</button>
+    <div class="tb-wordmark" style="color:var(--white);font-size:14px;letter-spacing:5px;">FUSE <em>Align</em></div>
+    <div></div>
+  </div>
+  <div class="stage-masthead">
+    <div class="stage-masthead-bg">STAGE</div>
+    <div class="om-label">Step 02 — Your Relationship</div>
+    <div class="om-title" style="color:var(--white);">Where are you<br><em style="color:rgba(255,255,255,.75)">right now?</em></div>
+    <div class="om-sub">FUSE Align adapts its categories, prompts, and check-in rhythm to where you actually are. This changes how the app talks to you.</div>
+  </div>
+  <div class="scroll" style="background:var(--cream);">
+    <div style="height:8px;"></div>
+    <div class="stage-row" id="sr-new" onclick="selStage('new',this)">
+      <div class="stage-num">01</div>
+      <div class="stage-info"><div class="stage-name">New Relationship</div><div class="stage-sub">Together 0–6 months · Still in discovery mode</div></div>
+      <div class="stage-arrow">→</div>
+    </div>
+    <div class="stage-row" id="sr-committed" onclick="selStage('committed',this)">
+      <div class="stage-num">02</div>
+      <div class="stage-info"><div class="stage-name">Committed / Moving In</div><div class="stage-sub">6–24 months · Building shared life</div></div>
+      <div class="stage-arrow">→</div>
+    </div>
+    <div class="stage-row" id="sr-engaged" onclick="selStage('engaged',this)">
+      <div class="stage-num">03</div>
+      <div class="stage-info"><div class="stage-name">Engaged / Pre-Marital</div><div class="stage-sub">Getting married · Foundation-building mode</div></div>
+      <div class="stage-arrow">→</div>
+    </div>
+    <div class="stage-row" id="sr-married" onclick="selStage('married',this)">
+      <div class="stage-num">04</div>
+      <div class="stage-info"><div class="stage-name">Married / Long-Term</div><div class="stage-sub">Established partnership · Focus on evolution</div></div>
+      <div class="stage-arrow">→</div>
+    </div>
+    <div class="stage-row" id="sr-parents" onclick="selStage('parents',this)">
+      <div class="stage-num">05</div>
+      <div class="stage-info"><div class="stage-name">Parents</div><div class="stage-sub">Raising children together · Co-parenting alignment</div></div>
+      <div class="stage-arrow">→</div>
+    </div>
+    <div class="stage-row" id="sr-empty" onclick="selStage('empty',this)">
+      <div class="stage-num">06</div>
+      <div class="stage-info"><div class="stage-name">Empty Nest / Later Life</div><div class="stage-sub">Rediscovering each other · New chapter</div></div>
+      <div class="stage-arrow">→</div>
+    </div>
+    <div style="margin:20px 24px;padding:14px 16px;background:var(--white);border:1px solid var(--rule);border-left:2px solid var(--gold);">
+      <div style="font-family:var(--fm);font-size:8px;letter-spacing:2px;color:var(--gold);text-transform:uppercase;margin-bottom:5px;">Why This Matters</div>
+      <div style="font-size:12px;font-weight:400;color:var(--mid);line-height:1.6;">A newly committed couple needs discovery prompts. An engaged couple needs every category before the wedding. A couple of 10 years needs evolution tracking. The framework adapts to you.</div>
+    </div>
+    <div style="height:20px;"></div>
+  </div>
+  <div class="ab">
+    <button class="btn btn-ghost" onclick="nav('s-onboard')">Back</button>
+    <button class="btn btn-ink" onclick="nav('s-home')">Enter FUSE Align →</button>
+  </div>
+</div>
+
+<!-- PAYWALL -->
+<div id="s-paywall" class="screen">
+  <div class="tb" style="background:var(--ink);border-color:rgba(255,255,255,.08);">
+    <button class="bk" style="color:rgba(255,255,255,.75);" onclick="nav('s-home')">← Back</button>
+    <div class="tb-label" style="color:rgba(255,255,255,.5);">Upgrade</div>
+    <div></div>
+  </div>
+  <div class="pw-content">
+    <div class="pw-num">4</div>
+    <div class="pw-overline">Free Tier Complete</div>
+    <div class="pw-title">You've explored<br><em>the foundation.</em></div>
+    <div class="pw-sub">You've completed your 4 free categories. Upgrade to unlock all 16, guided conversations, the Relationship Evolution Dashboard, and more.</div>
+    <div class="pw-divider"></div>
+    <div class="pw-features">
+      <div class="pw-feature"><div class="pw-check">✓</div><div class="pw-feature-text">All 16 Relationship Alignment categories</div></div>
+      <div class="pw-feature"><div class="pw-check">✓</div><div class="pw-feature-text">Full alignment scoring with detailed breakdowns</div></div>
+      <div class="pw-feature"><div class="pw-check">✓</div><div class="pw-feature-text">Guided conversation library for every gap</div></div>
+      <div class="pw-feature"><div class="pw-check">✓</div><div class="pw-feature-text">30-Day Alignment Bridges for misaligned categories</div></div>
+      <div class="pw-feature"><div class="pw-check">✓</div><div class="pw-feature-text">Relationship Evolution Dashboard — track change over time</div></div>
+      <div class="pw-feature"><div class="pw-check">✓</div><div class="pw-feature-text">Export alignment report for your therapist</div></div>
+      <div class="pw-feature"><div class="pw-check">✓</div><div class="pw-feature-text">Life event check-ins and periodic re-assessments</div></div>
+    </div>
+  </div>
+  <div class="pw-ab">
+    <button class="btn btn-ghost" style="border-color:rgba(255,255,255,.15);color:rgba(255,255,255,.6);" onclick="nav('s-home')">Not now</button>
+    <button class="btn btn-gold" onclick="showToast('Welcome to FUSE Align Premium')">$9.99 / month</button>
+  </div>
+  <div style="padding:0 24px 20px;text-align:center;">
+    <div class="pw-price">Or $99/year · Cancel anytime · Free trial available</div>
+  </div>
+</div>
+
+<!-- CAPSTONE QUESTION -->
+<div id="s-capstone" class="screen">
+  <div class="tb" style="background:var(--ink);border-color:rgba(255,255,255,.08);">
+    <button class="bk" style="color:rgba(255,255,255,.75);" onclick="nav('s-reveal')">← Reveal</button>
+    <div class="tb-label" style="color:rgba(255,255,255,.5);">The Capstone</div>
+    <div></div>
+  </div>
+  <div class="cap-content">
+    <div class="cap-overline">The Capstone Question</div>
+    <div class="cap-question">"If we choose each other, what are we committing to protect — even when it is inconvenient?"</div>
+    <div class="cap-rule"></div>
+    <div class="cap-context">This question is not scored. It is not compared. It reveals character, maturity, and readiness for partnership in a way no quiz ever could. Answer honestly, then share with each other.</div>
+    <div class="cap-input-wrap">
+      <textarea class="cap-textarea" placeholder="Write your answer here..." rows="4"></textarea>
+    </div>
+    <div style="font-family:var(--fm);font-size:7px;letter-spacing:3px;color:rgba(255,255,255,.3);text-transform:uppercase;margin-top:20px;">Your answer is private until you choose to share it</div>
+  </div>
+  <div class="cap-ab">
+    <button class="btn btn-ghost" style="border-color:rgba(255,255,255,.15);color:rgba(255,255,255,.6);" onclick="nav('s-reveal')">← Back</button>
+    <button class="btn btn-ink" style="background:var(--gold);border:none;" onclick="nav('s-convo')">Continue to Conversation →</button>
+  </div>
+</div>
+
+<!-- ALIGNMENT BRIDGE -->
+<div id="s-bridge" class="screen">
+  <div class="tb">
+    <button class="bk" onclick="nav('s-convo')">← Conversation</button>
+    <div class="tb-label">30-Day Bridge</div>
+    <div></div>
+  </div>
+  <div class="scroll">
+    <div class="bridge-masthead">
+      <div class="bm-label">Financial Transparency — Alignment Bridge</div>
+      <div class="bm-title">A 30-day path<br>toward common ground.</div>
+      <div class="bm-sub">Small, specific, time-bound steps based on what your alignment data revealed. Not therapy — a structured practice for willing partners.</div>
+    </div>
+    <div class="bridge-progress">
+      <div class="bp-label">Your Progress</div>
+      <div class="bp-bar-wrap">
+        <div class="bp-bar"><div class="bp-fill"></div></div>
+        <div class="bp-pct">25%</div>
+      </div>
+      <div class="bp-sub">Week 1 of 4 complete · Alignment score: 68% → 72%</div>
+    </div>
+    <div class="not-therapy" style="margin-top:16px;">
+      <div class="nt-icon">ℹ</div>
+      <div class="nt-text">Alignment Bridges are structured practical steps, not therapy. FUSE Align does not diagnose, treat, or substitute for clinical care. <a onclick="showToast('Find a therapist: Psychology Today · BetterHelp · Talkspace')">Find a couples therapist →</a></div>
+    </div>
+    <div class="bridge-steps">
+      <div class="bs-week">
+        <div class="bs-week-label">Week 1 — Establish Baseline Transparency</div>
+        <div class="bs-step done" onclick="showToast('Step already complete')">
+          <div class="bs-check"></div>
+          <div class="bs-body"><div class="bs-title">Share one account summary</div><div class="bs-desc">Share a single bank or investment account summary. No judgment, no discussion — just visibility.</div></div>
+        </div>
+      </div>
+      <div class="bs-week">
+        <div class="bs-week-label">Week 2 — Expand Access</div>
+        <div class="bs-step active" onclick="completeStep(this)">
+          <div class="bs-check"></div>
+          <div class="bs-body"><div class="bs-title">Discuss what financial transparency means to each of you</div><div class="bs-desc">Not what you want from each other — what the word itself means to you, and why it matters.</div></div>
+        </div>
+      </div>
+      <div class="bs-week">
+        <div class="bs-week-label">Week 3 — Shared Access Pilot</div>
+        <div class="bs-step" onclick="showToast('Complete Week 2 first')">
+          <div class="bs-check"></div>
+          <div class="bs-body"><div class="bs-title">Try shared view on primary account for one week</div><div class="bs-desc">Not shared control — shared visibility. Notice what anxiety or relief comes up for each of you.</div></div>
+        </div>
+      </div>
+      <div class="bs-week">
+        <div class="bs-week-label">Week 4 — Reflect & Decide</div>
+        <div class="bs-step" onclick="showToast('Complete Week 3 first')">
+          <div class="bs-check"></div>
+          <div class="bs-body"><div class="bs-title">Check in: has anxiety decreased? Has trust increased?</div><div class="bs-desc">Use the Quick Check-In tool together. Your alignment score will update based on your responses.</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="bridge-no-progress">
+      <div class="bnp-label">If This Bridge Doesn't Work</div>
+      <div class="bnp-text">If you complete all four weeks and alignment on this category hasn't shifted, that is honest and important information. It may mean this is an area where a professional conversation would help.</div>
+      <div class="bnp-link" onclick="showToast('Find a therapist: Psychology Today · BetterHelp · Talkspace')">Find a couples therapist who specializes in this →</div>
+    </div>
+    <div style="height:24px;"></div>
+  </div>
+  <div class="ab">
+    <button class="btn btn-ghost" onclick="nav('s-home')">Home</button>
+    <button class="btn btn-gold" onclick="showToast('Progress saved')">Save Progress</button>
+  </div>
+</div>
+
+<!-- PERIODIC CHECK-IN -->
+<div id="s-checkin" class="screen">
+  <div class="tb">
+    <button class="bk" onclick="nav('s-health')">← Health</button>
+    <div class="tb-label">3-Month Check-In</div>
+    <div></div>
+  </div>
+  <div class="scroll">
+    <div class="ci-masthead">
+      <div class="ci-label">Periodic Re-Assessment</div>
+      <div class="ci-title">A lot can shift<br>in three months.</div>
+      <div class="ci-sub">You are not answering from scratch — you are checking whether your previous answers still reflect where you are. Only the categories where life may have shifted.</div>
+    </div>
+    <div class="ci-event-prompt">
+      <div class="ci-ep-label">Life Event Detected</div>
+      <div class="ci-ep-text">"You mentioned a job change last quarter. Has your Career & Ambition alignment shifted? Your previous alignment on this category was 78%."</div>
+    </div>
+    <div class="ci-cats">
+      <div class="ci-cat">
+        <div class="ci-cat-header">
+          <div class="ci-cat-name">Money & Financial Philosophy</div>
+          <div class="ci-prev">Was 68%</div>
+        </div>
+        <div class="ci-question">"Has anything shifted in how you think about financial transparency since you last answered this?"</div>
+        <div class="ci-options">
+          <div class="ci-opt" id="ci1-yes" onclick="selCi('ci1','yes')">Yes, shifted</div>
+          <div class="ci-opt" id="ci1-slight" onclick="selCi('ci1','slight')">Slightly</div>
+          <div class="ci-opt" id="ci1-no" onclick="selCi('ci1','no')">Still the same</div>
+        </div>
+      </div>
+      <div class="ci-cat">
+        <div class="ci-cat-header">
+          <div class="ci-cat-name">Career & Ambition</div>
+          <div class="ci-prev">Was 78%</div>
+        </div>
+        <div class="ci-question">"Your career changed this quarter. Does your previous answer about ambition and work identity still feel true?"</div>
+        <div class="ci-options">
+          <div class="ci-opt" id="ci2-yes" onclick="selCi('ci2','yes')">Yes, shifted</div>
+          <div class="ci-opt" id="ci2-slight" onclick="selCi('ci2','slight')">Slightly</div>
+          <div class="ci-opt" id="ci2-no" onclick="selCi('ci2','no')">Still the same</div>
+        </div>
+      </div>
+      <div class="ci-cat">
+        <div class="ci-cat-header">
+          <div class="ci-cat-name">Children & Family</div>
+          <div class="ci-prev">Was 91%</div>
+        </div>
+        <div class="ci-question">"Your alignment on children was very strong. Has any aspect of your thinking evolved here?"</div>
+        <div class="ci-options">
+          <div class="ci-opt" id="ci3-yes" onclick="selCi('ci3','yes')">Yes, shifted</div>
+          <div class="ci-opt" id="ci3-slight" onclick="selCi('ci3','slight')">Slightly</div>
+          <div class="ci-opt" id="ci3-no" onclick="selCi('ci3','no')">Still the same</div>
+        </div>
+      </div>
+    </div>
+    <div style="height:16px;"></div>
+  </div>
+  <div class="ab">
+    <button class="btn btn-ghost" onclick="nav('s-health')">Later</button>
+    <button class="btn btn-ink" onclick="showToast('Check-in submitted — scores updating')">Submit Check-In →</button>
   </div>
 </div>
 
@@ -942,6 +1331,27 @@ function openCat(key) {
 function selFo(v) {
   document.querySelectorAll('.fo').forEach(o => o.classList.remove('sel'));
   document.getElementById('fo-' + v).classList.add('sel');
+}
+
+function selStage(key, row) {
+  document.querySelectorAll('.stage-row').forEach(r => r.classList.remove('sel'));
+  row.classList.add('sel');
+}
+
+function completeStep(el) {
+  el.classList.add('done');
+  const check = el.querySelector('.bs-check');
+  if (check) check.style.background = 'var(--gold)';
+  showToast('Step marked complete · Progress saved');
+}
+
+function selCi(group, val) {
+  ['yes','slight','no'].forEach(v => {
+    const el = document.getElementById(group + '-' + v);
+    if (el) el.classList.remove('sel');
+  });
+  const sel = document.getElementById(group + '-' + val);
+  if (sel) sel.classList.add('sel');
 }
 
 function showP(i, btn) {
