@@ -666,22 +666,98 @@ body { background: var(--white); color: var(--ink); font-family: var(--fs); min-
   </div>
   <div class="splash-footer">
     <button class="btn btn-cream" onclick="nav('s-onboard')">Create an Account</button>
-    <button class="btn btn-naked" onclick="nav('s-home')">Sign In</button>
+    <button class="btn btn-naked" onclick="nav('s-signin')">Sign In</button>
     <div class="splash-meta">Free to start · No card required</div>
     <div style="display:flex;gap:10px;margin-top:4px;">
       <button class="pf-ghost-btn" onclick="openPF('pricing')">Pricing</button>
       <button class="pf-ghost-btn" onclick="openPF('faq')">FAQ</button>
+    </div>
+    <div style="margin-top:10px;text-align:center;">
+      <div style="margin-top:6px;padding:6px 10px;background:rgba(245,158,11,.12);border:1px dashed rgba(245,158,11,.3);display:inline-flex;align-items:center;gap:8px;"><span style="font-family:var(--fm);font-size:7px;letter-spacing:2px;color:rgba(245,158,11,.6);text-transform:uppercase;">Demo only</span><button onclick="simulateInviteLink('Alex')" style="background:none;border:none;font-family:var(--fm);font-size:8px;letter-spacing:1px;color:rgba(245,158,11,.7);cursor:pointer;">Simulate invite link tap →</button></div>
     </div>
   </div>
 
 
 </div>
 
+<!-- SIGN IN -->
+<div id="s-signin" class="screen">
+  <div class="tb" style="background:var(--ink);border-color:rgba(255,255,255,.08);">
+    <button class="bk" style="color:rgba(255,255,255,.7);" onclick="nav('s-splash')">← Back</button>
+    <div class="tb-wordmark" style="color:var(--white);font-size:14px;letter-spacing:5px;">FUSE <em>Align</em></div>
+    <div></div>
+  </div>
+  <div style="background:var(--ink);flex:1;display:flex;flex-direction:column;padding:40px 28px 0;position:relative;overflow:hidden;">
+    <div style="position:absolute;bottom:-30px;right:-20px;font-family:var(--fb);font-size:160px;font-weight:300;color:rgba(255,255,255,.025);line-height:1;pointer-events:none;">IN</div>
+    <div style="font-family:var(--fm);font-size:9px;letter-spacing:4px;color:rgba(196,135,90,.7);text-transform:uppercase;margin-bottom:8px;">Welcome back</div>
+    <div style="font-family:var(--fb);font-size:30px;font-weight:300;color:var(--white);margin-bottom:28px;">Sign in to<br><em style="color:rgba(255,255,255,.65);">your account.</em></div>
+  </div>
+  <div class="scroll" style="background:var(--cream);">
+    <div style="height:28px;"></div>
+    <!-- Invite banner — shown when arriving from invite link -->
+    <div id="signin-invite-banner" style="display:none;margin:0 24px 20px;padding:14px 16px;background:rgba(196,135,90,.08);border:1px solid rgba(196,135,90,.3);border-left:3px solid var(--gold);">
+      <div style="font-family:var(--fm);font-size:8px;letter-spacing:2px;color:var(--gold);text-transform:uppercase;margin-bottom:5px;">✓ Invite accepted</div>
+      <div style="font-size:13px;color:var(--ink);line-height:1.5;">Sign in and you'll be connected with <strong class="icb-name">Alex</strong> automatically.</div>
+    </div>
+    <div class="field-block">
+      <label class="field-label">Email address</label>
+      <input class="field-input" type="email" placeholder="you@email.com" />
+    </div>
+    <div class="field-block">
+      <label class="field-label">Password</label>
+      <input class="field-input" type="password" placeholder="••••••••" />
+    </div>
+    <div style="padding:0 24px;margin-bottom:8px;">
+      <button onclick="showToast('Reset link sent to your email')" style="background:none;border:none;font-family:var(--fm);font-size:9px;letter-spacing:2px;color:var(--soft);text-transform:uppercase;cursor:pointer;padding:0;">Forgot password →</button>
+    </div>
+
+    <!-- Invite link section -->
+    <div style="margin:16px 24px 0;padding:16px;background:var(--off);border:1px solid var(--rule);border-left:2px solid var(--gold);">
+      <div style="font-family:var(--fm);font-size:8px;letter-spacing:2px;color:var(--gold);text-transform:uppercase;margin-bottom:6px;">Have an invite link or code?</div>
+      <div style="font-size:12px;color:var(--soft);line-height:1.5;margin-bottom:10px;">If your partner sent you a link, tap it directly from your messages — it'll open FUSE Align and connect you automatically. Or enter their invite code below.</div>
+      <div style="display:flex;gap:8px;align-items:center;">
+        <input id="signin-code-input" class="field-input" type="text" placeholder="FUSE-A3X9" style="margin:0;flex:1;text-transform:uppercase;letter-spacing:2px;font-size:13px;" />
+        <button onclick="handleInviteCode()" style="background:var(--ink);color:white;border:none;font-family:var(--fm);font-size:8px;letter-spacing:2px;text-transform:uppercase;padding:13px 14px;cursor:pointer;flex-shrink:0;">Apply</button>
+      </div>
+    </div>
+    <div style="height:32px;"></div>
+  </div>
+  <div class="ab">
+    <button class="btn btn-ghost" onclick="nav('s-splash')">Cancel</button>
+    <button class="btn btn-ink" onclick="pendingInviteFrom ? completeInviteConnection() : nav('s-session')">Sign In →</button>
+  </div>
+</div>
+
+<!-- INVITE LINK LANDING -->
+<div id="s-invite-landing" class="screen">
+  <div class="tb" style="background:var(--ink);border-color:rgba(255,255,255,.08);">
+    <button class="bk" style="color:rgba(255,255,255,.7);" onclick="nav('s-splash')">← Back</button>
+    <div class="tb-wordmark" style="color:var(--white);font-size:14px;letter-spacing:5px;">FUSE <em>Align</em></div>
+    <div></div>
+  </div>
+  <div style="background:var(--ink);flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 28px;text-align:center;position:relative;overflow:hidden;">
+    <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 40%,rgba(196,82,106,.12) 0%,transparent 65%);pointer-events:none;"></div>
+    <!-- Linked rings -->
+    <div style="display:flex;align-items:center;gap:-8px;margin-bottom:28px;position:relative;">
+      <div style="width:54px;height:54px;border-radius:50%;border:2px solid rgba(196,135,90,.6);display:flex;align-items:center;justify-content:center;font-size:22px;background:rgba(196,135,90,.08);">👤</div>
+      <div style="width:28px;height:2px;background:linear-gradient(90deg,rgba(196,135,90,.6),rgba(196,82,106,.6));margin:0 -4px;"></div>
+      <div style="width:54px;height:54px;border-radius:50%;border:2px solid rgba(196,82,106,.6);display:flex;align-items:center;justify-content:center;font-size:22px;background:rgba(196,82,106,.08);">👤</div>
+    </div>
+    <div style="font-family:var(--fm);font-size:9px;letter-spacing:4px;color:rgba(196,135,90,.7);text-transform:uppercase;margin-bottom:10px;">You've been invited</div>
+    <div style="font-family:var(--fb);font-size:28px;font-weight:300;color:var(--white);line-height:1.2;margin-bottom:10px;"><em id="inviter-name" style="color:rgba(255,255,255,.75);">Alex</em> wants to<br>align with you.</div>
+    <div style="font-size:13px;color:rgba(255,255,255,.45);line-height:1.7;max-width:280px;margin:0 auto 28px;">Each of you answers independently — your partner never sees your responses until you've both completed a category. No anchoring. No pressure.</div>
+    <div style="width:100%;max-width:320px;display:flex;flex-direction:column;gap:10px;">
+      <button onclick="inviteCreateAccount()" style="background:var(--cream);color:var(--ink);border:none;font-family:var(--fm);font-size:10px;letter-spacing:4px;text-transform:uppercase;padding:18px;cursor:pointer;width:100%;transition:all .2s;">Create Account &amp; Connect →</button>
+      <button onclick="inviteSignIn()" style="background:transparent;color:rgba(255,255,255,.7);border:1px solid rgba(255,255,255,.25);font-family:var(--fm);font-size:10px;letter-spacing:3px;text-transform:uppercase;padding:16px;cursor:pointer;width:100%;">I already have an account</button>
+    </div>
+  </div>
+</div>
+
 <!-- ONBOARDING -->
 <div id="s-onboard" class="screen">
   <div class="tb" style="background:var(--ink);border-color:rgba(255,255,255,.08);">
     <button class="bk" style="color:rgba(255,255,255,.94);" onclick="nav('s-splash')">← Back</button>
-    <div class="tb-wordmark" style="color:var(--white);font-size:14px;letter-spacing:5px;">FUSE <em>Align</em></div>
+    <div class="tb-label" style="color:rgba(255,255,255,.7);">Step 1 of 3</div>
     <div></div>
   </div>
   <div class="onboard-masthead">
@@ -692,6 +768,11 @@ body { background: var(--white); color: var(--ink); font-family: var(--fs); min-
   </div>
   <div class="scroll" style="background:var(--cream);">
     <div style="height:28px;"></div>
+    <!-- Invite connected banner — shown when arriving from invite link -->
+    <div id="invite-connected-banner" style="display:none;margin:0 24px 20px;padding:14px 16px;background:rgba(196,135,90,.08);border:1px solid rgba(196,135,90,.3);border-left:3px solid var(--gold);">
+      <div style="font-family:var(--fm);font-size:8px;letter-spacing:2px;color:var(--gold);text-transform:uppercase;margin-bottom:5px;">✓ Invite accepted</div>
+      <div style="font-size:13px;color:var(--ink);line-height:1.5;">You'll be connected with <strong class="icb-name">Alex</strong> automatically when your account is created. Your answers stay private until you've both completed a category.</div>
+    </div>
     <div class="field-block">
       <label class="field-label">Your first name</label>
       <input class="field-input" type="text" placeholder="Jordan" />
@@ -704,25 +785,251 @@ body { background: var(--white); color: var(--ink); font-family: var(--fs); min-
       <label class="field-label">Password</label>
       <input class="field-input" type="password" placeholder="••••••••" />
     </div>
-    <div style="padding:0 24px;margin-bottom:28px;">
-      <div class="invite-block">
-        <div class="ib-corner"></div>
-        <div class="ib-label">Invite Your Partner</div>
-        <div class="ib-title">Send the link.<br>They answer on their own.</div>
-        <div class="ib-sub">Your partner creates their own account. Their answers are private to them until you've both completed a category. The reveal only happens together.</div>
-        <div class="ib-link" onclick="showToast('Invite link copied')">
-          <span style="font-size:14px;">🔗</span>
-          <span>Copy invite link</span>
-          <span style="margin-left:auto;font-size:9px;color:var(--faint);">→</span>
+    <!-- Two paths — hidden when arriving from invite link -->
+    <div id="path-selector" style="padding:0 24px 28px;">
+      <div style="font-family:var(--fm);font-size:8px;letter-spacing:3px;color:var(--soft);text-transform:uppercase;margin-bottom:12px;">How are you joining?</div>
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <!-- Inviting -->
+        <div id="path-invite" onclick="selectPath('invite')" style="border:1px solid var(--rule);padding:16px;cursor:pointer;transition:all .2s;background:var(--white);">
+          <div style="display:flex;align-items:center;gap:12px;">
+            <div id="path-invite-radio" style="width:16px;height:16px;border-radius:50%;border:1px solid var(--rule);flex-shrink:0;transition:all .15s;"></div>
+            <div>
+              <div style="font-family:var(--fb);font-size:15px;font-weight:400;color:var(--ink);">I'm starting — invite my partner</div>
+              <div style="font-size:11px;color:var(--soft);margin-top:2px;">You'll get a link to share after creating your account</div>
+            </div>
+          </div>
+        </div>
+        <!-- Was invited -->
+        <div id="path-invited" onclick="selectPath('invited')" style="border:1px solid var(--rule);padding:16px;cursor:pointer;transition:all .2s;background:var(--white);">
+          <div style="display:flex;align-items:center;gap:12px;">
+            <div id="path-invited-radio" style="width:16px;height:16px;border-radius:50%;border:1px solid var(--rule);flex-shrink:0;transition:all .15s;"></div>
+            <div>
+              <div style="font-family:var(--fb);font-size:15px;font-weight:400;color:var(--ink);">My partner invited me</div>
+              <div style="font-size:11px;color:var(--soft);margin-top:2px;">You'll enter their invite code to connect your accounts</div>
+            </div>
+          </div>
+          <!-- Code input — hidden until selected -->
+          <div id="invite-code-input" style="display:none;margin-top:14px;padding-top:14px;border-top:1px solid var(--rule);">
+            <label style="font-family:var(--fm);font-size:8px;letter-spacing:2px;color:var(--soft);text-transform:uppercase;display:block;margin-bottom:6px;">Invite Code</label>
+            <input class="field-input" type="text" placeholder="e.g. FUSE-A3X9" style="margin:0;text-transform:uppercase;letter-spacing:2px;" />
+            <div style="font-size:11px;color:var(--soft);margin-top:6px;">Your partner can find their code in the app under Share &amp; Invite.</div>
+          </div>
+        </div>
+      </div>
+      <!-- Invite link block — shows when "invite my partner" is selected -->
+      <div id="invite-link-block" style="display:none;margin-top:12px;">
+        <div class="invite-block">
+          <div class="ib-corner"></div>
+          <div class="ib-label">Invite Your Partner</div>
+          <div class="ib-title">Send the link.<br>They answer on their own.</div>
+          <div class="ib-sub">Your partner creates their own account. Their answers are private to them until you've both completed a category. The reveal only happens together.</div>
+          <div class="ib-link" onclick="showToast('Invite link copied')">
+            <span style="font-size:14px;">🔗</span>
+            <span>Copy invite link</span>
+            <span style="margin-left:auto;font-size:9px;color:var(--faint);">→</span>
+          </div>
         </div>
       </div>
     </div>
   </div>
   <div class="ab">
     <button class="btn btn-ghost" onclick="nav('s-splash')">Back</button>
-    <button class="btn btn-ink" onclick="nav('s-stage')">Continue →</button>
+    <button class="btn btn-ink" onclick="nav('s-verify')">Continue →</button>
   </div>
 </div>
+
+<!-- EMAIL VERIFICATION -->
+<div id="s-verify" class="screen">
+  <div class="tb">
+    <button class="bk" onclick="nav('s-onboard')">← Back</button>
+    <div class="tb-label">Step 2 of 3</div>
+    <div></div>
+  </div>
+  <div style="background:var(--off);padding:32px 24px 0;border-bottom:1px solid var(--rule);">
+    <div style="font-family:var(--fm);font-size:8px;letter-spacing:3px;color:var(--soft);text-transform:uppercase;margin-bottom:8px;">Step 02 — Verify Email</div>
+    <div style="font-family:var(--fb);font-size:28px;font-weight:400;color:var(--ink);line-height:1.1;margin-bottom:6px;">Check your<br><em style="color:var(--soft);">inbox.</em></div>
+    <div style="font-size:13px;color:var(--soft);line-height:1.6;padding-bottom:24px;">We sent a 6-digit code to <strong id="verify-email" style="color:var(--ink);"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="51283e2411343c30383d7f323e3c">[email&#160;protected]</a></strong>. Enter it below to confirm your account.</div>
+  </div>
+  <div class="scroll" style="background:var(--cream);">
+    <div style="height:32px;"></div>
+    <!-- 6-digit code input -->
+    <div style="padding:0 24px;">
+      <div style="font-family:var(--fm);font-size:8px;letter-spacing:2px;color:var(--soft);text-transform:uppercase;margin-bottom:10px;">Verification code</div>
+      <div style="display:flex;gap:8px;justify-content:space-between;">
+        <input type="text" maxlength="1" class="field-input" style="width:100%;text-align:center;font-family:var(--fb);font-size:24px;font-weight:400;padding:16px 8px;letter-spacing:0;" oninput="advanceCode(this,0)" onpaste="handleCodePaste(event)" id="code-0" />
+        <input type="text" maxlength="1" class="field-input" style="width:100%;text-align:center;font-family:var(--fb);font-size:24px;font-weight:400;padding:16px 8px;" oninput="advanceCode(this,1)" id="code-1" />
+        <input type="text" maxlength="1" class="field-input" style="width:100%;text-align:center;font-family:var(--fb);font-size:24px;font-weight:400;padding:16px 8px;" oninput="advanceCode(this,2)" id="code-2" />
+        <input type="text" maxlength="1" class="field-input" style="width:100%;text-align:center;font-family:var(--fb);font-size:24px;font-weight:400;padding:16px 8px;" oninput="advanceCode(this,3)" id="code-3" />
+        <input type="text" maxlength="1" class="field-input" style="width:100%;text-align:center;font-family:var(--fb);font-size:24px;font-weight:400;padding:16px 8px;" oninput="advanceCode(this,4)" id="code-4" />
+        <input type="text" maxlength="1" class="field-input" style="width:100%;text-align:center;font-family:var(--fb);font-size:24px;font-weight:400;padding:16px 8px;" oninput="advanceCode(this,5)" id="code-5" />
+      </div>
+      <div style="margin-top:16px;display:flex;align-items:center;justify-content:space-between;">
+        <button onclick="showToast('New code sent to your email')" style="background:none;border:none;font-family:var(--fm);font-size:9px;letter-spacing:2px;color:var(--soft);text-transform:uppercase;cursor:pointer;padding:0;">Resend code →</button>
+        <div style="font-family:var(--fm);font-size:9px;color:var(--soft);letter-spacing:1px;">Expires in 10 min</div>
+      </div>
+    </div>
+    <!-- Demo shortcut -->
+    <div style="margin:24px 24px 0;padding:13px 16px;background:var(--off);border:1px solid var(--rule);border-left:2px solid var(--gold);">
+      <div style="font-family:var(--fm);font-size:8px;letter-spacing:2px;color:var(--gold);text-transform:uppercase;margin-bottom:5px;">Prototype demo</div>
+      <div style="font-size:12px;color:var(--soft);margin-bottom:10px;">Skip verification for this demo session.</div>
+      <button onclick="nav('s-stage')" style="background:none;border:1px solid var(--gold);color:var(--gold);font-family:var(--fm);font-size:8px;letter-spacing:2px;text-transform:uppercase;padding:9px 16px;cursor:pointer;">Skip → Continue to step 3</button>
+    </div>
+    <div style="height:32px;"></div>
+  </div>
+  <div class="ab">
+    <button class="btn btn-ghost" onclick="nav('s-onboard')">Back</button>
+    <button class="btn btn-ink" onclick="verifyCode()">Verify &amp; Continue →</button>
+  </div>
+</div>
+
+<!-- WELCOME / FIRST TIME -->
+<div id="s-welcome" class="screen" style="background:var(--ink);">
+  <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 28px;text-align:center;position:relative;overflow:hidden;">
+    <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 35%,rgba(196,82,106,.18) 0%,transparent 60%),radial-gradient(ellipse at 30% 70%,rgba(122,59,90,.15) 0%,transparent 55%);pointer-events:none;"></div>
+    <div style="position:relative;z-index:1;">
+      <!-- Animated rings -->
+      <div style="width:80px;height:80px;margin:0 auto 28px;position:relative;">
+        <div style="position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle,#fcd34d,#c4875a,#7a3b5a);box-shadow:0 0 30px rgba(196,135,90,.7),0 0 60px rgba(196,135,90,.3);animation:hpa 2.2s ease-in-out infinite;"></div>
+        <div style="position:absolute;inset:-10px;border-radius:50%;border:1px solid rgba(196,135,90,.3);animation:pr 2.2s ease-in-out infinite;"></div>
+        <div style="position:absolute;inset:-22px;border-radius:50%;border:1px solid rgba(196,135,90,.15);animation:pr 2.2s ease-in-out infinite .5s;"></div>
+      </div>
+      <div style="font-family:var(--fm);font-size:9px;letter-spacing:5px;color:rgba(196,135,90,.7);text-transform:uppercase;margin-bottom:10px;">You're in.</div>
+      <div style="font-family:var(--fb);font-size:32px;font-weight:300;color:var(--white);line-height:1.15;margin-bottom:14px;">Welcome to<br>FUSE <em style="color:rgba(255,255,255,.65);">Align.</em></div>
+      <div style="width:40px;height:1px;background:var(--gold);margin:0 auto 20px;opacity:.5;"></div>
+      <div style="font-size:13px;color:rgba(255,255,255,.5);line-height:1.8;max-width:280px;margin:0 auto 28px;">Here's how it works. You answer each category independently — your partner never sees your responses until you've both submitted. The reveal happens together.</div>
+      <!-- Three steps -->
+      <div style="text-align:left;max-width:300px;margin:0 auto 32px;display:flex;flex-direction:column;gap:14px;">
+        <div style="display:flex;gap:14px;align-items:flex-start;">
+          <div style="width:24px;height:24px;border-radius:50%;background:rgba(196,135,90,.2);border:1px solid rgba(196,135,90,.5);display:flex;align-items:center;justify-content:center;font-family:var(--fm);font-size:9px;color:var(--gold);flex-shrink:0;margin-top:1px;">1</div>
+          <div><div style="font-size:13px;color:rgba(255,255,255,.8);margin-bottom:2px;">Answer Category 01 — Money &amp; Financial Philosophy</div><div style="font-size:11px;color:rgba(255,255,255,.4);line-height:1.5;">Your first category is ready. Your answers are sealed until your partner submits theirs.</div></div>
+        </div>
+        <div style="display:flex;gap:14px;align-items:flex-start;">
+          <div style="width:24px;height:24px;border-radius:50%;background:rgba(196,135,90,.2);border:1px solid rgba(196,135,90,.5);display:flex;align-items:center;justify-content:center;font-family:var(--fm);font-size:9px;color:var(--gold);flex-shrink:0;margin-top:1px;">2</div>
+          <div><div style="font-size:13px;color:rgba(255,255,255,.8);margin-bottom:2px;">Invite your partner</div><div style="font-size:11px;color:rgba(255,255,255,.4);line-height:1.5;">Share your invite link so they can create their account and answer independently.</div></div>
+        </div>
+        <div style="display:flex;gap:14px;align-items:flex-start;">
+          <div style="width:24px;height:24px;border-radius:50%;background:rgba(196,135,90,.2);border:1px solid rgba(196,135,90,.5);display:flex;align-items:center;justify-content:center;font-family:var(--fm);font-size:9px;color:var(--gold);flex-shrink:0;margin-top:1px;">3</div>
+          <div><div style="font-size:13px;color:rgba(255,255,255,.8);margin-bottom:2px;">See the alignment reveal</div><div style="font-size:11px;color:rgba(255,255,255,.4);line-height:1.5;">Once you've both submitted, your scores and gaps are revealed side by side.</div></div>
+        </div>
+      </div>
+      <button onclick="isNewUser=true;currentPartner=null;showHomeState();nav('s-home')" style="background:var(--cream);color:var(--ink);border:none;font-family:var(--fm);font-size:10px;letter-spacing:4px;text-transform:uppercase;padding:18px 36px;cursor:pointer;width:100%;max-width:300px;font-weight:600;transition:all .2s;">Start My First Category →</button>
+      <div style="margin-top:12px;">
+        <button onclick="showToast('Invite link copied');isNewUser=true;currentPartner=null;showHomeState();nav('s-home')" style="background:none;border:none;font-family:var(--fm);font-size:9px;letter-spacing:2px;color:rgba(255,255,255,.35);text-transform:uppercase;cursor:pointer;text-decoration:underline;">Copy invite link first</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SESSION SELECTOR -->
+<div id="s-session" class="screen" style="overflow-y:auto;">
+  <div class="tb" style="background:var(--ink);border-color:rgba(255,255,255,.08);">
+    <button class="bk" style="color:rgba(255,255,255,.7);" onclick="nav('s-splash')">← Back</button>
+    <div class="tb-wordmark" style="color:var(--white);font-size:14px;letter-spacing:5px;">FUSE <em>Align</em></div>
+    <div></div>
+  </div>
+  <div style="background:var(--ink);flex:1;display:flex;flex-direction:column;padding:36px 24px 48px;position:relative;overflow:hidden;">
+    <div style="position:absolute;bottom:-30px;right:-20px;font-family:var(--fb);font-size:160px;font-weight:300;color:rgba(255,255,255,.025);line-height:1;pointer-events:none;z-index:0;">ALIGN</div>
+    <div style="position:relative;z-index:1;">
+      <div style="font-family:var(--fm);font-size:9px;letter-spacing:4px;color:rgba(196,135,90,.7);text-transform:uppercase;margin-bottom:8px;">Welcome back</div>
+      <div style="font-family:var(--fb);font-size:30px;font-weight:300;color:var(--white);line-height:1.1;margin-bottom:6px;">Good evening,<br><em style="color:rgba(255,255,255,.65);">Jordan.</em></div>
+      <div style="width:32px;height:1px;background:var(--gold);margin:18px 0;opacity:.6;"></div>
+      <div style="font-family:var(--fm);font-size:9px;letter-spacing:3px;color:rgba(255,255,255,.4);text-transform:uppercase;margin-bottom:16px;">What would you like to do?</div>
+
+      <!-- ── TILE 1: Continue with a partner ── -->
+      <div style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);padding:18px;margin-bottom:10px;transition:border-color .2s;" onmouseover="this.style.borderColor='rgba(196,135,90,.45)'" onmouseout="this.style.borderColor='rgba(255,255,255,.12)'">
+        <div style="font-family:var(--fm);font-size:8px;letter-spacing:2px;color:rgba(196,135,90,.8);text-transform:uppercase;margin-bottom:10px;">Continue with a partner</div>
+        <select id="partner-select" onchange="handlePartnerSelect(this)" style="width:100%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);color:var(--white);font-family:var(--fb);font-size:15px;font-weight:300;padding:12px 14px;cursor:pointer;outline:none;-webkit-appearance:none;appearance:none;border-radius:0;background-image:url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2212%22 height=%2212%22 viewBox=%220 0 12 12%22><path fill=%22rgba(255,255,255,.5)%22 d=%22M6 8L1 3h10z%22/></svg>');background-repeat:no-repeat;background-position:right 14px center;">
+          <option value="" style="background:#150d12;color:rgba(255,255,255,.4);">— Select a partner —</option>
+          <option value="alex" style="background:#150d12;">Alex · 2 of 16 categories complete</option>
+        </select>
+        <div id="session-go-btn" style="display:none;margin-top:10px;">
+          <button onclick="goToSession()" style="width:100%;background:var(--gold);color:var(--ink);border:none;font-family:var(--fm);font-size:9px;letter-spacing:3px;text-transform:uppercase;padding:14px;cursor:pointer;font-weight:600;">Go to Alignment →</button>
+        </div>
+        <!-- Ahead of partner state -->
+        <div id="session-ahead-note" style="display:none;margin-top:10px;padding:10px 12px;background:rgba(196,135,90,.07);border-left:2px solid var(--gold);">
+          <div style="font-size:11px;color:rgba(255,255,255,.55);line-height:1.6;">You've completed all your answers in this alignment. Some categories are waiting on Alex — you can review your results or use conversation tools while they catch up.</div>
+        </div>
+      </div>
+
+      <!-- ── TILE 2: Start with someone new ── -->
+      <div id="new-partner-tile" style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);padding:18px;margin-bottom:10px;transition:border-color .2s;cursor:pointer;" onclick="toggleNewPartner()" onmouseover="this.style.borderColor='rgba(196,135,90,.45)'" onmouseout="this.style.borderColor='rgba(255,255,255,.12)'">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div>
+            <div style="font-family:var(--fm);font-size:8px;letter-spacing:2px;color:rgba(255,255,255,.45);text-transform:uppercase;margin-bottom:5px;">New Alignment</div>
+            <div style="font-family:var(--fb);font-size:16px;font-weight:300;color:var(--white);">Start with someone new</div>
+          </div>
+          <div id="new-partner-chevron" style="font-size:14px;color:rgba(255,255,255,.35);transition:transform .2s;">▾</div>
+        </div>
+        <!-- Expandable sub-options -->
+        <div id="new-partner-options" style="display:none;margin-top:16px;padding-top:16px;border-top:1px solid rgba(255,255,255,.1);">
+          <div style="font-size:12px;color:rgba(255,255,255,.45);margin-bottom:12px;line-height:1.5;">How would you like to connect?</div>
+          <!-- I'll send the link -->
+          <div style="padding:14px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);margin-bottom:8px;cursor:pointer;transition:all .2s;" onclick="event.stopPropagation();showToast('Invite link copied — share with your new partner');document.getElementById('new-partner-options').style.display='none';document.getElementById('new-partner-chevron').style.transform=''" onmouseover="this.style.borderColor='rgba(196,135,90,.4)'" onmouseout="this.style.borderColor='rgba(255,255,255,.1)'">
+            <div style="display:flex;align-items:center;gap:12px;">
+              <span style="font-size:18px;">🔗</span>
+              <div>
+                <div style="font-size:13px;color:rgba(255,255,255,.88);">I'll send them a link</div>
+                <div style="font-size:11px;color:rgba(255,255,255,.4);margin-top:2px;">Copy your invite link — they tap it to connect</div>
+              </div>
+              <span style="margin-left:auto;font-size:11px;color:rgba(255,255,255,.3);">→</span>
+            </div>
+          </div>
+          <!-- I received a link or code -->
+          <div style="padding:14px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);cursor:default;" onclick="event.stopPropagation();" onmouseover="this.style.borderColor='rgba(196,135,90,.4)'" onmouseout="this.style.borderColor='rgba(255,255,255,.1)'">
+            <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
+              <span style="font-size:18px;">📩</span>
+              <div>
+                <div style="font-size:13px;color:rgba(255,255,255,.88);">I received a link or code</div>
+                <div style="font-size:11px;color:rgba(255,255,255,.4);margin-top:2px;">Enter their invite code below</div>
+              </div>
+            </div>
+            <div style="display:flex;gap:8px;" onclick="event.stopPropagation()">
+              <input id="new-partner-code" type="text" placeholder="FUSE-A3X9" style="flex:1;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);color:var(--white);font-family:var(--fm);font-size:12px;letter-spacing:2px;padding:10px 12px;outline:none;text-transform:uppercase;" />
+              <button onclick="event.stopPropagation();applyNewPartnerCode()" style="background:var(--gold);color:var(--ink);border:none;font-family:var(--fm);font-size:8px;letter-spacing:2px;text-transform:uppercase;padding:0 14px;cursor:pointer;font-weight:600;flex-shrink:0;">Connect</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── TILE 3: Answer on my own ── -->
+      <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);padding:18px;margin-bottom:10px;cursor:pointer;transition:border-color .2s;" onclick="currentPartner=null;showHomeState();nav('s-home')" onmouseover="this.style.borderColor='rgba(255,255,255,.25)'" onmouseout="this.style.borderColor='rgba(255,255,255,.1)'">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:14px;">
+          <div>
+            <div style="font-family:var(--fm);font-size:8px;letter-spacing:2px;color:rgba(255,255,255,.35);text-transform:uppercase;margin-bottom:5px;">Solo Mode</div>
+            <div style="font-family:var(--fb);font-size:16px;font-weight:300;color:rgba(255,255,255,.8);">Answer on my own</div>
+            <div style="font-size:11px;color:rgba(255,255,255,.35);margin-top:3px;line-height:1.5;">No partner yet, or just want to work through your answers first. Everything is saved — connect a partner anytime.</div>
+          </div>
+          <div style="font-size:18px;opacity:.3;flex-shrink:0;">→</div>
+        </div>
+      </div>
+
+      <!-- ── TILE 4: Manage connections ── -->
+      <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);padding:16px;cursor:pointer;transition:border-color .2s;" onclick="showSessionManage()" onmouseover="this.style.borderColor='rgba(255,255,255,.15)'" onmouseout="this.style.borderColor='rgba(255,255,255,.07)'">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:14px;">
+          <div>
+            <div style="font-family:var(--fm);font-size:8px;letter-spacing:2px;color:rgba(255,255,255,.28);text-transform:uppercase;margin-bottom:4px;">Manage</div>
+            <div style="font-family:var(--fb);font-size:15px;font-weight:300;color:rgba(255,255,255,.5);">Remove a partner · Reset shared scores</div>
+          </div>
+          <div style="font-size:16px;opacity:.25;flex-shrink:0;">⚙</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Manage sheet -->
+  <div id="session-manage-sheet" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:300;align-items:flex-end;justify-content:center;" onclick="if(event.target===this)this.style.display='none'">
+    <div style="background:var(--white);width:100%;max-width:480px;border-radius:16px 16px 0 0;padding:24px 24px 40px;">
+      <div style="width:36px;height:4px;background:var(--rule);border-radius:4px;margin:0 auto 20px;"></div>
+      <div style="font-family:var(--fb);font-size:20px;font-weight:400;color:var(--ink);margin-bottom:6px;">Remove Alex?</div>
+      <div style="font-size:13px;color:var(--soft);line-height:1.7;margin-bottom:18px;"><strong style="color:var(--ink);">Your answers stay.</strong> Only the shared alignment scores and connection with Alex are removed. Your individual responses are yours and carry forward to any future alignment.</div>
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <button onclick="removePartnerConfirmed();document.getElementById('session-manage-sheet').style.display='none'" style="background:var(--rose);color:white;border:none;font-family:var(--fm);font-size:9px;letter-spacing:2px;text-transform:uppercase;padding:16px;cursor:pointer;width:100%;">Remove Alex &amp; Delete Shared Scores</button>
+        <button onclick="document.getElementById('session-manage-sheet').style.display='none'" style="background:none;border:1px solid var(--rule);font-family:var(--fm);font-size:9px;letter-spacing:2px;text-transform:uppercase;padding:14px;cursor:pointer;width:100%;color:var(--soft);">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 <!-- HOME DASHBOARD -->
 <div id="s-home" class="screen">
@@ -732,12 +1039,21 @@ body { background: var(--white); color: var(--ink); font-family: var(--fs); min-
     <button style="background:none;border:none;cursor:pointer;font-size:18px;" onclick="nav('s-settings')">◯</button>
   </div>
   <div class="scroll">
+    <div id="home-new-user-state" style="display:none;padding:28px 24px;border-bottom:1px solid var(--rule);">
+      <div style="font-family:var(--fb);font-size:24px;font-weight:300;color:var(--ink);margin-bottom:8px;">Your answers are<br><em>your foundation.</em></div>
+      <div style="font-size:13px;color:var(--soft);line-height:1.7;margin-bottom:16px;">No partner connected yet. Start answering categories — everything saves automatically. Connect a partner anytime and your answers carry forward.</div>
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <button onclick="curDomain='money';document.getElementById('cat-tab').textContent='Money & Financial Philosophy';document.getElementById('cat-cm-bg').textContent='💰';document.getElementById('cat-cm-num').innerHTML='Category 01';document.getElementById('cat-cm-name').textContent='Money & Financial Philosophy';document.getElementById('cat-cm-sub').textContent='How you think about money, debt, risk appetite, and financial transparency in a partnership.';document.getElementById('cat-q').textContent='&quot;What role does money play in your sense of security — and how much financial transparency do you need from a partner?&quot;';document.querySelectorAll(\'.fo\').forEach(o=>o.classList.remove(\'sel\'));document.getElementById(\'cat-sensitivity-notice\').style.display=\'none\';nav(\'s-category\')" style="background:var(--ink);color:var(--white);border:none;font-family:var(--fm);font-size:9px;letter-spacing:3px;text-transform:uppercase;padding:14px;cursor:pointer;text-align:left;display:flex;justify-content:space-between;">Start Category 01 — Money &amp; Financial Philosophy <span>→</span></button>
+        <button onclick="showToast('Invite link copied')" style="background:none;border:1px solid var(--rule);color:var(--soft);font-family:var(--fm);font-size:9px;letter-spacing:3px;text-transform:uppercase;padding:12px;cursor:pointer;text-align:left;display:flex;justify-content:space-between;">Copy partner invite link <span>→</span></button>
+      </div>
+    </div>
+    <div id="home-main-state">
     <div class="home-masthead">
       <div class="hm-greeting">Good evening, <em>Jordan.</em></div>
       <div class="partner-status">
         <div class="ps-dot"></div>
-        <div class="ps-text">Alex · Last seen 2 hours ago</div>
-        <div class="ps-label">Away</div>
+        <div class="ps-text" id="home-partner-text">Alex · Last seen 2 hours ago</div>
+        <div class="ps-label" id="home-partner-label">Away</div>
       </div>
     </div>
     <div class="score-feature">
@@ -768,7 +1084,15 @@ body { background: var(--white); color: var(--ink); font-family: var(--fs); min-
         <button onclick="openCat('conflict')" style="margin-top:12px;background:none;border:1px solid var(--gold);color:var(--gold);font-family:var(--fm);font-size:9px;letter-spacing:2px;padding:8px 16px;cursor:pointer;text-transform:uppercase;border-radius:2px;">Start Category 3 →</button>
       </div>
     </div>
-    <div class="sh"><div class="sh-rule"></div><div class="sh-text">MVP Launch Categories</div></div>
+      <!-- Ahead of partner nudge — shows when user has submitted but partner hasn't -->
+      <div style="margin:0 0 4px;padding:12px 16px;background:rgba(196,135,90,.06);border-left:2px solid var(--gold);display:flex;align-items:flex-start;gap:10px;">
+        <div style="font-size:14px;flex-shrink:0;margin-top:1px;">⏳</div>
+        <div>
+          <div style="font-family:var(--fm);font-size:8px;letter-spacing:2px;color:var(--gold);text-transform:uppercase;margin-bottom:4px;" id="ahead-label">Waiting on Alex · Category 03</div>
+          <div style="font-size:12px;color:var(--soft);line-height:1.5;" id="ahead-text">Your answer for Conflict &amp; Emotional Regulation is sealed. The reveal opens the moment Alex submits. In the meantime, explore conversation tools or continue to Category 04.</div>
+        </div>
+      </div>
+      <div class="sh"><div class="sh-rule"></div><div class="sh-text">MVP Launch Categories</div></div>
     <div class="cat-table">
       <div class="cat-row" onclick="openCat('money')">
         <div class="cat-row-num">01</div>
@@ -802,7 +1126,7 @@ body { background: var(--white); color: var(--ink); font-family: var(--fs); min-
           <div class="cat-row-sub">How you fight, repair, and recover</div>
         </div>
         <div class="cat-row-right">
-          <div class="cat-status-pill st-wait">Alex pending</div>
+          <div class="cat-status-pill st-wait">Your answer sealed · waiting on Alex</div>
         </div>
       </div>
       <div class="cat-row" onclick="openCat('trust')">
@@ -845,6 +1169,7 @@ body { background: var(--white); color: var(--ink); font-family: var(--fs); min-
     </div>
     <div style="height:16px;"></div>
   </div>
+  </div><!-- /home-main-state -->
   <div class="nt">
     <button class="ntb act" onclick="nav('s-home')"><span class="nti">⊹</span><div class="ntl">Home</div></button>
     <button class="ntb" onclick="nav('s-health')"><span class="nti">◯</span><div class="ntl">Health</div></button>
@@ -905,7 +1230,7 @@ body { background: var(--white); color: var(--ink); font-family: var(--fs); min-
   </div>
   <div class="ab">
     <button class="btn btn-ghost" onclick="nav('s-home')">Save draft</button>
-    <button class="btn btn-ink" onclick="nav('s-waiting')">Submit answer →</button>
+    <button class="btn btn-ink" onclick="currentCatKey=curDomain;submitCategory()">Submit answer →</button>
   </div>
 </div>
 
@@ -935,9 +1260,58 @@ body { background: var(--white); color: var(--ink); font-family: var(--fs); min-
       <div style="font-family:var(--fm);font-size:8px;letter-spacing:3px;color:var(--soft);text-transform:uppercase;margin-bottom:16px;">Account</div>
       <div style="display:flex;align-items:center;gap:14px;padding:16px 0;border-bottom:1px solid var(--rule);">
         <div style="width:44px;height:44px;border-radius:50%;background:var(--off);border:1px solid var(--rule);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;">👤</div>
-        <div><div style="font-family:var(--fb);font-size:17px;font-weight:400;color:var(--ink);">Jordan</div><div style="font-family:var(--fm);font-size:9px;color:var(--soft);letter-spacing:1px;margin-top:2px;">jordan@email.com</div></div>
+        <div><div style="font-family:var(--fb);font-size:17px;font-weight:400;color:var(--ink);">Jordan</div><div style="font-family:var(--fm);font-size:9px;color:var(--soft);letter-spacing:1px;margin-top:2px;"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="751f1a0711141b351018141c195b161a18">[email&#160;protected]</a></div></div>
       </div>
     </div>
+    <div style="padding:8px 24px 0;">
+      <div style="font-family:var(--fm);font-size:8px;letter-spacing:3px;color:var(--soft);text-transform:uppercase;margin-bottom:12px;">Partner & Connection</div>
+
+      <!-- Current partner -->
+      <div style="padding:16px;background:var(--off);border:1px solid var(--rule);margin-bottom:10px;">
+        <div style="font-family:var(--fm);font-size:7px;letter-spacing:2px;color:var(--soft);text-transform:uppercase;margin-bottom:10px;">Connected Partner</div>
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px;">
+          <div style="width:36px;height:36px;border-radius:50%;background:var(--rule);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;">👤</div>
+          <div>
+            <div style="font-size:14px;font-weight:500;color:var(--ink);">Alex</div>
+            <div style="font-family:var(--fm);font-size:9px;color:var(--soft);letter-spacing:1px;margin-top:1px;">2 categories complete together</div>
+          </div>
+          <div style="margin-left:auto;font-family:var(--fm);font-size:8px;color:var(--green, #5a8a6a);letter-spacing:1px;">LINKED</div>
+        </div>
+        <!-- Actions -->
+        <div style="display:flex;flex-direction:column;gap:1px;border-top:1px solid var(--rule);padding-top:12px;">
+          <button onclick="showToast('Invite link copied — share with Alex')" style="background:none;border:none;text-align:left;font-size:13px;color:var(--ink);padding:10px 0;border-bottom:1px solid var(--rule);cursor:pointer;display:flex;justify-content:space-between;align-items:center;">Re-send invite link <span style="font-size:11px;color:var(--soft);">→</span></button>
+          <button onclick="confirmRemovePartner()" style="background:none;border:none;text-align:left;font-size:13px;color:var(--rose);padding:10px 0;cursor:pointer;display:flex;justify-content:space-between;align-items:center;">Remove Alex &amp; delete shared scores <span style="font-size:11px;color:var(--rose);">→</span></button>
+        </div>
+      </div>
+
+      <!-- Solo mode -->
+      <div style="padding:16px;background:var(--off);border:1px solid var(--rule);margin-bottom:10px;">
+        <div style="font-size:14px;font-weight:500;color:var(--ink);margin-bottom:4px;">Answer without a partner</div>
+        <div style="font-size:12px;color:var(--soft);line-height:1.6;margin-bottom:12px;">Not in a relationship yet, or want to complete your answers before inviting someone? You can work through all 16 categories solo. Your answers are saved and ready to share when you connect a partner.</div>
+        <button onclick="showToast('Solo mode — your answers are private until you connect a partner')" style="background:none;border:1px solid var(--rule);font-family:var(--fm);font-size:8px;letter-spacing:2px;text-transform:uppercase;padding:10px 16px;cursor:pointer;color:var(--ink);width:100%;transition:all .2s;" onmouseover="this.style.borderColor='var(--gold)'" onmouseout="this.style.borderColor='var(--rule)'">Continue in Solo Mode →</button>
+      </div>
+
+      <!-- Add another partner (poly mode) -->
+      <div id="add-partner-block" style="display:none;padding:16px;background:var(--off);border:1px solid var(--rule);margin-bottom:10px;">
+        <div style="font-size:14px;font-weight:500;color:var(--ink);margin-bottom:4px;">Add another partner</div>
+        <div style="font-size:12px;color:var(--soft);line-height:1.6;margin-bottom:12px;">Each connection is fully independent. Your answers with one partner are never visible to another.</div>
+        <button onclick="showToast('Invite link copied for new partner')" style="background:none;border:1px solid var(--rule);font-family:var(--fm);font-size:8px;letter-spacing:2px;text-transform:uppercase;padding:10px 16px;cursor:pointer;color:var(--ink);width:100%;">Copy invite link →</button>
+      </div>
+
+      <!-- Remove partner confirmation sheet -->
+      <div id="remove-partner-sheet" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:300;align-items:flex-end;justify-content:center;" onclick="if(event.target===this)this.style.display='none'">
+        <div style="background:var(--white);width:100%;max-width:480px;border-radius:16px 16px 0 0;padding:28px 24px 40px;">
+          <div style="width:36px;height:4px;background:var(--rule);border-radius:4px;margin:0 auto 24px;"></div>
+          <div style="font-family:var(--fb);font-size:20px;font-weight:400;color:var(--ink);margin-bottom:8px;">Remove Alex?</div>
+          <div style="font-size:13px;color:var(--soft);line-height:1.7;margin-bottom:20px;"><strong style="color:var(--ink);">Your answers stay.</strong> Only the shared alignment scores and connection with Alex are removed. Your individual responses are yours and carry forward to any future alignment.</div>
+          <div style="display:flex;flex-direction:column;gap:10px;">
+            <button onclick="removePartnerConfirmed()" style="background:var(--rose);color:white;border:none;font-family:var(--fm);font-size:9px;letter-spacing:2px;text-transform:uppercase;padding:16px;cursor:pointer;width:100%;">Remove Partner &amp; Delete Shared Data</button>
+            <button onclick="document.getElementById('remove-partner-sheet').style.display='none'" style="background:none;border:1px solid var(--rule);font-family:var(--fm);font-size:9px;letter-spacing:2px;text-transform:uppercase;padding:14px;cursor:pointer;width:100%;color:var(--soft);">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div style="padding:8px 24px;">
       <div style="font-family:var(--fm);font-size:8px;letter-spacing:3px;color:var(--soft);text-transform:uppercase;margin-bottom:12px;">Relationship Structure</div>
       <!-- Poly toggle -->
@@ -989,7 +1363,7 @@ body { background: var(--white); color: var(--ink); font-family: var(--fs); min-
       <div class="wr-core"></div>
     </div>
     <div class="wait-overline">Answer Sealed</div>
-    <div class="wait-title">Waiting for<br><em>Alex.</em></div>
+    <div class="wait-title" id="wait-title">Waiting for<br><em id="wait-partner-name">Alex</em>.</div>
     <div class="wait-sub">Your response is locked. The moment Alex submits theirs, the reveal opens — and you'll see exactly where you align and where you diverge.</div>
     <div class="wait-quote">
       <div class="wq-rule"></div>
@@ -1011,7 +1385,7 @@ body { background: var(--white); color: var(--ink); font-family: var(--fs); min-
   </div>
   <div class="scroll">
     <div class="reveal-masthead">
-      <div class="rm-eyebrow">Money & Financial Philosophy</div>
+      <div class="rm-eyebrow" id="reveal-cat-name">Money & Financial Philosophy</div>
       <div class="rm-score-wrap">
         <div class="rm-score">68</div>
         <div class="rm-pct">%</div>
@@ -1300,15 +1674,15 @@ body { background: var(--white); color: var(--ink); font-family: var(--fs); min-
 
 <!-- RELATIONSHIP STAGE SELECTOR -->
 <div id="s-stage" class="screen">
-  <div class="tb" style="background:var(--ink);border-color:rgba(255,255,255,.08);">
-    <button class="bk" style="color:rgba(255,255,255,.94);" onclick="nav('s-onboard')">← Back</button>
-    <div class="tb-wordmark" style="color:var(--white);font-size:14px;letter-spacing:5px;">FUSE <em>Align</em></div>
+  <div class="tb">
+    <button class="bk" onclick="nav('s-verify')">← Back</button>
+    <div class="tb-label">Step 3 of 3</div>
     <div></div>
   </div>
-  <div class="stage-masthead">
-    <div class="stage-masthead-bg">STAGE</div>
-    <div class="om-label">Step 02 — Your Relationship</div>
-    <div class="om-title" style="color:var(--white);">Where are you<br><em style="color:rgba(255,255,255,.94)">right now?</em></div>
+  <div class="stage-masthead" style="background:var(--off);border-bottom:1px solid var(--rule);">
+    <div class="stage-masthead-bg" style="color:rgba(0,0,0,.04);">STAGE</div>
+    <div class="om-label" style="color:var(--soft);">Step 03 — Your Relationship</div>
+    <div class="om-title" style="color:var(--ink);">Where are you<br><em style="color:var(--soft);">right now?</em></div>
     <div class="om-sub">FUSE Align adapts its categories, prompts, and check-in rhythm to where you actually are. This changes how the app talks to you.</div>
   </div>
   <div class="scroll" style="background:var(--cream);">
@@ -1350,8 +1724,8 @@ body { background: var(--white); color: var(--ink); font-family: var(--fs); min-
     <div style="height:20px;"></div>
   </div>
   <div class="ab">
-    <button class="btn btn-ghost" onclick="nav('s-onboard')">Back</button>
-    <button class="btn btn-ink" onclick="nav('s-home')">Enter FUSE Align →</button>
+    <button class="btn btn-ghost" onclick="nav('s-verify')">Back</button>
+    <button class="btn btn-ink" onclick="nav('s-welcome')">Enter FUSE Align →</button>
   </div>
 </div>
 
@@ -1592,7 +1966,7 @@ body { background: var(--white); color: var(--ink); font-family: var(--fs); min-
 
 <div class="toast" id="toast"></div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 const cats = {
   money:    { num:'Category 01', icon:'💰', name:'Money & Financial Philosophy', sub:'How you think about money, debt, risk appetite, and financial transparency in a partnership.', q:'"What role does money play in your sense of security — and how much financial transparency do you need from a partner?"' },
   children: { num:'Category 02', icon:'👶', name:'Children & Family',             sub:'Whether you want children, timing, and the philosophy of how you would raise them.',          q:'"Do you want children? When? And what kind of parent do you imagine being — and needing your partner to be?"' },
@@ -1734,7 +2108,7 @@ function selFo(v) {
 function selStage(key, row) {
   document.querySelectorAll('.stage-row').forEach(r => r.classList.remove('sel'));
   row.classList.add('sel');
-  setTimeout(() => nav('s-home'), 400);
+  setTimeout(() => nav('s-welcome'), 400);
 }
 
 function completeStep(el) {
@@ -1834,14 +2208,209 @@ function closePF(e, id) {
 }
 
 let polyOn = false;
+function selectPath(path) {
+  const inviteEl = document.getElementById('path-invite');
+  const invitedEl = document.getElementById('path-invited');
+  const inviteRadio = document.getElementById('path-invite-radio');
+  const invitedRadio = document.getElementById('path-invited-radio');
+  const codeInput = document.getElementById('invite-code-input');
+  const linkBlock = document.getElementById('invite-link-block');
+  const goldBorder = '1px solid var(--gold)';
+  const defaultBorder = '1px solid var(--rule)';
+  const radioOn = 'border-color:var(--gold);background:var(--gold);';
+  const radioOff = 'border:1px solid var(--rule);';
+
+  if (path === 'invite') {
+    inviteEl.style.border = goldBorder;
+    inviteEl.style.background = 'rgba(196,135,90,.05)';
+    invitedEl.style.border = defaultBorder;
+    invitedEl.style.background = 'var(--white)';
+    inviteRadio.style.cssText = 'width:16px;height:16px;border-radius:50%;flex-shrink:0;background:var(--gold);border:1px solid var(--gold);';
+    invitedRadio.style.cssText = 'width:16px;height:16px;border-radius:50%;flex-shrink:0;border:1px solid var(--rule);';
+    codeInput.style.display = 'none';
+    linkBlock.style.display = 'block';
+  } else {
+    invitedEl.style.border = goldBorder;
+    invitedEl.style.background = 'rgba(196,135,90,.05)';
+    inviteEl.style.border = defaultBorder;
+    inviteEl.style.background = 'var(--white)';
+    invitedRadio.style.cssText = 'width:16px;height:16px;border-radius:50%;flex-shrink:0;background:var(--gold);border:1px solid var(--gold);';
+    inviteRadio.style.cssText = 'width:16px;height:16px;border-radius:50%;flex-shrink:0;border:1px solid var(--rule);';
+    codeInput.style.display = 'block';
+    linkBlock.style.display = 'none';
+  }
+}
+
+// Invite context — persists across sign-in and account creation
+let pendingInviteFrom = null;
+
+function handleInviteCode() {
+  const code = document.getElementById('signin-code-input');
+  if (!code || !code.value.trim()) { showToast('Enter an invite code first'); return; }
+  pendingInviteFrom = 'Alex'; // simulate backend lookup by code
+  const name = document.getElementById('inviter-name');
+  if (name) name.textContent = pendingInviteFrom;
+  showToast('Code accepted — connecting you with Alex');
+  setTimeout(() => nav('s-invite-landing'), 900);
+}
+
+function simulateInviteLink(inviterName) {
+  pendingInviteFrom = inviterName || 'Alex';
+  const name = document.getElementById('inviter-name');
+  if (name) name.textContent = pendingInviteFrom;
+  nav('s-invite-landing');
+}
+
+// From invite landing → create account path
+function inviteCreateAccount() {
+  // Mark onboarding as invite-context so we skip path selector and show connected state
+  nav('s-onboard');
+  // Pre-select "I was invited" path and show connected banner
+  setTimeout(() => {
+    selectPath('invited');
+    const banner = document.getElementById('invite-connected-banner');
+    if (banner && pendingInviteFrom) {
+      banner.style.display = 'block';
+      banner.querySelector('.icb-name').textContent = pendingInviteFrom;
+    }
+    // Hide the path selector — they're already on the invited path
+    const pathBlock = document.getElementById('path-selector');
+    if (pathBlock) pathBlock.style.display = 'none';
+  }, 100);
+}
+
+// From invite landing → sign in path
+function inviteSignIn() {
+  nav('s-signin');
+  // Show connected banner on sign-in screen
+  setTimeout(() => {
+    const banner = document.getElementById('signin-invite-banner');
+    if (banner && pendingInviteFrom) {
+      banner.style.display = 'block';
+      banner.querySelector('.icb-name').textContent = pendingInviteFrom;
+    }
+  }, 100);
+}
+
+// Called after sign-in or account creation when invite context is active
+function completeInviteConnection() {
+  pendingInviteFrom = null;
+  // Add partner to dropdown and go to session selector
+  const sel = document.getElementById('partner-select');
+  if (sel) {
+    const opt = document.createElement('option');
+    opt.value = 'alex'; opt.textContent = 'Alex · just connected';
+    sel.insertBefore(opt, sel.options[1]);
+    sel.value = 'alex';
+  }
+  isNewUser = true;
+  nav('s-welcome');
+  setTimeout(() => showToast('Connected — ready to align'), 400);
+}
+
+function applyNewPartnerCode() {
+  const code = document.getElementById('new-partner-code');
+  if (!code || !code.value.trim()) { showToast('Enter a code first'); return; }
+  const newName = 'Sam'; // simulate backend lookup
+  document.getElementById('add-partner-sheet').style.display = 'none';
+  // Add to partner dropdown
+  const sel = document.getElementById('partner-select');
+  if (sel) {
+    const opt = document.createElement('option');
+    opt.value = newName.toLowerCase();
+    opt.textContent = newName + ' · just connected';
+    opt.style.background = '#1a0d14';
+    sel.insertBefore(opt, sel.options[1]);
+    sel.value = newName.toLowerCase();
+    document.getElementById('session-go-btn').style.display = 'block';
+  }
+  showToast('Connected with ' + newName + ' — ready to align');
+}
+
+let newPartnerOpen = false;
+function advanceCode(el, idx) {
+  el.value = el.value.replace(/[^0-9]/g,'');
+  if (el.value && idx < 5) {
+    const next = document.getElementById('code-' + (idx + 1));
+    if (next) next.focus();
+  }
+  // Auto-submit when all 6 filled
+  const allFilled = [0,1,2,3,4,5].every(i => {
+    const c = document.getElementById('code-' + i);
+    return c && c.value.length === 1;
+  });
+  if (allFilled) verifyCode();
+}
+
+function verifyCode() {
+  const code = [0,1,2,3,4,5].map(i => {
+    const c = document.getElementById('code-' + i);
+    return c ? c.value : '';
+  }).join('');
+  if (code.length < 6) { showToast('Enter all 6 digits'); return; }
+  // Prototype: any 6-digit code works
+  showToast('Email verified — account created');
+  setTimeout(() => nav('s-stage'), 800);
+}
+
+function toggleNewPartner() {
+  newPartnerOpen = !newPartnerOpen;
+  const opts = document.getElementById('new-partner-options');
+  const chev = document.getElementById('new-partner-chevron');
+  if (opts) opts.style.display = newPartnerOpen ? 'block' : 'none';
+  if (chev) chev.style.transform = newPartnerOpen ? 'rotate(180deg)' : '';
+}
+
+function handlePartnerSelect(sel) {
+  const goBtn = document.getElementById('session-go-btn');
+  const aheadNote = document.getElementById('session-ahead-note');
+  if (!sel.value) {
+    goBtn.style.display = 'none';
+    if (aheadNote) aheadNote.style.display = 'none';
+  } else {
+    goBtn.style.display = 'block';
+    // Simulate: if user has completed all their answers but partner hasn't
+    if (aheadNote) aheadNote.style.display = sel.value === 'alex' ? 'none' : 'none';
+  }
+}
+function goToSession() {
+  const sel = document.getElementById('partner-select');
+  if (sel.value === 'alex') nav('s-home');
+}
+function showSessionManage() {
+  const sheet = document.getElementById('session-manage-sheet');
+  if (sheet) sheet.style.display = 'flex';
+}
+
+function confirmRemovePartner() {
+  const sheet = document.getElementById('remove-partner-sheet');
+  if (sheet) sheet.style.display = 'flex';
+}
+function removePartnerConfirmed() {
+  const sheet = document.getElementById('remove-partner-sheet');
+  if(sheet) sheet.style.display = 'none';
+  currentPartner = null;
+  // Update home dashboard to no-partner state
+  const pt = document.getElementById('home-partner-text');
+  if(pt) pt.textContent = 'No partner connected';
+  const pl = document.getElementById('home-partner-label');
+  if(pl) pl.textContent = '';
+  const dot = document.querySelector('.ps-dot');
+  if(dot) dot.style.background = 'transparent';
+  showToast('Partner removed — shared scores deleted. Your answers are saved.');
+  setTimeout(() => { showHomeState(); nav('s-home'); }, 1200);
+}
+
 function togglePoly(el) {
   polyOn = !polyOn;
   const knob = document.getElementById('poly-knob');
   const status = document.getElementById('poly-status');
+  const addBlock = document.getElementById('add-partner-block');
   el.style.background = polyOn ? 'var(--gold)' : 'var(--rule)';
   knob.style.transform = polyOn ? 'translateX(20px)' : 'translateX(0)';
   status.textContent = polyOn ? 'On — Relationship Network Mode active' : 'Off — Standard two-partner mode';
   status.style.color = polyOn ? 'var(--gold)' : 'var(--soft)';
+  if (addBlock) addBlock.style.display = polyOn ? 'block' : 'none';
   showToast(polyOn ? 'Relationship Network Mode enabled' : 'Relationship Network Mode disabled');
 }
 
@@ -1850,13 +2419,86 @@ function showAdjustToast() {
   setTimeout(() => nav('s-category'), 1800);
 }
 
-function showToast(msg) {
-  const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), 2600);
+// ── Global state ──────────────────────────────────────────────────────
+let isNewUser = false;
+let currentPartner = 'Alex'; // tracks active session partner
+let currentCatKey = 'money'; // tracks which category was submitted
+
+// ── Home state toggler ─────────────────────────────────────────────────
+function showHomeState() {
+  const newState = document.getElementById('home-new-user-state');
+  const mainState = document.getElementById('home-main-state');
+  if (!currentPartner) {
+    if (newState) newState.style.display = 'block';
+    if (mainState) mainState.style.display = 'none';
+  } else {
+    if (newState) newState.style.display = 'none';
+    if (mainState) mainState.style.display = 'block';
+    // Update partner name in home
+    const pt = document.getElementById('home-partner-text');
+    if (pt) pt.textContent = currentPartner + ' · Last seen 2 hours ago';
+    // Update wait title
+    const wn = document.getElementById('wait-partner-name');
+    if (wn) wn.textContent = currentPartner;
+    // Update ahead label
+    const al = document.getElementById('ahead-label');
+    if (al) al.textContent = 'Waiting on ' + currentPartner + ' · Category 03';
+    const at = document.getElementById('ahead-text');
+    if (at) at.textContent = 'Your answer for Conflict & Emotional Regulation is sealed. The reveal opens the moment ' + currentPartner + ' submits. In the meantime, explore conversation tools or continue to Category 04.';
+  }
 }
-renderFAQ();
-</script>
-</body>
-</html>
+
+// ── goToSession: set partner context then go home ──────────────────────
+function goToSession() {
+  const sel = document.getElementById('partner-select');
+  if (!sel || !sel.value) return;
+  // Set partner name from selection text
+  const opt = sel.options[sel.selectedIndex];
+  currentPartner = opt ? opt.textContent.split(' ·')[0] : 'Alex';
+  isNewUser = false;
+  showHomeState();
+  nav('s-home');
+}
+
+// ── Welcome → home: set new user state ────────────────────────────────
+// Patch nav to s-home from welcome to trigger showHomeState
+const _origNav = nav;
+
+// ── Dynamic category submit: update waiting screen ─────────────────────
+const catMeta = {
+  money:     { name:'Money & Financial Philosophy',       num:'01' },
+  children:  { name:'Children & Family',                  num:'02' },
+  conflict:  { name:'Conflict & Emotional Regulation',    num:'03' },
+  trust:     { name:'Trust & Digital Privacy',            num:'04' },
+  structure: { name:'Relationship Structure & Boundaries',num:'05' }
+};
+function submitCategory() {
+  // Update waiting screen dynamically
+  const meta = catMeta[curDomain] || catMeta.money;
+  const wt = document.getElementById('wait-partner-name');
+  if (wt) wt.textContent = currentPartner || 'Alex';
+  const rc = document.getElementById('reveal-cat-name');
+  if (rc) rc.textContent = meta.name;
+  nav('s-waiting');
+}
+
+// ── Code paste handler ─────────────────────────────────────────────────
+function handleCodePaste(e) {
+  e.preventDefault();
+  const pasted = (e.clipboardData || window.clipboardData).getData('text').replace(/\D/g,'').slice(0,6);
+  pasted.split('').forEach((char, i) => {
+    const box = document.getElementById('code-' + i);
+    if (box) box.value = char;
+  });
+  if (pasted.length === 6) {
+    setTimeout(() => verifyCode(), 150);
+  } else {
+    const next = document.getElementById('code-' + pasted.length);
+    if (next) next.focus();
+  }
+}
+
+// ── Welcome screen: mark as new user going to home ─────────────────────
+// (patched into the welcome button via inline onclick already set to nav('s-home'))
+// We override nav to intercept s-home from s-welcome
+const origNav = window.nav || function
