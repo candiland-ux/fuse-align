@@ -8,18 +8,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,300;0,6..96,400;0,6..96,500;1,6..96,300;1,6..96,400&family=Jost:wght@200;300;400;500&family=DM+Mono:wght@300;400&display=swap');
 
 :root {
-  --ink: #0a0a0a;
-  --ink2: #1a1a1a;
+  --ink: #150d12;
+  --ink2: #1e1118;
   --charcoal: #2c2c2c;
-  --mid: #222222;
-  --soft: #3d3d3d;
+  --mid: #2a1a22;
+  --soft: #6b4a5a;
   --faint: #666666;
-  --rule: #e2e2e2;
-  --off: #f7f5f3;
-  --cream: #faf8f6;
+  --rule: #e8dcd4;
+  --off: #faf4f0;
+  --cream: #fdf7f3;
   --white: #ffffff;
-  --gold: #b8965a;
-  --gold-light: rgba(184,150,90,0.08);
+  --gold: #c4875a;
+  --gold-light: rgba(196,135,90,0.09);
+  --rose: #c4526a;
+  --rose-dim: rgba(196,82,106,0.12);
+  --plum: #7a3b5a;
+  --plum-dim: rgba(122,59,90,0.15);
+  --terracotta: #b5604a;
   --rouge: #8b1a2e;
   --rouge-light: rgba(139,26,46,0.07);
   --fb: 'Bodoni Moda', serif;
@@ -86,9 +91,9 @@ body { background: var(--white); color: var(--ink); font-family: var(--fs); min-
    SPLASH
 ═══════════════════════════════════ */
 #s-splash {
-  background: var(--ink);
+  background: linear-gradient(160deg,#0e0810 0%,#190d14 40%,#1e1018 70%,#140b10 100%);
   align-items: stretch; justify-content: flex-start; flex-direction: column;
-  position: relative; min-height: 100vh;
+  position: relative; min-height: 100vh; overflow-y: auto;
 }
 .splash-editorial {
   flex: 1; display: flex; flex-direction: column; justify-content: center;
@@ -487,6 +492,160 @@ body { background: var(--white); color: var(--ink); font-family: var(--fs); min-
 .nt-icon { font-family: var(--fm); font-size: 8px; color: var(--faint); flex-shrink: 0; margin-top: 1px; letter-spacing: 1px; }
 .nt-text { font-size: 10px; font-weight: 400; color: var(--soft); line-height: 1.6; }
 .nt-text a { color: var(--ink); text-decoration: underline; cursor: pointer; }
+
+/* PRICING / FAQ MODALS */
+.pf-overlay{position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:200;display:none;align-items:flex-end;justify-content:center;}
+.pf-overlay.open{display:flex;animation:pfIn .3s cubic-bezier(.16,1,.3,1);}
+@keyframes pfIn{from{opacity:0}to{opacity:1}}
+.pf-sheet{background:var(--ink);width:100%;max-width:480px;border-radius:16px 16px 0 0;max-height:85vh;display:flex;flex-direction:column;animation:sheetUp .3s cubic-bezier(.16,1,.3,1);}
+@keyframes sheetUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
+.pf-handle{width:36px;height:4px;background:rgba(255,255,255,.2);border-radius:4px;margin:14px auto 0;}
+.pf-header{padding:16px 24px 14px;border-bottom:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:space-between;flex-shrink:0;}
+.pf-title{font-family:var(--fb);font-size:18px;font-weight:300;color:var(--white);}
+.pf-close{background:none;border:none;color:rgba(255,255,255,.5);font-size:22px;cursor:pointer;padding:4px;line-height:1;}
+.pf-scroll{overflow-y:auto;flex:1;padding:20px 24px 32px;}
+/* Pricing tier cards inside sheet */
+.pt{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);padding:16px;margin-bottom:9px;}
+.pt.featured{background:rgba(184,150,90,.1);border-color:rgba(184,150,90,.35);}
+.pt-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:8px;}
+.pt-name{font-family:var(--fb);font-size:16px;font-weight:500;color:var(--white);}
+.pt-tag{font-family:var(--fm);font-size:7px;letter-spacing:2px;text-transform:uppercase;margin-top:3px;}
+.pt-price{font-family:var(--fb);font-size:22px;font-weight:300;color:var(--white);text-align:right;}
+.pt-price span{font-size:12px;color:rgba(255,255,255,.4);}
+.pt-desc{font-size:11px;color:rgba(255,255,255,.5);line-height:1.75;}
+.pt.featured .pt-desc{color:rgba(255,255,255,.7);}
+
+/* ═══ LANDING HOVER ANIMATIONS ═══ */
+.splash-editorial { transition: none; }
+
+/* FUSE acronym lines — each letter lights up on hover */
+.fuse-line {
+  display: flex; align-items: baseline; gap: 14px;
+  padding: 6px 8px; border-radius: 4px;
+  transition: all .25s ease; cursor: default;
+}
+.fuse-line:hover { background: rgba(196,82,106,.08); transform: translateX(4px); }
+.fuse-line:hover .fuse-letter { color: var(--rose); text-shadow: 0 0 20px rgba(196,82,106,.5); }
+.fuse-line:hover .fuse-text { color: rgba(255,255,255,.95); }
+.fuse-letter {
+  font-family: var(--fb); font-size: 22px; font-weight: 400;
+  color: var(--gold); width: 16px; flex-shrink: 0;
+  transition: all .25s ease;
+  text-shadow: 0 0 12px rgba(196,135,90,.3);
+}
+.fuse-text {
+  font-family: var(--fb); font-size: 16px; font-weight: 300;
+  font-style: italic; color: rgba(255,255,255,.75); line-height: 1.4;
+  transition: color .25s ease;
+}
+
+/* Wordmark glow on hover */
+.splash-wordmark {
+  cursor: default;
+  animation: wordPulse 4s ease-in-out infinite;
+  transition: text-shadow .3s ease;
+}
+.splash-wordmark:hover {
+  text-shadow: 0 0 50px rgba(196,82,106,.5), 0 0 100px rgba(196,135,90,.25);
+  animation-play-state: paused;
+}
+@keyframes wordPulse {
+  0%, 100% {
+    text-shadow:
+      0 0 20px rgba(196,135,90,.15),
+      0 0 40px rgba(196,135,90,.08);
+  }
+  30% {
+    text-shadow:
+      0 0 30px rgba(196,82,106,.3),
+      0 0 60px rgba(196,82,106,.15),
+      0 0 90px rgba(196,135,90,.1);
+  }
+  60% {
+    text-shadow:
+      0 0 22px rgba(196,135,90,.2),
+      0 0 44px rgba(196,135,90,.1);
+  }
+}
+/* "Align" italic sub-word breathes slightly offset */
+.splash-wordmark em {
+  display: block; font-style: italic; font-weight: 300;
+  color: rgba(255,255,255,.88); font-size: .6em;
+  letter-spacing: 16px; margin-top: 8px;
+  animation: emPulse 4s ease-in-out infinite .8s;
+}
+@keyframes emPulse {
+  0%, 100% { opacity: .75; letter-spacing: 16px; }
+  40%       { opacity: .95; letter-spacing: 17px; }
+  70%       { opacity: .80; letter-spacing: 16px; }
+}
+
+/* Overline pulse */
+.splash-overline { transition: letter-spacing .3s ease, color .25s ease; cursor: default; }
+.splash-overline:hover { letter-spacing: 7px; color: var(--rose); }
+.splash-overline:hover::before { background: var(--rose); }
+
+/* Rule shimmer */
+.splash-rule {
+  background: linear-gradient(90deg, var(--gold), var(--rose), var(--gold));
+  background-size: 200% 100%;
+  animation: shimmer 3s ease-in-out infinite;
+}
+@keyframes shimmer { 0%,100%{background-position:0%} 50%{background-position:100%} }
+
+/* CTA buttons */
+.splash-footer .btn-cream {
+  transition: all .25s ease;
+  background: linear-gradient(135deg, #fdf7f3, #f5e8e0);
+}
+.splash-footer .btn-cream:hover {
+  background: linear-gradient(135deg, #fff, #fef0e8);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(196,82,106,.2);
+}
+.splash-footer .btn-naked {
+  transition: all .25s ease;
+  border-color: rgba(255,255,255,.3);
+}
+.splash-footer .btn-naked:hover {
+  border-color: var(--rose);
+  color: rgba(255,255,255,.95);
+  background: rgba(196,82,106,.07);
+  transform: translateY(-1px);
+}
+
+/* Pricing / FAQ ghost buttons */
+.pf-ghost-btn {
+  flex: 1; background: none; color: rgba(255,255,255,.55);
+  font-family: var(--fm); font-size: 8px; letter-spacing: 2px;
+  text-transform: uppercase; padding: 11px; cursor: pointer;
+  border: 1px solid rgba(255,255,255,.18);
+  transition: all .25s ease;
+}
+.pf-ghost-btn:hover {
+  border-color: var(--rose);
+  color: var(--rose);
+  background: rgba(196,82,106,.07);
+}
+
+/* Stats glow on hover */
+.stat-block {
+  transition: transform .25s ease;
+  cursor: default;
+}
+.stat-block:hover { transform: translateY(-2px); }
+.stat-block:hover .stat-num { color: var(--rose); text-shadow: 0 0 20px rgba(196,82,106,.3); }
+
+/* Gradient ambient glow behind content */
+#s-splash::before {
+  content: '';
+  position: absolute; inset: 0; pointer-events: none; z-index: 0;
+  background:
+    radial-gradient(ellipse at 20% 50%, rgba(122,59,90,.25) 0%, transparent 55%),
+    radial-gradient(ellipse at 80% 20%, rgba(181,96,74,.15) 0%, transparent 50%),
+    radial-gradient(ellipse at 60% 80%, rgba(196,82,106,.1) 0%, transparent 45%);
+}
+.splash-editorial, .splash-footer { position: relative; z-index: 1; }
 </style>
 </head>
 <body>
@@ -498,30 +657,24 @@ body { background: var(--white); color: var(--ink); font-family: var(--fs); min-
     <div class="splash-overline">Relationship Intelligence</div>
     <div class="splash-wordmark">FUSE<em>Align</em></div>
     <div class="splash-rule"></div>
-    <div style="display:flex;flex-direction:column;gap:10px;position:relative;z-index:1;">
-      <div style="display:flex;align-items:baseline;gap:14px;">
-        <span style="font-family:var(--fb);font-size:22px;font-weight:400;color:var(--gold);width:16px;flex-shrink:0;">F</span>
-        <span style="font-family:var(--fb);font-size:16px;font-weight:300;font-style:italic;color:rgba(255,255,255,.85);line-height:1.4;">Find real connection</span>
-      </div>
-      <div style="display:flex;align-items:baseline;gap:14px;">
-        <span style="font-family:var(--fb);font-size:22px;font-weight:400;color:var(--gold);width:16px;flex-shrink:0;">U</span>
-        <span style="font-family:var(--fb);font-size:16px;font-weight:300;font-style:italic;color:rgba(255,255,255,.85);line-height:1.4;">Understand true compatibility</span>
-      </div>
-      <div style="display:flex;align-items:baseline;gap:14px;">
-        <span style="font-family:var(--fb);font-size:22px;font-weight:400;color:var(--gold);width:16px;flex-shrink:0;">S</span>
-        <span style="font-family:var(--fb);font-size:16px;font-weight:300;font-style:italic;color:rgba(255,255,255,.85);line-height:1.4;">Shape a shared foundation</span>
-      </div>
-      <div style="display:flex;align-items:baseline;gap:14px;">
-        <span style="font-family:var(--fb);font-size:22px;font-weight:400;color:var(--gold);width:16px;flex-shrink:0;">E</span>
-        <span style="font-family:var(--fb);font-size:16px;font-weight:300;font-style:italic;color:rgba(255,255,255,.85);line-height:1.4;">Establish lasting partnership</span>
-      </div>
+    <div style="display:flex;flex-direction:column;gap:4px;position:relative;z-index:1;">
+      <div class="fuse-line"><span class="fuse-letter">F</span><span class="fuse-text">Find real connection</span></div>
+      <div class="fuse-line"><span class="fuse-letter">U</span><span class="fuse-text">Understand true compatibility</span></div>
+      <div class="fuse-line"><span class="fuse-letter">S</span><span class="fuse-text">Shape a shared foundation</span></div>
+      <div class="fuse-line"><span class="fuse-letter">E</span><span class="fuse-text">Establish lasting partnership</span></div>
     </div>
   </div>
   <div class="splash-footer">
-    <button class="btn btn-cream" onclick="nav('s-onboard')">Begin</button>
+    <button class="btn btn-cream" onclick="nav('s-onboard')">Create an Account</button>
     <button class="btn btn-naked" onclick="nav('s-home')">Sign In</button>
     <div class="splash-meta">Free to start · No card required</div>
+    <div style="display:flex;gap:10px;margin-top:4px;">
+      <button class="pf-ghost-btn" onclick="openPF('pricing')">Pricing</button>
+      <button class="pf-ghost-btn" onclick="openPF('faq')">FAQ</button>
+    </div>
   </div>
+
+
 </div>
 
 <!-- ONBOARDING -->
@@ -576,7 +729,7 @@ body { background: var(--white); color: var(--ink); font-family: var(--fs); min-
   <div class="tb">
     <div class="tb-wordmark">FUSE <em>Align</em></div>
     <div></div>
-    <button style="background:none;border:none;cursor:pointer;font-size:18px;" onclick="showToast('Profile')">◯</button>
+    <button style="background:none;border:none;cursor:pointer;font-size:18px;" onclick="nav('s-settings')">◯</button>
   </div>
   <div class="scroll">
     <div class="home-masthead">
@@ -663,17 +816,28 @@ body { background: var(--white); color: var(--ink); font-family: var(--fs); min-
           <div class="cat-status-pill st-new">Begin →</div>
         </div>
       </div>
+      <div class="cat-row" onclick="openCat('structure')">
+        <div class="cat-row-num">05</div>
+        <div class="cat-row-icon">🔗</div>
+        <div class="cat-row-info">
+          <div class="cat-row-name">Relationship Structure & Boundaries</div>
+          <div class="cat-row-sub">Exclusivity, commitment, how you define your relationship</div>
+        </div>
+        <div class="cat-row-right">
+          <div class="cat-status-pill st-new">Begin →</div>
+        </div>
+      </div>
     </div>
     <div class="sh"><div class="sh-rule"></div><div class="sh-text">Month 3 Release</div></div>
     <div class="cat-table">
       <div class="cat-row locked" onclick="nav('s-paywall')" style="opacity:.5;cursor:pointer;">
-        <div class="cat-row-num">05</div>
+        <div class="cat-row-num">06</div>
         <div class="cat-row-icon">💼</div>
         <div class="cat-row-info"><div class="cat-row-name">Career & Ambition</div><div class="cat-row-sub">Unlock with Premium</div></div>
         <div class="cat-row-right"><div class="cat-status-pill st-lock">Upgrade</div></div>
       </div>
       <div class="cat-row locked" onclick="nav('s-paywall')" style="opacity:.5;cursor:pointer;">
-        <div class="cat-row-num">06</div>
+        <div class="cat-row-num">07</div>
         <div class="cat-row-icon">🏙</div>
         <div class="cat-row-info"><div class="cat-row-name">Location & Lifestyle</div><div class="cat-row-sub">Unlock with Premium</div></div>
         <div class="cat-row-right"><div class="cat-status-pill st-lock">Upgrade</div></div>
@@ -685,7 +849,7 @@ body { background: var(--white); color: var(--ink); font-family: var(--fs); min-
     <button class="ntb act" onclick="nav('s-home')"><span class="nti">⊹</span><div class="ntl">Home</div></button>
     <button class="ntb" onclick="nav('s-health')"><span class="nti">◯</span><div class="ntl">Health</div></button>
     <button class="ntb" onclick="nav('s-tools')"><span class="nti">⊞</span><div class="ntl">Tools</div></button>
-    <button class="ntb" onclick="showToast('Profile')"><span class="nti">△</span><div class="ntl">Profile</div></button>
+    <button class="ntb" onclick="nav('s-settings')"><span class="nti">△</span><div class="ntl">Profile</div></button>
   </div>
 </div>
 
@@ -706,6 +870,10 @@ body { background: var(--white); color: var(--ink); font-family: var(--fs); min-
         <div class="ps-icon">PRIVATE</div>
         <div class="ps-text-inner">Your answer is sealed until Alex completes theirs. No peeking. No anchoring.</div>
       </div>
+    </div>
+    <div id="cat-sensitivity-notice" style="display:none;margin:0 24px 4px;padding:13px 16px;background:rgba(196,135,90,.07);border-left:2px solid var(--gold);">
+      <div style="font-family:var(--fm);font-size:8px;letter-spacing:2px;color:var(--gold);text-transform:uppercase;margin-bottom:5px;">Sensitive Category</div>
+      <div style="font-size:12px;color:var(--soft);line-height:1.65;">There are no right answers here — only honest ones. Answer based on where you actually stand, not where you think you should stand. Your partner is doing the same.</div>
     </div>
     <div class="q-section">
       <div class="q-rule"></div>
@@ -738,6 +906,73 @@ body { background: var(--white); color: var(--ink); font-family: var(--fs); min-
   <div class="ab">
     <button class="btn btn-ghost" onclick="nav('s-home')">Save draft</button>
     <button class="btn btn-ink" onclick="nav('s-waiting')">Submit answer →</button>
+  </div>
+</div>
+
+<!-- CATEGORY DEBRIEF (completed categories) -->
+<div id="s-debrief" class="screen">
+  <div class="tb">
+    <button class="bk" onclick="nav('s-home')">← Home</button>
+    <div class="tb-label" id="debrief-cat-name">Category</div>
+    <div></div>
+  </div>
+  <div class="scroll" id="debrief-content"></div>
+  <div class="ab">
+    <button class="btn btn-ghost" onclick="showAdjustToast()">Adjust my answers</button>
+    <button class="btn btn-ink" onclick="nav('s-convo')">Go to conversation →</button>
+  </div>
+</div>
+
+<!-- SETTINGS / PROFILE -->
+<div id="s-settings" class="screen">
+  <div class="tb">
+    <button class="bk" onclick="nav('s-home')">← Home</button>
+    <div class="tb-label">Settings</div>
+    <div></div>
+  </div>
+  <div class="scroll">
+    <div style="padding:24px 24px 8px;">
+      <div style="font-family:var(--fm);font-size:8px;letter-spacing:3px;color:var(--soft);text-transform:uppercase;margin-bottom:16px;">Account</div>
+      <div style="display:flex;align-items:center;gap:14px;padding:16px 0;border-bottom:1px solid var(--rule);">
+        <div style="width:44px;height:44px;border-radius:50%;background:var(--off);border:1px solid var(--rule);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;">👤</div>
+        <div><div style="font-family:var(--fb);font-size:17px;font-weight:400;color:var(--ink);">Jordan</div><div style="font-family:var(--fm);font-size:9px;color:var(--soft);letter-spacing:1px;margin-top:2px;">jordan@email.com</div></div>
+      </div>
+    </div>
+    <div style="padding:8px 24px;">
+      <div style="font-family:var(--fm);font-size:8px;letter-spacing:3px;color:var(--soft);text-transform:uppercase;margin-bottom:12px;">Relationship Structure</div>
+      <!-- Poly toggle -->
+      <div style="padding:16px;background:var(--off);border:1px solid var(--rule);margin-bottom:10px;">
+        <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:16px;">
+          <div style="flex:1;">
+            <div style="font-size:14px;font-weight:500;color:var(--ink);margin-bottom:4px;">Relationship Network Mode</div>
+            <div style="font-size:12px;color:var(--soft);line-height:1.6;">Enables alignment with multiple partners independently. Each pairing has its own separate scores, categories, and conversation threads. Your answers with one partner are never visible to another.</div>
+          </div>
+          <div onclick="togglePoly(this)" id="poly-toggle" style="width:44px;height:24px;border-radius:12px;background:var(--rule);flex-shrink:0;cursor:pointer;position:relative;transition:background .25s;margin-top:2px;">
+            <div id="poly-knob" style="position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:white;box-shadow:0 1px 4px rgba(0,0,0,.2);transition:transform .25s;"></div>
+          </div>
+        </div>
+        <div id="poly-status" style="font-family:var(--fm);font-size:8px;letter-spacing:2px;color:var(--soft);text-transform:uppercase;margin-top:10px;">Off — Standard two-partner mode</div>
+      </div>
+      <div style="font-size:11px;color:var(--soft);line-height:1.6;padding:0 2px 16px;">Looking for more information? See the <span style="color:var(--gold);cursor:pointer;text-decoration:underline;" onclick="openPF('faq')">FAQ</span> for how Relationship Network Mode works.</div>
+    </div>
+    <div style="padding:0 24px;">
+      <div style="font-family:var(--fm);font-size:8px;letter-spacing:3px;color:var(--soft);text-transform:uppercase;margin-bottom:12px;">Subscription</div>
+      <div style="padding:16px;background:var(--off);border:1px solid var(--rule);margin-bottom:10px;display:flex;align-items:center;justify-content:space-between;">
+        <div><div style="font-size:13px;font-weight:500;color:var(--ink);">Free Tier</div><div style="font-size:11px;color:var(--soft);margin-top:2px;">4 of 16 categories</div></div>
+        <button onclick="openPF('pricing')" style="background:var(--ink);color:white;border:none;font-family:var(--fm);font-size:8px;letter-spacing:2px;text-transform:uppercase;padding:9px 14px;cursor:pointer;">Upgrade</button>
+      </div>
+    </div>
+    <div style="padding:16px 24px 40px;display:flex;flex-direction:column;gap:1px;">
+      <button onclick="showToast('Privacy Policy')" style="background:none;border:none;text-align:left;font-size:13px;color:var(--soft);padding:12px 0;border-bottom:1px solid var(--rule);cursor:pointer;">Privacy Policy</button>
+      <button onclick="showToast('Terms of Service')" style="background:none;border:none;text-align:left;font-size:13px;color:var(--soft);padding:12px 0;border-bottom:1px solid var(--rule);cursor:pointer;">Terms of Service</button>
+      <button onclick="showToast('Signed out')" style="background:none;border:none;text-align:left;font-size:13px;color:var(--rose);padding:12px 0;cursor:pointer;">Sign Out</button>
+    </div>
+  </div>
+  <div class="nt">
+    <button class="ntb" onclick="nav('s-home')"><span class="nti">⌂</span><div class="ntl">Home</div></button>
+    <button class="ntb" onclick="showToast('Explore coming soon')"><span class="nti">◎</span><div class="ntl">Explore</div></button>
+    <button class="ntb" onclick="nav('s-tools')"><span class="nti">◇</span><div class="ntl">Tools</div></button>
+    <button class="ntb act"><span class="nti">△</span><div class="ntl">Profile</div></button>
   </div>
 </div>
 
@@ -963,7 +1198,7 @@ body { background: var(--white); color: var(--ink); font-family: var(--fs); min-
     <button class="ntb" onclick="nav('s-home')"><span class="nti">⊹</span><div class="ntl">Home</div></button>
     <button class="ntb act"><span class="nti">◯</span><div class="ntl">Health</div></button>
     <button class="ntb" onclick="nav('s-tools')"><span class="nti">⊞</span><div class="ntl">Tools</div></button>
-    <button class="ntb" onclick="showToast('Profile')"><span class="nti">△</span><div class="ntl">Profile</div></button>
+    <button class="ntb" onclick="nav('s-settings')"><span class="nti">△</span><div class="ntl">Profile</div></button>
   </div>
 </div>
 
@@ -1027,7 +1262,7 @@ body { background: var(--white); color: var(--ink); font-family: var(--fs); min-
     <button class="ntb" onclick="nav('s-home')"><span class="nti">⊹</span><div class="ntl">Home</div></button>
     <button class="ntb" onclick="nav('s-health')"><span class="nti">◯</span><div class="ntl">Health</div></button>
     <button class="ntb act"><span class="nti">⊞</span><div class="ntl">Tools</div></button>
-    <button class="ntb" onclick="showToast('Profile')"><span class="nti">△</span><div class="ntl">Profile</div></button>
+    <button class="ntb" onclick="nav('s-settings')"><span class="nti">△</span><div class="ntl">Profile</div></button>
   </div>
 </div>
 
@@ -1306,6 +1541,55 @@ body { background: var(--white); color: var(--ink); font-family: var(--fs); min-
   </div>
 </div>
 
+
+<!-- PRICING MODAL -->
+<div class="pf-overlay" id="pf-pricing" onclick="closePF(event,'pf-pricing')">
+  <div class="pf-sheet" onclick="event.stopPropagation()">
+    <div class="pf-handle"></div>
+    <div class="pf-header">
+      <div class="pf-title">Simple Pricing</div>
+      <button class="pf-close" onclick="closePF(null,'pf-pricing')">×</button>
+    </div>
+    <div class="pf-scroll">
+      <div style="font-size:12px;color:rgba(255,255,255,.4);margin-bottom:16px;line-height:1.6;">Start free. Unlock more when you're ready.</div>
+      <div class="pt">
+        <div class="pt-top"><div><div class="pt-name">Free</div><div class="pt-tag" style="color:rgba(255,255,255,.35);">Always free</div></div><div class="pt-price">$0</div></div>
+        <div class="pt-desc">4 of 16 categories · Basic alignment scores · Limited conversation prompts</div>
+      </div>
+      <div class="pt">
+        <div class="pt-top"><div><div class="pt-name">Category Unlocks</div><div class="pt-tag" style="color:rgba(255,255,255,.35);">À la carte</div></div><div class="pt-price">$2.99<span>–$4.99 each</span></div></div>
+        <div class="pt-desc">Unlock individual categories one at a time. Each unlock immediately improves your alignment score.</div>
+      </div>
+      <div class="pt featured">
+        <div style="font-family:var(--fm);font-size:7px;letter-spacing:2px;color:var(--gold);text-transform:uppercase;margin-bottom:8px;">★ Most Popular</div>
+        <div class="pt-top"><div><div class="pt-name">FUSE Premium</div><div class="pt-tag" style="color:var(--gold);">Best value</div></div><div class="pt-price">$9.99<span>/mo</span><div style="font-size:10px;color:rgba(255,255,255,.3);margin-top:2px;">or $99/yr</div></div></div>
+        <div class="pt-desc">All 16 categories · Full alignment scores · Guided conversation library · Check-ins · Relationship Evolution Dashboard · Export for therapist sessions · Capstone question</div>
+      </div>
+      <div class="pt">
+        <div class="pt-top"><div><div class="pt-name">FUSE Align+</div><div class="pt-tag" style="color:rgba(255,255,255,.35);">Everything + AI coaching</div></div><div class="pt-price">$14.99<span>/mo</span><div style="font-size:10px;color:rgba(255,255,255,.3);margin-top:2px;">or $149/yr</div></div></div>
+        <div class="pt-desc">Everything in Premium · AI conversation coaching in real time · Compatibility trend analysis · Shared growth goals · Priority access to new categories</div>
+      </div>
+      <div style="padding:14px;background:rgba(255,255,255,.03);border-left:2px solid rgba(255,255,255,.15);margin-top:4px;">
+        <div style="font-family:var(--fm);font-size:7px;letter-spacing:2px;color:rgba(255,255,255,.35);text-transform:uppercase;margin-bottom:4px;">For Professionals</div>
+        <div style="font-size:11px;color:rgba(255,255,255,.45);line-height:1.6;">Therapist licensing · Pre-marital programs · <span style="color:rgba(255,255,255,.7);cursor:pointer;" onclick="showToast('Contact: hello@fusealign.com')">Contact us →</span></div>
+      </div>
+      <button class="btn btn-cream" onclick="nav('s-onboard');closePF(null,'pf-pricing')" style="width:100%;margin-top:18px;padding:16px;font-size:10px;letter-spacing:3px;">Create a Free Account →</button>
+    </div>
+  </div>
+</div>
+
+<!-- FAQ MODAL -->
+<div class="pf-overlay" id="pf-faq" onclick="closePF(event,'pf-faq')">
+  <div class="pf-sheet" onclick="event.stopPropagation()">
+    <div class="pf-handle"></div>
+    <div class="pf-header">
+      <div class="pf-title">Common Questions</div>
+      <button class="pf-close" onclick="closePF(null,'pf-faq')">×</button>
+    </div>
+    <div class="pf-scroll" id="faq-sheet-list"></div>
+  </div>
+</div>
+
 <div class="toast" id="toast"></div>
 
 <script>
@@ -1313,7 +1597,8 @@ const cats = {
   money:    { num:'Category 01', icon:'💰', name:'Money & Financial Philosophy', sub:'How you think about money, debt, risk appetite, and financial transparency in a partnership.', q:'"What role does money play in your sense of security — and how much financial transparency do you need from a partner?"' },
   children: { num:'Category 02', icon:'👶', name:'Children & Family',             sub:'Whether you want children, timing, and the philosophy of how you would raise them.',          q:'"Do you want children? When? And what kind of parent do you imagine being — and needing your partner to be?"' },
   conflict: { num:'Category 03', icon:'🌀', name:'Conflict & Emotional Regulation', sub:'How you fight, how you repair, and how you recover from rupture as a couple.',               q:'"In the middle of a real fight, what do you need from your partner — and what do you tend to do that makes things worse?"' },
-  trust:    { num:'Category 04', icon:'🔒', name:'Trust & Digital Privacy',          sub:'Phone access, social media boundaries, and what loyalty actually looks like in practice.',    q:'"What does loyalty look like for you in practice — and where are your personal limits around phones, social media, and privacy?"' }
+  trust:    { num:'Category 04', icon:'🔒', name:'Trust & Digital Privacy',          sub:'Phone access, social media boundaries, and what loyalty actually looks like in practice.',    q:'"What does loyalty look like for you in practice — and where are your personal limits around phones, social media, and privacy?"' },
+  structure:{ num:'Category 05', icon:'🔗', name:'Relationship Structure & Boundaries', sub:'Monogamy, exclusivity, what fidelity means to you, and whether the structure of your relationship is something you ever discuss.',  q:'"What does commitment mean to you specifically — and is the structure of your relationship something you see as fixed, or something two people define together?"' }
 };
 
 const prompts = [
@@ -1329,8 +1614,99 @@ function nav(id) {
   window.scrollTo(0, 0);
 }
 
+// Track which categories are complete
+const completedCats = {
+  money: {
+    score: 68,
+    yourFlexibility: 'Strong Preference',
+    yourPriority: 3,
+    alexFlexibility: 'Non-Negotiable',
+    alexPriority: 1,
+    gap: 'Alex treats financial transparency as a dealbreaker. You rated it a strong preference with some flexibility. This gap is worth a real conversation before it becomes an assumption.',
+    topics: [
+      'What does full financial transparency actually look like day-to-day for each of you?',
+      'Are joint accounts, separate accounts, or a hybrid — and who decides?',
+      'How do you handle a large individual purchase without the other\'s input?',
+      'What\'s the number above which you\'d want to discuss before spending?'
+    ]
+  },
+  children: {
+    score: 91,
+    yourFlexibility: 'Non-Negotiable',
+    yourPriority: 1,
+    alexFlexibility: 'Non-Negotiable',
+    alexPriority: 2,
+    gap: 'Strong alignment here. You both want children and share similar values around family. Minor differences in timing are worth discussing — not a risk, but worth naming.',
+    topics: [
+      'What\'s the ideal timeline for you both — and what would need to be true first?',
+      'How do each of you imagine dividing parenting responsibilities?',
+      'What values are non-negotiable to pass on to your children?',
+      'How do extended family and in-laws factor into how you\'d raise kids?'
+    ]
+  }
+};
+
 function openCat(key) {
   const c = cats[key];
+  // If completed, show debrief instead of entry form
+  if (completedCats[key]) {
+    const d = completedCats[key];
+    const scoreCol = d.score >= 80 ? 'var(--gold)' : d.score >= 60 ? '#c4875a' : 'var(--rose)';
+    const scoreLabel = d.score >= 80 ? 'Strongly Aligned' : d.score >= 60 ? 'Developing Alignment' : 'Significant Gap';
+    document.getElementById('debrief-content').innerHTML = `
+      <div style="padding:24px 24px 0;">
+        <div style="display:flex;align-items:center;gap:16px;margin-bottom:20px;">
+          <div style="font-size:36px;">${c.icon}</div>
+          <div>
+            <div style="font-family:var(--fm);font-size:8px;letter-spacing:3px;color:var(--soft);text-transform:uppercase;margin-bottom:3px;">${c.num} · Complete</div>
+            <div style="font-family:var(--fb);font-size:20px;font-weight:400;color:var(--ink);">${c.name}</div>
+          </div>
+        </div>
+        <!-- Score -->
+        <div style="background:var(--off);border:1px solid var(--rule);padding:18px;margin-bottom:16px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
+            <div style="font-family:var(--fm);font-size:8px;letter-spacing:2px;color:var(--soft);text-transform:uppercase;">Alignment Score</div>
+            <div style="font-family:var(--fb);font-size:28px;font-weight:300;color:${scoreCol};">${d.score}%</div>
+          </div>
+          <div style="height:4px;background:var(--rule);border-radius:2px;margin-bottom:8px;">
+            <div style="height:100%;width:${d.score}%;background:${scoreCol};border-radius:2px;"></div>
+          </div>
+          <div style="font-family:var(--fm);font-size:9px;color:${scoreCol};letter-spacing:1px;text-transform:uppercase;">${scoreLabel}</div>
+        </div>
+        <!-- Your vs Alex -->
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px;">
+          <div style="background:var(--off);border:1px solid var(--rule);padding:14px;">
+            <div style="font-family:var(--fm);font-size:7px;letter-spacing:2px;color:var(--soft);text-transform:uppercase;margin-bottom:8px;">You</div>
+            <div style="font-size:13px;font-weight:500;color:var(--ink);margin-bottom:4px;">${d.yourFlexibility}</div>
+            <div style="font-family:var(--fm);font-size:9px;color:var(--soft);">Priority rank: #${d.yourPriority}</div>
+          </div>
+          <div style="background:var(--off);border:1px solid var(--rule);padding:14px;">
+            <div style="font-family:var(--fm);font-size:7px;letter-spacing:2px;color:var(--soft);text-transform:uppercase;margin-bottom:8px;">Alex</div>
+            <div style="font-size:13px;font-weight:500;color:var(--ink);margin-bottom:4px;">${d.alexFlexibility}</div>
+            <div style="font-family:var(--fm);font-size:9px;color:var(--soft);">Priority rank: #${d.alexPriority}</div>
+          </div>
+        </div>
+        <!-- Gap analysis -->
+        <div style="border-left:2px solid var(--gold);padding:14px 16px;background:rgba(196,135,90,.06);margin-bottom:20px;">
+          <div style="font-family:var(--fm);font-size:8px;letter-spacing:2px;color:var(--gold);text-transform:uppercase;margin-bottom:6px;">What this means</div>
+          <div style="font-size:13px;color:var(--ink);line-height:1.7;">${d.gap}</div>
+        </div>
+        <!-- Conversation topics -->
+        <div style="margin-bottom:8px;">
+          <div style="font-family:var(--fm);font-size:8px;letter-spacing:3px;color:var(--soft);text-transform:uppercase;margin-bottom:12px;">Topics to discuss together</div>
+          ${d.topics.map((t,i) => `
+            <div style="display:flex;gap:14px;padding:14px 0;border-bottom:1px solid var(--rule);">
+              <div style="font-family:var(--fm);font-size:11px;color:var(--gold);flex-shrink:0;margin-top:1px;">${String(i+1).padStart(2,'0')}</div>
+              <div style="font-size:13px;color:var(--ink);line-height:1.6;">${t}</div>
+            </div>`).join('')}
+        </div>
+        <div style="height:24px;"></div>
+      </div>`;
+    nav('s-debrief');
+    document.getElementById('debrief-cat-name').textContent = c.name;
+    return;
+  }
+  // Not completed — show entry form
   document.getElementById('cat-tab').textContent = c.name;
   document.getElementById('cat-cm-bg').textContent = c.icon;
   document.getElementById('cat-cm-num').innerHTML = c.num;
@@ -1338,6 +1714,15 @@ function openCat(key) {
   document.getElementById('cat-cm-sub').textContent = c.sub;
   document.getElementById('cat-q').textContent = c.q;
   document.querySelectorAll('.fo').forEach(o => o.classList.remove('sel'));
+  // Show sensitivity notice for relationship structure category
+  const notice = document.getElementById('cat-sensitivity-notice');
+  if (notice) {
+    if (key === 'structure') {
+      notice.style.display = 'block';
+    } else {
+      notice.style.display = 'none';
+    }
+  }
   nav('s-category');
 }
 
@@ -1379,12 +1764,99 @@ function showP(i, btn) {
   btn.classList.add('act');
 }
 
+const FAQS = [
+  { q: "Does my partner see my answers before they submit theirs?", a: "No — never. Both partners answer independently. Your responses are sealed until your partner completes their side. This prevents anchoring, people-pleasing, and the 'I'll just agree with them' dynamic that makes most compatibility tools useless." },
+  { q: "Is FUSE Align therapy or couples counseling?", a: "No. FUSE Align is a relationship intelligence and conversation tool. It surfaces areas of alignment and difference so you can talk about them — it doesn't analyze, diagnose, or treat. Many therapists use FUSE Align as a structured intake tool, but the app itself is not a substitute for professional support." },
+  { q: "Do both partners need the app?", a: "Yes — FUSE Align is built for two. You'll invite your partner after creating your account. They get their own free account and complete each category independently. You both see results only after you've both answered." },
+  { q: "What happens to our data if we break up?", a: "Either partner can delete their account and all associated data at any time. If you delete, your individual responses are permanently removed. Shared alignment scores are also removed. We don't retain your data after deletion." },
+  { q: "Is our data private?", a: "Yes. Your individual answers are never shown to your partner before they submit — and they're never shared with third parties, sold, or used for advertising. Alignment scores are only visible to you and your partner. See our Privacy Policy for full details." },
+  { q: "Can we use it long-term, or is it just for setup?", a: "Both. The 16 categories give you a foundation — most couples complete them over 4–8 weeks. After that, FUSE Align continues with periodic check-ins, compatibility trend tracking, and new categories as they're developed. It grows with your relationship." },
+  { q: "What's the difference between Premium and FUSE+?", a: "Premium gives you everything you need to go deep — all 16 categories, full alignment scores, the conversation library, and the capstone question. FUSE+ adds AI-powered coaching during difficult conversations, shared growth goal tracking, and early access to new categories. If you're not sure, start with Premium." },
+  { q: "Does FUSE Align support polyamorous relationships?", a: "Yes. FUSE Align is built around connection and compatibility — not a specific relationship structure. In Settings, you can enable Relationship Network Mode, which lets you connect and align with multiple partners independently. Each pairing has its own separate alignment scores, category responses, and conversation threads. Your answers with one partner are never visible to another." }
+];
+
+let faqOpen = null;
+function renderFAQ() {
+  const el = document.getElementById('faq-list');
+  if (!el) return;
+  el.innerHTML = FAQS.map((f, i) => `
+    <div style="border-bottom:1px solid rgba(255,255,255,.08);">
+      <button onclick="toggleFAQ(${i})" style="width:100%;background:none;border:none;cursor:pointer;padding:18px 0;display:flex;align-items:center;justify-content:space-between;gap:16px;text-align:left;">
+        <span style="font-family:var(--fb);font-size:15px;font-weight:400;color:rgba(255,255,255,.88);line-height:1.4;">${f.q}</span>
+        <span id="faq-icon-${i}" style="font-family:var(--fm);font-size:16px;color:var(--gold);flex-shrink:0;transition:transform .2s;">+</span>
+      </button>
+      <div id="faq-ans-${i}" style="display:none;padding:0 0 18px;">
+        <div style="font-size:13px;color:rgba(255,255,255,.55);line-height:1.75;">${f.a}</div>
+      </div>
+    </div>`).join('');
+}
+function toggleFAQ(i) {
+  const ans = document.getElementById('faq-ans-' + i);
+  const icon = document.getElementById('faq-icon-' + i);
+  const isOpen = ans.style.display !== 'none';
+  // close all
+  FAQS.forEach((_, j) => {
+    const a = document.getElementById('faq-ans-' + j);
+    const ic = document.getElementById('faq-icon-' + j);
+    if (a) a.style.display = 'none';
+    if (ic) ic.textContent = '+';
+  });
+  if (!isOpen) {
+    ans.style.display = 'block';
+    icon.textContent = '−';
+  }
+}
+
+function openPF(which) {
+  const id = 'pf-' + which;
+  document.getElementById(id).classList.add('open');
+  if (which === 'faq') {
+    const el = document.getElementById('faq-sheet-list');
+    if (el && el.innerHTML === '') {
+      el.style.padding = '20px 24px 32px';
+      el.innerHTML = FAQS.map((f, i) => `
+        <div style="border-bottom:1px solid rgba(255,255,255,.08);">
+          <button onclick="toggleFAQ(${i})" style="width:100%;background:none;border:none;cursor:pointer;padding:16px 0;display:flex;align-items:center;justify-content:space-between;gap:16px;text-align:left;">
+            <span style="font-family:var(--fb);font-size:14px;font-weight:400;color:rgba(255,255,255,.88);line-height:1.4;">${f.q}</span>
+            <span id="faq-icon-${i}" style="font-size:18px;color:var(--gold);flex-shrink:0;">+</span>
+          </button>
+          <div id="faq-ans-${i}" style="display:none;padding:0 0 16px;">
+            <div style="font-size:12px;color:rgba(255,255,255,.5);line-height:1.75;">${f.a}</div>
+          </div>
+        </div>`).join('');
+    }
+  }
+}
+function closePF(e, id) {
+  if (!e || e.target === document.getElementById(id)) {
+    document.getElementById(id).classList.remove('open');
+  }
+}
+
+let polyOn = false;
+function togglePoly(el) {
+  polyOn = !polyOn;
+  const knob = document.getElementById('poly-knob');
+  const status = document.getElementById('poly-status');
+  el.style.background = polyOn ? 'var(--gold)' : 'var(--rule)';
+  knob.style.transform = polyOn ? 'translateX(20px)' : 'translateX(0)';
+  status.textContent = polyOn ? 'On — Relationship Network Mode active' : 'Off — Standard two-partner mode';
+  status.style.color = polyOn ? 'var(--gold)' : 'var(--soft)';
+  showToast(polyOn ? 'Relationship Network Mode enabled' : 'Relationship Network Mode disabled');
+}
+
+function showAdjustToast() {
+  showToast('Adjusting answers will re-lock this category until Alex re-submits too');
+  setTimeout(() => nav('s-category'), 1800);
+}
+
 function showToast(msg) {
   const t = document.getElementById('toast');
   t.textContent = msg;
   t.classList.add('show');
   setTimeout(() => t.classList.remove('show'), 2600);
 }
+renderFAQ();
 </script>
 </body>
 </html>
