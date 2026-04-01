@@ -162,7 +162,7 @@ body { background: var(--white); color: var(--ink); font-family: var(--fs); min-
 .sf-sub { font-size: 12px; font-weight: 400; color: rgba(255,255,255,.94); margin-top: 8px; line-height: 1.6; }
 .sf-bar-wrap { margin-top: 20px; }
 .sf-bar { height: 1px; background: rgba(255,255,255,.40); }
-.sf-fill { height: 100%; width: 72%; background: linear-gradient(90deg, var(--gold), rgba(184,150,90,.4)); }
+.sf-fill { height: 100%; width: 80%; background: linear-gradient(90deg, var(--gold), rgba(184,150,90,.4)); }
 .sf-dims { display: flex; justify-content: space-between; margin-top: 8px; }
 .sf-dim { font-family: var(--fm); font-size: 7px; color: rgba(255,255,255,.94); letter-spacing: 1px; text-transform: uppercase; }
 
@@ -588,18 +588,31 @@ body { background: var(--white); color: var(--ink); font-family: var(--fs); min-
       </div>
     </div>
     <div class="score-feature">
-      <div class="sf-bg">72</div>
+      <div class="sf-bg">80</div>
       <div class="sf-label">Overall Alignment</div>
-      <div class="sf-score">72<sup>%</sup></div>
-      <div class="sf-sub">Strong foundation. Four of sixteen categories complete. Real areas to explore together.</div>
+      <div class="sf-score">80<sup>%</sup></div>
+      <div class="sf-sub">Strong foundation. Two of sixteen categories complete. Real areas to explore together.</div>
       <div class="sf-bar-wrap">
-        <div class="sf-bar"><div class="sf-fill"></div></div>
-        <div class="sf-dims">
+        <div class="sf-bar" style="position:relative;">
+          <div class="sf-fill"></div>
+          <!-- Position marker at 72% -->
+          <div style="position:absolute;top:-5px;left:80%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:2px;">
+            <div style="width:2px;height:12px;background:var(--gold);border-radius:1px;"></div>
+            <div style="font-family:var(--fm);font-size:7px;color:var(--gold);letter-spacing:1px;white-space:nowrap;">YOU ARE HERE</div>
+          </div>
+        </div>
+        <div class="sf-dims" style="margin-top:18px;">
           <span class="sf-dim">Critical</span>
           <span class="sf-dim">Growing</span>
           <span class="sf-dim">Aligned</span>
-          <span class="sf-dim">Deep</span>
+          <span class="sf-dim">Deeply Aligned</span>
         </div>
+      </div>
+      <!-- Next step guidance -->
+      <div style="margin-top:20px;padding:14px 16px;background:rgba(255,255,255,.05);border-left:2px solid var(--gold);border-radius:0 6px 6px 0;">
+        <div style="font-family:var(--fm);font-size:8px;letter-spacing:2px;color:var(--gold);text-transform:uppercase;margin-bottom:6px;">What to do next</div>
+        <div style="font-size:13px;color:rgba(255,255,255,.75);line-height:1.6;">You've completed <strong style="color:#fff;">2 of 16 categories</strong>. Before moving on, spend 10 minutes discussing your Money results — 68% means real differences worth exploring. Then start Category 3 together.</div>
+        <button onclick="openCat('conflict')" style="margin-top:12px;background:none;border:1px solid var(--gold);color:var(--gold);font-family:var(--fm);font-size:9px;letter-spacing:2px;padding:8px 16px;cursor:pointer;text-transform:uppercase;border-radius:2px;">Start Category 3 →</button>
       </div>
     </div>
     <div class="sh"><div class="sh-rule"></div><div class="sh-text">MVP Launch Categories</div></div>
@@ -1181,7 +1194,7 @@ body { background: var(--white); color: var(--ink); font-family: var(--fs); min-
         <div class="bp-bar"><div class="bp-fill"></div></div>
         <div class="bp-pct">25%</div>
       </div>
-      <div class="bp-sub">Week 1 of 4 complete · Alignment score: 68% → 72%</div>
+      <div class="bp-sub">Week 1 of 4 complete · Alignment score: 68% → 80%</div>
     </div>
     <div class="not-therapy" style="margin-top:16px;">
       <div class="nt-icon">ℹ</div>
@@ -1336,6 +1349,7 @@ function selFo(v) {
 function selStage(key, row) {
   document.querySelectorAll('.stage-row').forEach(r => r.classList.remove('sel'));
   row.classList.add('sel');
+  setTimeout(() => nav('s-home'), 400);
 }
 
 function completeStep(el) {
