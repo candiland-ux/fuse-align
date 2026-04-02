@@ -318,7 +318,7 @@ body{background:var(--white);color:var(--ink);font-family:var(--fs);min-height:1
 <div class="sp-ft">
   <button class="btn btn-cream" onclick="nav('s-onboard')">Create an Account</button>
   <button class="btn btn-naked" onclick="nav('s-signin')">Sign In</button>
-  <div class="sp-meta">Free to start &middot; No card required</div>
+  <div class="sp-meta">5 categories free &middot; Matched to your relationship stage</div>
   <div style="display:flex;gap:10px;margin-top:4px;">
     <button class="pf-gb" onclick="openPF('pricing')">Pricing</button>
     <button class="pf-gb" onclick="openPF('faq')">FAQ</button>
@@ -434,6 +434,12 @@ body{background:var(--white);color:var(--ink);font-family:var(--fs);min-height:1
           <input class="fi" type="text" placeholder="FUSE-A3X9" style="margin:0;text-transform:uppercase;letter-spacing:2px;">
         </div>
       </div>
+      <div id="path-solo" onclick="selectPath('solo')" style="border:1px solid var(--rule);padding:16px;cursor:pointer;transition:all .2s;background:var(--white);">
+        <div style="display:flex;align-items:center;gap:12px;">
+          <div id="path-solo-radio" style="width:16px;height:16px;border-radius:50%;border:1px solid var(--rule);flex-shrink:0;transition:all .15s;"></div>
+          <div><div style="font-family:var(--fb);font-size:15px;font-weight:400;color:var(--ink);">No partner yet</div><div style="font-size:11px;color:var(--soft);margin-top:2px;">Start answering on your own &mdash; connect a partner anytime</div></div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -517,6 +523,34 @@ body{background:var(--white);color:var(--ink);font-family:var(--fs);min-height:1
 </div>
 </div>
 
+<!-- STAGE (NEW PAIRING) -->
+<div id="s-stage-new" class="screen" style="background:var(--cream);">
+<div class="tb">
+  <button class="bk" onclick="nav('s-session')">&larr; Back</button>
+  <div class="tb-lb">New Alignment</div>
+  <div></div>
+</div>
+<div style="background:var(--off);padding:40px 24px 28px;border-bottom:1px solid var(--rule);position:relative;overflow:hidden;">
+  <div style="position:absolute;right:-20px;top:50%;transform:translateY(-50%);font-family:var(--fb);font-size:100px;font-weight:300;color:rgba(0,0,0,.04);pointer-events:none;">STAGE</div>
+  <div style="font-family:var(--fm);font-size:8px;letter-spacing:4px;color:var(--soft);text-transform:uppercase;margin-bottom:8px;">Where are you with <span id="new-pairing-partner-name">this person</span>?</div>
+  <div style="font-family:var(--fb);font-size:28px;font-weight:400;color:var(--ink);line-height:1.2;margin-bottom:6px;">Set your<br><em style="color:var(--soft);font-weight:300;">relationship stage.</em></div>
+  <div style="font-size:13px;color:var(--soft);line-height:1.6;">Your free categories are matched to where you actually are. You can update this anytime in Settings.</div>
+</div>
+<div class="scroll" style="background:var(--cream);">
+  <div class="sr" onclick="selStageNew('new',this)"><div class="sr-n">01</div><div class="sr-i"><div class="sr-nm">New Relationship</div><div class="sr-sb">Together 0&ndash;6 months &middot; Still in discovery mode</div></div><div class="sr-ar">&rarr;</div></div>
+  <div class="sr" onclick="selStageNew('committed',this)"><div class="sr-n">02</div><div class="sr-i"><div class="sr-nm">Committed / Moving In</div><div class="sr-sb">6&ndash;24 months &middot; Building shared life</div></div><div class="sr-ar">&rarr;</div></div>
+  <div class="sr" onclick="selStageNew('engaged',this)"><div class="sr-n">03</div><div class="sr-i"><div class="sr-nm">Engaged / Pre-Marital</div><div class="sr-sb">Getting married &middot; Foundation-building mode</div></div><div class="sr-ar">&rarr;</div></div>
+  <div class="sr" onclick="selStageNew('married',this)"><div class="sr-n">04</div><div class="sr-i"><div class="sr-nm">Married / Long-Term</div><div class="sr-sb">Established partnership &middot; Focus on evolution</div></div><div class="sr-ar">&rarr;</div></div>
+  <div class="sr" onclick="selStageNew('parents',this)"><div class="sr-n">05</div><div class="sr-i"><div class="sr-nm">Parents</div><div class="sr-sb">Raising children together &middot; Co-parenting alignment</div></div><div class="sr-ar">&rarr;</div></div>
+  <div class="sr" onclick="selStageNew('empty',this)"><div class="sr-n">06</div><div class="sr-i"><div class="sr-nm">Empty Nest / Later Life</div><div class="sr-sb">Rediscovering each other &middot; New chapter</div></div><div class="sr-ar">&rarr;</div></div>
+  <div style="height:16px;"></div>
+</div>
+<div class="ab">
+  <button class="btn btn-ghost" onclick="nav('s-session')">Back</button>
+  <button class="btn btn-ink" onclick="selStageNew(currentStage||'new',null)">Continue &rarr;</button>
+</div>
+</div>
+
 <!-- WELCOME -->
 <div id="s-welcome" class="screen" style="background:var(--ink);">
 <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 28px;text-align:center;position:relative;overflow:hidden;">
@@ -582,7 +616,7 @@ body{background:var(--white);color:var(--ink);font-family:var(--fs);min-height:1
     </div>
     <div id="np-opts" style="display:none;margin-top:16px;padding-top:16px;border-top:1px solid rgba(255,255,255,.1);">
       <div style="font-size:12px;color:rgba(255,255,255,.4);margin-bottom:12px;">How would you like to connect?</div>
-      <div onclick="showToast('Invite link copied');toggleNewPartner()" style="padding:14px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);margin-bottom:8px;cursor:pointer;display:flex;align-items:center;gap:12px;" onmouseover="this.style.borderColor='rgba(196,135,90,.4)'" onmouseout="this.style.borderColor='rgba(255,255,255,.1)'">
+      <div onclick="sendInviteAndContinue()" style="padding:14px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);margin-bottom:8px;cursor:pointer;display:flex;align-items:center;gap:12px;" onmouseover="this.style.borderColor='rgba(196,135,90,.4)'" onmouseout="this.style.borderColor='rgba(255,255,255,.1)'">
         <span style="font-size:18px;">&#128279;</span>
         <div style="flex:1;"><div style="font-size:13px;color:rgba(255,255,255,.88);">I&rsquo;ll send them a link</div><div style="font-size:11px;color:rgba(255,255,255,.4);margin-top:2px;">Copy your invite link &mdash; they tap it to connect</div></div>
         <span style="font-size:11px;color:rgba(255,255,255,.3);">&rarr;</span>
@@ -679,19 +713,7 @@ body{background:var(--white);color:var(--ink);font-family:var(--fs);min-height:1
         <div style="font-size:12px;color:var(--soft);line-height:1.5;" id="ahead-tx">Your answer for Conflict &amp; Emotional Regulation is sealed. The reveal opens the moment Alex submits.</div>
       </div>
     </div>
-    <div class="sh"><div class="sh-rule"></div><div class="sh-text">MVP Launch Categories</div></div>
-    <div class="ct">
-      <div class="cr" onclick="openCat('money')"><div class="cr-nu">01</div><div class="cr-ic">&#128176;</div><div class="cr-in"><div class="cr-nm">Money &amp; Financial Philosophy</div><div class="cr-sb">Debt, risk, transparency, spending values</div></div><div class="cr-ri"><div class="csp st-d">Complete</div><div class="cr-sc">68%</div></div></div>
-      <div class="cr" onclick="openCat('children')"><div class="cr-nu">02</div><div class="cr-ic">&#128118;</div><div class="cr-in"><div class="cr-nm">Children &amp; Family</div><div class="cr-sb">Kids, timing, parenting philosophy</div></div><div class="cr-ri"><div class="csp st-d">Complete</div><div class="cr-sc">91%</div></div></div>
-      <div class="cr" onclick="openCat('conflict')"><div class="cr-nu">03</div><div class="cr-ic">&#127744;</div><div class="cr-in"><div class="cr-nm">Conflict &amp; Emotional Regulation</div><div class="cr-sb">How you fight, repair, and recover</div></div><div class="cr-ri"><div class="csp st-w">Your answer sealed &middot; waiting on Alex</div></div></div>
-      <div class="cr" onclick="openCat('trust')"><div class="cr-nu">04</div><div class="cr-ic">&#128274;</div><div class="cr-in"><div class="cr-nm">Trust &amp; Digital Privacy</div><div class="cr-sb">Phone access, social media, transparency</div></div><div class="cr-ri"><div class="csp st-n">Begin &rarr;</div></div></div>
-      <div class="cr" onclick="openCat('structure')"><div class="cr-nu">05</div><div class="cr-ic">&#128279;</div><div class="cr-in"><div class="cr-nm">Relationship Structure &amp; Boundaries</div><div class="cr-sb">Exclusivity, commitment, how you define your relationship</div></div><div class="cr-ri"><div class="csp st-n">Begin &rarr;</div></div></div>
-    </div>
-    <div class="sh"><div class="sh-rule"></div><div class="sh-text">Month 3 Release</div></div>
-    <div class="ct">
-      <div class="cr lk" onclick="nav('s-paywall')"><div class="cr-nu">06</div><div class="cr-ic">&#128188;</div><div class="cr-in"><div class="cr-nm">Career &amp; Ambition</div><div class="cr-sb">Unlock with Premium</div></div><div class="cr-ri"><div class="csp st-l">Upgrade</div></div></div>
-      <div class="cr lk" onclick="nav('s-paywall')"><div class="cr-nu">07</div><div class="cr-ic">&#127961;</div><div class="cr-in"><div class="cr-nm">Location &amp; Lifestyle</div><div class="cr-sb">Unlock with Premium</div></div><div class="cr-ri"><div class="csp st-l">Upgrade</div></div></div>
-    </div>
+    <div id="home-cat-list"></div>
     <div style="height:16px;"></div>
   </div>
 </div>
@@ -741,7 +763,7 @@ body{background:var(--white);color:var(--ink);font-family:var(--fs);min-height:1
     <div class="pr-lb">Priority rank across all 16 categories</div>
     <div class="pr-rw">
       <div class="pr-tx">Where does this rank in importance to you?</div>
-      <select class="pr-se"><option>1</option><option>2</option><option selected>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option><option>16</option></select>
+      <select class="pr-se" id="priority-sel"></select>
     </div>
   </div>
 </div>
@@ -964,10 +986,10 @@ body{background:var(--white);color:var(--ink);font-family:var(--fs);min-height:1
   <div style="font-family:var(--fm);font-size:9px;letter-spacing:4px;color:rgba(196,135,90,.7);text-transform:uppercase;margin-bottom:8px;">Unlock More</div>
   <div style="font-family:var(--fb);font-size:28px;font-weight:300;color:var(--white);margin-bottom:6px;">Go deeper<br><em style="color:rgba(255,255,255,.6);">together.</em></div>
   <div style="width:32px;height:1px;background:var(--gold);margin:20px 0;opacity:.6;"></div>
-  <div class="pt"><div class="pt-top"><div><div class="pt-nm">Free Tier</div><div class="pt-tg" style="color:var(--soft);">Always free</div></div><div class="pt-pr">$0</div></div><div class="pt-ds">4 of 16 categories &middot; Basic alignment scores &middot; Limited conversation prompts</div></div>
+  <div class="pt"><div class="pt-top"><div><div class="pt-nm">Free Tier</div><div class="pt-tg" style="color:var(--soft);">Always free</div></div><div class="pt-pr">$0</div></div><div class="pt-ds">5 categories matched to your stage &middot; Full alignment scores for those 5 &middot; Partner invite included</div></div>
   <div class="pt feat"><div style="font-family:var(--fm);font-size:7px;letter-spacing:2px;color:var(--gold);text-transform:uppercase;margin-bottom:8px;">&#9733; Most Popular</div><div class="pt-top"><div><div class="pt-nm">FUSE Premium</div><div class="pt-tg" style="color:var(--gold);">Best value</div></div><div class="pt-pr">$9.99<span>/mo</span><div style="font-size:10px;color:var(--soft);margin-top:2px;">or $99/yr</div></div></div><div class="pt-ds">All 16 categories &middot; Full alignment scores &middot; Guided conversation library &middot; Check-ins &middot; Relationship Evolution Dashboard &middot; Therapist export &middot; Capstone question</div></div>
   <div class="pt"><div class="pt-top"><div><div class="pt-nm">FUSE Align+</div><div class="pt-tg" style="color:var(--soft);">Everything + AI coaching</div></div><div class="pt-pr">$14.99<span>/mo</span><div style="font-size:10px;color:var(--soft);margin-top:2px;">or $149/yr</div></div></div><div class="pt-ds">Everything in Premium &middot; AI conversation coaching &middot; Compatibility trend analysis &middot; Shared growth goals &middot; Priority access to new categories</div></div>
-  <button class="btn btn-cream" style="width:100%;margin-top:20px;padding:18px;font-size:10px;letter-spacing:4px;" onclick="showToast('Upgrade flow coming soon')">Upgrade to Premium &rarr;</button>
+  <button class="btn btn-cream" style="width:100%;margin-top:20px;padding:18px;font-size:10px;letter-spacing:4px;" onclick="unlockPremium()">Upgrade to Premium &rarr;</button>
   <div style="height:16px;"></div>
 </div>
 </div>
@@ -1083,6 +1105,26 @@ body{background:var(--white);color:var(--ink);font-family:var(--fs);min-height:1
     </div>
   </div>
   <div style="padding:8px 24px 0;">
+    <div style="font-family:var(--fm);font-size:8px;letter-spacing:3px;color:var(--soft);text-transform:uppercase;margin-bottom:12px;">Relationship Stage</div>
+    <div style="padding:14px 16px;background:var(--off);border:1px solid var(--rule);margin-bottom:10px;">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
+        <div>
+          <div style="font-size:14px;font-weight:500;color:var(--ink);" id="settings-stage-label">Not set</div>
+          <div style="font-size:11px;color:var(--soft);margin-top:2px;">Your free 5 categories are matched to this stage</div>
+        </div>
+        <button onclick="toggleStageSelector()" style="background:none;border:1px solid var(--rule);font-family:var(--fm);font-size:8px;letter-spacing:2px;text-transform:uppercase;padding:8px 12px;cursor:pointer;color:var(--soft);">Change</button>
+      </div>
+      <div id="stage-selector-block" style="display:none;border-top:1px solid var(--rule);padding-top:12px;display:flex;flex-direction:column;gap:6px;">
+        <div class="set-sr" data-stage="new" onclick="setStage('new',true)" style="padding:12px 14px;border:1px solid var(--rule);background:var(--white);cursor:pointer;transition:all .2s;"><div style="font-size:13px;font-weight:500;color:var(--ink);">New Relationship</div><div style="font-size:11px;color:var(--soft);margin-top:2px;">Unlocks: Money, Intimacy, Growth, Social Life, Location</div></div>
+        <div class="set-sr" data-stage="committed" onclick="setStage('committed',true)" style="padding:12px 14px;border:1px solid var(--rule);background:var(--white);cursor:pointer;transition:all .2s;"><div style="font-size:13px;font-weight:500;color:var(--ink);">Committed / Moving In</div><div style="font-size:11px;color:var(--soft);margin-top:2px;">Unlocks: Money, Children, Structure, Home, Career</div></div>
+        <div class="set-sr" data-stage="engaged" onclick="setStage('engaged',true)" style="padding:12px 14px;border:1px solid var(--rule);background:var(--white);cursor:pointer;transition:all .2s;"><div style="font-size:13px;font-weight:500;color:var(--ink);">Engaged / Pre-Marital</div><div style="font-size:11px;color:var(--soft);margin-top:2px;">Unlocks: Money, Children, Family &amp; In-Laws, Financial Future, Spirituality</div></div>
+        <div class="set-sr" data-stage="married" onclick="setStage('married',true)" style="padding:12px 14px;border:1px solid var(--rule);background:var(--white);cursor:pointer;transition:all .2s;"><div style="font-size:13px;font-weight:500;color:var(--ink);">Married / Long-Term</div><div style="font-size:11px;color:var(--soft);margin-top:2px;">Unlocks: Conflict, Intimacy, Growth, Legacy, Health</div></div>
+        <div class="set-sr" data-stage="parents" onclick="setStage('parents',true)" style="padding:12px 14px;border:1px solid var(--rule);background:var(--white);cursor:pointer;transition:all .2s;"><div style="font-size:13px;font-weight:500;color:var(--ink);">Parents</div><div style="font-size:11px;color:var(--soft);margin-top:2px;">Unlocks: Children, Family &amp; In-Laws, Home, Career, Health</div></div>
+        <div class="set-sr" data-stage="empty" onclick="setStage('empty',true)" style="padding:12px 14px;border:1px solid var(--rule);background:var(--white);cursor:pointer;transition:all .2s;"><div style="font-size:13px;font-weight:500;color:var(--ink);">Empty Nest / Later Life</div><div style="font-size:11px;color:var(--soft);margin-top:2px;">Unlocks: Intimacy, Legacy, Growth, Financial Future, Health</div></div>
+      </div>
+    </div>
+  </div>
+  <div style="padding:8px 24px 0;">
     <div style="font-family:var(--fm);font-size:8px;letter-spacing:3px;color:var(--soft);text-transform:uppercase;margin-bottom:12px;">Partner &amp; Connection</div>
     <div style="padding:16px;background:var(--off);border:1px solid var(--rule);margin-bottom:10px;">
       <div style="font-family:var(--fm);font-size:7px;letter-spacing:2px;color:var(--soft);text-transform:uppercase;margin-bottom:10px;">Connected Partner</div>
@@ -1158,8 +1200,8 @@ body{background:var(--white);color:var(--ink);font-family:var(--fs);min-height:1
     <div class="pfh"></div>
     <div class="pfhd"><div class="pfht">Simple Pricing</div><button class="pfcl" onclick="closePF(null,'pf-pricing')">&times;</button></div>
     <div class="pfl">
-      <div style="font-size:12px;color:var(--soft);margin-bottom:16px;line-height:1.6;">Start free. Unlock more when you&rsquo;re ready.</div>
-      <div class="pt"><div class="pt-top"><div><div class="pt-nm">Free</div><div class="pt-tg" style="color:var(--soft);">Always free</div></div><div class="pt-pr">$0</div></div><div class="pt-ds">4 of 16 categories &middot; Basic alignment scores &middot; Limited conversation prompts</div></div>
+      <div style="font-size:12px;color:var(--soft);margin-bottom:16px;line-height:1.6;">5 categories free, matched to your relationship stage. Unlock all 16 anytime &mdash; no card required to start.</div>
+      <div class="pt"><div class="pt-top"><div><div class="pt-nm">Free</div><div class="pt-tg" style="color:var(--soft);">Always free</div></div><div class="pt-pr">$0</div></div><div class="pt-ds">5 categories matched to your stage &middot; Full alignment scores for those 5 &middot; Partner invite included</div></div>
       <div class="pt"><div class="pt-top"><div><div class="pt-nm">Category Unlocks</div><div class="pt-tg" style="color:var(--soft);">&agrave; la carte</div></div><div class="pt-pr">$2.99<span>&ndash;$4.99 each</span></div></div><div class="pt-ds">Unlock individual categories one at a time. Each unlock improves your alignment score.</div></div>
       <div class="pt feat"><div style="font-family:var(--fm);font-size:7px;letter-spacing:2px;color:var(--gold);text-transform:uppercase;margin-bottom:8px;">&#9733; Most Popular</div><div class="pt-top"><div><div class="pt-nm">FUSE Premium</div><div class="pt-tg" style="color:var(--gold);">Best value</div></div><div class="pt-pr">$9.99<span>/mo</span><div style="font-size:10px;color:var(--soft);margin-top:2px;">or $99/yr</div></div></div><div class="pt-ds">All 16 categories &middot; Full alignment scores &middot; Guided conversation library &middot; Check-ins &middot; Evolution Dashboard &middot; Therapist export &middot; Capstone question</div></div>
       <div class="pt"><div class="pt-top"><div><div class="pt-nm">FUSE Align+</div><div class="pt-tg" style="color:var(--soft);">Everything + AI coaching</div></div><div class="pt-pr">$14.99<span>/mo</span><div style="font-size:10px;color:var(--soft);margin-top:2px;">or $149/yr</div></div></div><div class="pt-ds">Everything in Premium &middot; AI conversation coaching &middot; Compatibility trend analysis &middot; Shared growth goals</div></div>
@@ -1178,14 +1220,43 @@ body{background:var(--white);color:var(--ink);font-family:var(--fs);min-height:1
 </div>
 
 <div class="toast" id="toast"></div>
-<script>
+<script data-cfasync="false">
 // ── DATA ──────────────────────────────────────────────────────────────
+// ── ACCESS TIERS ─────────────────────────────────────────────────────────
+const allCats = ['money','children','conflict','trust','structure',
+                 'career','location','intimacy','growth','health',
+                 'legacy','spirituality','family-ext','finances2','home','social'];
+
+const stageUnlocks = {
+  new:       ['money','intimacy','growth','social','location'],
+  committed: ['money','children','structure','home','career'],
+  engaged:   ['money','children','family-ext','finances2','spirituality'],
+  married:   ['conflict','intimacy','growth','legacy','health'],
+  parents:   ['children','family-ext','home','career','health'],
+  empty:     ['intimacy','legacy','growth','finances2','health']
+};
+
+let currentStage = null;
+let unlockedCats = ['money','children','conflict','trust','structure']; // default until stage set
+let lockedCats   = allCats.filter(k => !unlockedCats.includes(k));
+
 const cats = {
   money:    {nu:'Category 01',ic:'💰',nm:'Money & Financial Philosophy',sb:'How you think about money, debt, risk appetite, and financial transparency.',q:'"What role does money play in your sense of security — and how much financial transparency do you need from a partner?"'},
   children: {nu:'Category 02',ic:'👶',nm:'Children & Family',sb:'Whether you want children, timing, and philosophy of how you would raise them.',q:'"Do you want children? When? And what kind of parent do you imagine being?"'},
   conflict: {nu:'Category 03',ic:'🌀',nm:'Conflict & Emotional Regulation',sb:'How you fight, how you repair, and how you recover from rupture as a couple.',q:'"In the middle of a real fight, what do you need from your partner — and what do you tend to do that makes things worse?"'},
   trust:    {nu:'Category 04',ic:'🔒',nm:'Trust & Digital Privacy',sb:'Phone access, social media boundaries, and what loyalty looks like in practice.',q:'"What does loyalty look like for you in practice — and where are your personal limits around phones, social media, and privacy?"'},
-  structure:{nu:'Category 05',ic:'🔗',nm:'Relationship Structure & Boundaries',sb:'Exclusivity, commitment, and whether the structure of your relationship is something you discuss.',q:'"What does commitment mean to you specifically — and is the structure of your relationship something you see as fixed, or something two people define together?"'}
+  structure:  {nu:'Category 05',ic:'🔗',nm:'Relationship Structure & Boundaries',sb:'Exclusivity, commitment, and whether the structure of your relationship is something you discuss.',q:'"What does commitment mean to you specifically — and is the structure of your relationship something you see as fixed, or something two people define together?"'},
+  career:     {nu:'Category 06',ic:'💼',nm:'Career & Ambition',sb:'How you each think about ambition, sacrifice, and supporting each other\'s professional goals.',q:'"What does success look like for you professionally — and what are you willing to sacrifice for it, and not willing to sacrifice?"'},
+  location:   {nu:'Category 07',ic:'🏙',nm:'Location & Lifestyle',sb:'Where you want to live, how you want to live, and whether those visions are compatible.',q:'"Where do you see yourself living in five years — and how non-negotiable is that for you?"'},
+  intimacy:   {nu:'Category 08',ic:'❤️',nm:'Intimacy & Physical Connection',sb:'Physical and emotional intimacy — how you express it, how often you need it, and what makes you feel desired.',q:'"How central is physical intimacy to feeling loved — and how do you want to be approached when your needs differ from your partner\'s?"'},
+  growth:     {nu:'Category 09',ic:'🌱',nm:'Personal Growth & Individuality',sb:'How much independence, self-development, and individual identity you each need within a partnership.',q:'"How much of your individual self do you expect to maintain inside a committed relationship — and what does that look like in practice?"'},
+  health:     {nu:'Category 10',ic:'🧠',nm:'Health & Emotional Wellbeing',sb:'Mental and physical health, therapy, substances, and how you show up for each other during hard times.',q:'"What does supporting a partner through a mental health struggle look like to you — and what would you need from them in return?"'},
+  legacy:     {nu:'Category 11',ic:'🏛',nm:'Legacy & Long-Term Vision',sb:'How you want to be remembered, what you want to build together, and whether your five-year visions align.',q:'"What do you want to have built together in ten years — and how do you want to be living?"'},
+  spirituality:{nu:'Category 12',ic:'✨',nm:'Spirituality & Meaning',sb:'Religion, spirituality, rituals, and how you make meaning — individually and together.',q:'"What role does spirituality, religion, or a sense of higher purpose play in your daily life — and how important is it that your partner shares that?"'},
+  'family-ext':{nu:'Category 13',ic:'👨‍👩‍👦',nm:'Extended Family & In-Laws',sb:'Family of origin dynamics, holidays, boundaries, and how much family influences your relationship.',q:'"How involved do you expect your families of origin to be in your life as a couple — and where would you draw a boundary if needed?"'},
+  finances2:  {nu:'Category 14',ic:'📈',nm:'Financial Future & Wealth Building',sb:'Investment philosophy, retirement, financial goals, and how you build wealth as a unit.',q:'"What does financial security look like for you by retirement — and how do you think couples should make big financial decisions together?"'},
+  home:       {nu:'Category 15',ic:'🏠',nm:'Home & Domestic Life',sb:'Household responsibilities, cleanliness standards, hosting, and how you build a shared physical space.',q:'"What does a home feel like to you at its best — and what domestic responsibilities feel non-negotiable for you to share?"'},
+  social:     {nu:'Category 16',ic:'🤝',nm:'Social Life & Friendship',sb:'Friendships, socializing, alone time, and how you navigate your social lives as a couple.',q:'"How much of your social life do you expect to share with your partner — and how do you protect time for individual friendships?"'}
 };
 
 const completedCats = {
@@ -1214,7 +1285,7 @@ const FAQS = [
 // ── STATE ──────────────────────────────────────────────────────────────
 let curDomain = 'money';
 let pendingInviteFrom = null;
-let currentPartner = 'Alex';
+let currentPartner = null;
 let isNewUser = false;
 let polyOn = false;
 let cdInterval = null;
@@ -1287,27 +1358,27 @@ function handleInviteCode() {
 
 // ── ONBOARDING ──────────────────────────────────────────────────────────
 function selectPath(path) {
-  const iEl = document.getElementById('path-invite');
-  const dEl = document.getElementById('path-invited');
-  const iRad = document.getElementById('path-invite-radio');
-  const dRad = document.getElementById('path-invited-radio');
+  const rads = {
+    invite:  document.getElementById('path-invite-radio'),
+    invited: document.getElementById('path-invited-radio'),
+    solo:    document.getElementById('path-solo-radio')
+  };
+  const tiles = {
+    invite:  document.getElementById('path-invite'),
+    invited: document.getElementById('path-invited'),
+    solo:    document.getElementById('path-solo')
+  };
+  // Reset all
+  Object.values(tiles).forEach(el => { if (el) { el.style.border = '1px solid var(--rule)'; el.style.background = 'var(--white)'; } });
+  Object.values(rads).forEach(el => { if (el) el.style.cssText = 'width:16px;height:16px;border-radius:50%;flex-shrink:0;border:1px solid var(--rule);'; });
+  // Activate selected
+  if (tiles[path]) { tiles[path].style.border = '1px solid var(--gold)'; tiles[path].style.background = 'rgba(196,135,90,.05)'; }
+  if (rads[path]) rads[path].style.cssText = 'width:16px;height:16px;border-radius:50%;flex-shrink:0;background:var(--gold);border:1px solid var(--gold);';
+  // Show / hide sub-blocks
   const codeBlk = document.getElementById('invite-code-input-block');
   const linkBlk = document.getElementById('invite-link-block');
-  if (path === 'invite') {
-    iEl.style.border = '1px solid var(--gold)'; iEl.style.background = 'rgba(196,135,90,.05)';
-    dEl.style.border = '1px solid var(--rule)'; dEl.style.background = 'var(--white)';
-    iRad.style.cssText = 'width:16px;height:16px;border-radius:50%;flex-shrink:0;background:var(--gold);border:1px solid var(--gold);';
-    dRad.style.cssText = 'width:16px;height:16px;border-radius:50%;flex-shrink:0;border:1px solid var(--rule);';
-    if (codeBlk) codeBlk.style.display = 'none';
-    if (linkBlk) linkBlk.style.display = 'block';
-  } else {
-    dEl.style.border = '1px solid var(--gold)'; dEl.style.background = 'rgba(196,135,90,.05)';
-    iEl.style.border = '1px solid var(--rule)'; iEl.style.background = 'var(--white)';
-    dRad.style.cssText = 'width:16px;height:16px;border-radius:50%;flex-shrink:0;background:var(--gold);border:1px solid var(--gold);';
-    iRad.style.cssText = 'width:16px;height:16px;border-radius:50%;flex-shrink:0;border:1px solid var(--rule);';
-    if (codeBlk) codeBlk.style.display = 'block';
-    if (linkBlk) linkBlk.style.display = 'none';
-  }
+  if (codeBlk) codeBlk.style.display = path === 'invited' ? 'block' : 'none';
+  if (linkBlk) linkBlk.style.display = path === 'invite' ? 'block' : 'none';
 }
 
 // ── EMAIL VERIFY ─────────────────────────────────────────────────────────
@@ -1334,15 +1405,53 @@ function verifyCode() {
 }
 
 // ── STAGE ────────────────────────────────────────────────────────────────
+function setStage(key, fromSettings) {
+  currentStage = key;
+  const free = stageUnlocks[key] || unlockedCats;
+  // Always keep completed cats accessible
+  const completed = Object.keys(completedCats);
+  const combined = [...new Set([...free, ...completed])];
+  unlockedCats = allCats.filter(k => combined.includes(k));
+  lockedCats   = allCats.filter(k => !unlockedCats.includes(k));
+  renderCatList();
+  // Update settings stage label if it exists
+  const lbl = document.getElementById('settings-stage-label');
+  const stageNames = {new:'New Relationship',committed:'Committed / Moving In',engaged:'Engaged / Pre-Marital',married:'Married / Long-Term',parents:'Parents',empty:'Empty Nest / Later Life'};
+  if (lbl) lbl.textContent = stageNames[key] || key;
+  if (fromSettings) {
+    showToast('Stage updated — your free categories have been refreshed');
+    // Highlight active row in settings
+    document.querySelectorAll('.set-sr').forEach(r => {
+      r.style.background = r.dataset.stage === key ? 'rgba(196,135,90,.08)' : 'var(--white)';
+      r.style.borderColor = r.dataset.stage === key ? 'var(--gold)' : 'var(--rule)';
+    });
+  }
+}
+
 function selStage(key, row) {
   document.querySelectorAll('.sr').forEach(r => r.classList.remove('sel'));
   row.classList.add('sel');
+  setStage(key, false);
   setTimeout(() => nav('s-welcome'), 400);
+}
+
+function selStageNew(key, row) {
+  // Stage selection for an existing user starting a new pairing
+  if (row) {
+    document.querySelectorAll('#s-stage-new .sr').forEach(r => r.classList.remove('sel'));
+    row.classList.add('sel');
+  }
+  setStage(key, false);
+  isNewUser = currentPartner === null;
+  showHomeState();
+  setTimeout(() => nav('s-home'), 400);
+  showToast('Stage set — your categories have been matched');
 }
 
 // ── WELCOME ──────────────────────────────────────────────────────────────
 function goToWelcomeHome() {
   isNewUser = true;
+  if (!pendingInviteFrom) currentPartner = null;
   showHomeState();
   nav('s-home');
 }
@@ -1365,6 +1474,11 @@ function showHomeState() {
     const sp = document.getElementById('set-pn');
     if (sp) sp.textContent = currentPartner;
   }
+  renderCatList();
+  // Sync settings stage label
+  const stageNames = {new:'New Relationship',committed:'Committed / Moving In',engaged:'Engaged / Pre-Marital',married:'Married / Long-Term',parents:'Parents',empty:'Empty Nest / Later Life'};
+  const lbl = document.getElementById('settings-stage-label');
+  if (lbl) lbl.textContent = currentStage ? (stageNames[currentStage] || currentStage) : 'Not set — tap to update';
 }
 
 // ── SESSION ──────────────────────────────────────────────────────────────
@@ -1403,9 +1517,22 @@ function applyNPC() {
   if (!code || !code.value.trim()) { showToast('Enter a code first'); return; }
   const newName = 'Sam';
   currentPartner = newName;
-  addPartnerToDropdown(newName, false);
-  toggleNewPartner();
-  showToast('Connected with ' + newName + ' — ready to align');
+  isNewUser = false;
+  currentStage = null;
+  // Update the partner name label on stage screen
+  const lbl = document.getElementById('new-pairing-partner-name');
+  if (lbl) lbl.textContent = newName;
+  nav('s-stage-new');
+  showToast('Connected with ' + newName + ' — set your stage to continue');
+}
+
+function sendInviteAndContinue() {
+  showToast('Invite link copied');
+  currentPartner = null;
+  isNewUser = true;
+  // New pairing needs its own stage — route through stage screen first
+  currentStage = null;
+  nav('s-stage-new');
 }
 
 function addPartnerToDropdown(name, selectIt) {
@@ -1445,7 +1572,60 @@ function removePartner() {
 }
 
 // ── CATEGORIES ───────────────────────────────────────────────────────────
+const submittedCats = { conflict: true }; // answered, waiting on partner
+
+function renderCatList() {
+  const el = document.getElementById('home-cat-list');
+  if (!el) return;
+  const pn = currentPartner || 'partner';
+  let html = '';
+
+  // Unlocked section
+  if (unlockedCats.length) {
+    html += '<div class="sh"><div class="sh-rule"></div><div class="sh-text">Your Categories</div></div><div class="ct">';
+    unlockedCats.forEach((key, idx) => {
+      const c = cats[key];
+      if (!c) return;
+      let rightHtml = '';
+      if (completedCats[key]) {
+        rightHtml = `<div class="csp st-d">Complete</div><div class="cr-sc">${completedCats[key].score}%</div>`;
+      } else if (submittedCats[key]) {
+        rightHtml = `<div class="csp st-w" style="max-width:140px;text-align:right;">Your answer sealed &middot; waiting on ${pn}</div>`;
+      } else {
+        rightHtml = '<div class="csp st-n">Begin &rarr;</div>';
+      }
+      html += `<div class="cr" onclick="openCat('${key}')">
+        <div class="cr-nu">${String(idx+1).padStart(2,'0')}</div>
+        <div class="cr-ic">${c.ic}</div>
+        <div class="cr-in"><div class="cr-nm">${c.nm}</div><div class="cr-sb">${c.sb}</div></div>
+        <div class="cr-ri">${rightHtml}</div>
+      </div>`;
+    });
+    html += '</div>';
+  }
+
+  // Locked section
+  if (lockedCats.length) {
+    const firstLocked = unlockedCats.length + 1;
+    html += '<div class="sh"><div class="sh-rule"></div><div class="sh-text">Unlock with Premium</div></div><div class="ct">';
+    lockedCats.forEach((key, idx) => {
+      const c = cats[key];
+      if (!c) return;
+      html += `<div class="cr lk" onclick="nav('s-paywall')" style="opacity:.4;cursor:pointer;">
+        <div class="cr-nu">${String(firstLocked+idx).padStart(2,'0')}</div>
+        <div class="cr-ic">${c.ic}</div>
+        <div class="cr-in"><div class="cr-nm">${c.nm}</div><div class="cr-sb">${c.sb}</div></div>
+        <div class="cr-ri"><div class="csp st-l">Upgrade</div></div>
+      </div>`;
+    });
+    html += '</div>';
+  }
+
+  el.innerHTML = html;
+}
+
 function openCat(key) {
+  if (lockedCats.includes(key)) { nav('s-paywall'); return; }
   const c = cats[key];
   if (!c) return;
   if (completedCats[key]) {
@@ -1472,6 +1652,14 @@ function startFreshCat(key) {
   if (notice) notice.style.display = key === 'structure' ? 'block' : 'none';
   const seal = document.getElementById('cat-seal');
   if (seal) seal.textContent = 'Your answer is sealed until ' + (currentPartner || 'your partner') + ' completes theirs. No peeking. No anchoring.';
+  // Build priority rank options based on available categories
+  const pSel = document.getElementById('priority-sel');
+  if (pSel) {
+    const count = unlockedCats.length;
+    pSel.innerHTML = Array.from({length: count}, (_,i) =>
+      `<option value="${i+1}"${i===2?' selected':''}>${i+1} of ${count}</option>`
+    ).join('');
+  }
   nav('s-category');
 }
 
@@ -1593,6 +1781,32 @@ function toggleFAQ(i) {
   const isOpen = ans && ans.style.display !== 'none';
   FAQS.forEach((_,j) => { const a = document.getElementById('fa-'+j); const ic = document.getElementById('fi-'+j); if(a) a.style.display='none'; if(ic) ic.textContent='+'; });
   if (!isOpen && ans) { ans.style.display = 'block'; if (icon) icon.textContent = '−'; }
+}
+
+// ── STAGE SELECTOR TOGGLE ────────────────────────────────────────────────
+function toggleStageSelector() {
+  const el = document.getElementById('stage-selector-block');
+  if (!el) return;
+  el.style.display = el.style.display === 'none' ? 'flex' : 'none';
+  el.style.flexDirection = 'column';
+}
+
+// ── PREMIUM UNLOCK (simulated) ───────────────────────────────────────────
+function unlockPremium() {
+  // Move all cats to unlocked
+  unlockedCats = [...allCats];
+  lockedCats = [];
+  renderCatList();
+  // Rebuild rank selector if category screen is open
+  const pSel = document.getElementById('priority-sel');
+  if (pSel) {
+    const count = unlockedCats.length;
+    pSel.innerHTML = Array.from({length:count},(_,i)=>
+      `<option value="${i+1}"${i===2?' selected':''}>${i+1} of ${count}</option>`
+    ).join('');
+  }
+  showToast('Premium unlocked — all 16 categories available');
+  setTimeout(() => nav('s-home'), 800);
 }
 
 // ── TOAST ────────────────────────────────────────────────────────────────
