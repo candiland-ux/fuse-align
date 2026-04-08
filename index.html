@@ -143,6 +143,32 @@ body{background:var(--white);color:var(--ink);font-family:var(--fs);min-height:1
 .sp-meta{text-align:center;font-family:var(--fm);font-size:8px;letter-spacing:3px;color:rgba(255,255,255,.5);text-transform:uppercase;margin-top:8px;}
 .pf-gb{flex:1;background:none;color:rgba(255,255,255,.55);font-family:var(--fm);font-size:8px;letter-spacing:2px;text-transform:uppercase;padding:11px;cursor:pointer;border:1px solid rgba(255,255,255,.18);transition:all .25s;}
 .pf-gb:hover{border-color:var(--rose);color:var(--rose);}
+/* Splash — investor demo section */
+.sp-inv{margin-top:22px;padding-top:22px;border-top:1px solid rgba(196,135,90,.22);text-align:center;}
+.sp-inv-hd{font-family:var(--fm);font-size:8px;letter-spacing:4px;color:var(--gold);text-transform:uppercase;margin-bottom:6px;}
+.sp-inv-sub{font-size:11px;color:rgba(255,255,255,.52);line-height:1.6;margin-bottom:18px;font-style:italic;}
+.sp-inv-cta{margin-top:18px;background:var(--gold);color:var(--ink);border:none;font-family:var(--fm);font-size:10px;letter-spacing:3px;text-transform:uppercase;padding:14px 24px;cursor:pointer;transition:all .25s;width:100%;}
+.sp-inv-cta:hover{background:#e3a063;transform:translateY(-1px);box-shadow:0 6px 18px rgba(196,135,90,.22);}
+.sp-inv-note{font-size:10px;color:rgba(255,255,255,.42);margin-top:10px;font-style:italic;line-height:1.55;}
+/* Teased reveal card — static preview on splash */
+.tr-card{background:linear-gradient(180deg,#faf7f3 0%,#f4efe6 100%);color:var(--ink);padding:22px 22px 18px;text-align:left;border:1px solid rgba(196,135,90,.35);position:relative;overflow:hidden;}
+.tr-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);}
+.tr-tag{font-family:var(--fm);font-size:7px;letter-spacing:2.5px;color:var(--gold);text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:8px;}
+.tr-tag::before,.tr-tag::after{content:'';flex:1;height:1px;background:rgba(196,135,90,.3);}
+.tr-head{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;margin-bottom:14px;}
+.tr-cat{flex:1;}
+.tr-num{font-family:var(--fm);font-size:9px;letter-spacing:3px;color:var(--gold);margin-bottom:4px;}
+.tr-nm{font-family:var(--fb);font-size:17px;font-weight:400;color:var(--ink);line-height:1.3;}
+.tr-sc{font-family:var(--fb);font-size:38px;font-weight:300;color:var(--ink);line-height:1;flex-shrink:0;}
+.tr-sc sup{font-size:15px;color:rgba(30,22,26,.55);}
+.tr-bar{height:1px;background:rgba(30,22,26,.15);position:relative;margin-bottom:14px;}
+.tr-fi{height:100%;width:68%;background:linear-gradient(90deg,var(--gold),rgba(196,135,90,.45));}
+.tr-insight{font-size:12.5px;color:var(--mid);line-height:1.65;font-style:italic;margin-bottom:14px;padding-left:12px;border-left:2px solid var(--gold);}
+.tr-footer{display:flex;gap:8px;margin-bottom:14px;}
+.tr-chip{flex:1;padding:9px 10px;background:rgba(30,22,26,.04);border:1px solid rgba(30,22,26,.08);}
+.tr-chip-lb{display:block;font-family:var(--fm);font-size:7px;letter-spacing:1.5px;color:var(--soft);text-transform:uppercase;margin-bottom:3px;}
+.tr-chip-vl{display:block;font-family:var(--fb);font-size:11px;font-weight:400;color:var(--ink);}
+.tr-foot-note{font-size:10px;color:var(--soft);line-height:1.55;padding-top:12px;border-top:1px solid rgba(30,22,26,.08);font-style:italic;text-align:center;}
 /* MODALS */
 .pfo{position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:200;display:none;align-items:flex-end;justify-content:center;}
 .pfo.open{display:flex;animation:pfi .3s ease;}
@@ -190,6 +216,94 @@ body{background:var(--white);color:var(--ink);font-family:var(--fs);min-height:1
 .sr-nm{font-family:var(--fb);font-size:18px;font-weight:400;color:var(--ink);}
 .sr-sb{font-size:11px;color:var(--soft);margin-top:2px;}
 .sr-ar{color:var(--gold);font-size:16px;}
+/* FRAMEWORK EXAMPLE (completed-state demo) */
+.ex-hero{background:var(--ink);padding:36px 24px 32px;border-bottom:1px solid rgba(255,255,255,.08);position:relative;overflow:hidden;}
+.ex-hero::before{content:'';position:absolute;top:0;left:0;width:100%;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);}
+.ex-hero-watermark{position:absolute;bottom:-30px;right:-14px;font-family:var(--fb);font-size:180px;font-weight:300;color:rgba(255,255,255,.03);line-height:1;pointer-events:none;}
+.ex-badge{display:inline-block;background:rgba(196,135,90,.14);border:1px solid rgba(196,135,90,.55);color:var(--gold);font-family:var(--fm);font-size:7px;letter-spacing:2.5px;padding:5px 10px;text-transform:uppercase;margin-bottom:14px;}
+.ex-name{font-family:var(--fb);font-size:28px;font-weight:300;color:var(--white);line-height:1.2;margin-bottom:6px;}
+.ex-name em{font-style:italic;color:rgba(255,255,255,.62);}
+.ex-stage{font-family:var(--fm);font-size:9px;letter-spacing:3px;color:rgba(196,135,90,.72);text-transform:uppercase;margin-bottom:24px;}
+.ex-score-lb{font-family:var(--fm);font-size:8px;letter-spacing:3px;color:var(--gold);text-transform:uppercase;margin-bottom:10px;}
+.ex-score-sc{font-family:var(--fb);font-size:58px;font-weight:300;color:var(--white);line-height:1;display:inline-block;}
+.ex-score-sc sup{font-size:22px;color:rgba(255,255,255,.93);}
+.ex-score-bar{height:1px;background:rgba(255,255,255,.35);margin-top:18px;position:relative;}
+.ex-score-fi{height:100%;background:linear-gradient(90deg,var(--gold),rgba(184,150,90,.4));}
+.ex-score-dm{display:flex;justify-content:space-between;margin-top:14px;}
+.ex-score-dm span{font-family:var(--fm);font-size:7px;color:rgba(255,255,255,.6);letter-spacing:1px;text-transform:uppercase;}
+.ex-section-lb{font-family:var(--fm);font-size:8px;letter-spacing:3px;color:var(--gold);text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:12px;}
+.ex-section-lb::after{content:'';flex:1;height:1px;background:rgba(196,135,90,.25);}
+.ex-narrative{padding:32px 24px 28px;background:var(--cream);}
+.ex-narrative-body{font-family:var(--fb);font-size:15px;font-weight:300;font-style:italic;color:var(--ink);line-height:1.75;}
+.ex-narrative-body p{margin-bottom:14px;}
+.ex-narrative-body p:last-child{margin-bottom:0;}
+.ex-cat-section{padding:8px 24px 28px;background:var(--cream);}
+.ex-cat-grid{display:flex;flex-direction:column;gap:1px;background:var(--rule);border:1px solid var(--rule);}
+.ex-cat-card{background:var(--white);padding:16px 16px 14px;border-left:3px solid transparent;transition:border-color .3s,background .3s;}
+.ex-cat-card.high{border-left-color:#6b7d3e;background:linear-gradient(90deg,rgba(107,125,62,.035),var(--white) 35%);}
+.ex-cat-card.mid{border-left-color:var(--gold);background:linear-gradient(90deg,rgba(196,135,90,.04),var(--white) 35%);}
+.ex-cat-card.low{border-left-color:#9e4a4a;background:linear-gradient(90deg,rgba(158,74,74,.05),var(--white) 35%);}
+.ex-cat-row{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:8px;}
+.ex-cat-ln{display:flex;align-items:baseline;gap:10px;min-width:0;flex:1;}
+.ex-cat-nu{font-family:var(--fm);font-size:9px;color:var(--gold);letter-spacing:1.5px;flex-shrink:0;}
+.ex-cat-nm{font-family:var(--fb);font-size:13.5px;font-weight:400;color:var(--ink);line-height:1.35;}
+.ex-cat-sc{font-family:var(--fb);font-size:18px;font-weight:300;color:var(--ink);line-height:1;flex-shrink:0;}
+.ex-cat-sc sup{font-size:9px;color:var(--soft);vertical-align:2px;}
+.ex-cat-sc.high{color:#6b7d3e;}
+.ex-cat-sc.high sup{color:rgba(107,125,62,.6);}
+.ex-cat-sc.mid{color:#a66e3f;}
+.ex-cat-sc.mid sup{color:rgba(166,110,63,.6);}
+.ex-cat-sc.low{color:#9e4a4a;}
+.ex-cat-sc.low sup{color:rgba(158,74,74,.6);}
+.ex-section-with-breakdown::after{content:none;}
+.ex-section-rule{flex:1;height:1px;background:rgba(196,135,90,.25);}
+.ex-tier-breakdown{display:inline-flex;gap:14px;}
+.ex-tier-pill{display:inline-flex;align-items:center;gap:5px;font-family:var(--fm);font-size:7.5px;letter-spacing:1.2px;color:var(--soft);text-transform:uppercase;}
+.ex-tier-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;}
+.ex-tier-dot.high{background:#6b7d3e;}
+.ex-tier-dot.mid{background:var(--gold);}
+.ex-tier-dot.low{background:#9e4a4a;}
+.ex-cat-bar{height:2px;background:var(--rule);position:relative;margin-bottom:10px;}
+.ex-cat-bar-fi{height:100%;}
+.ex-cat-bar-fi.high{background:linear-gradient(90deg,#7a8c4e,#b5c17d);}
+.ex-cat-bar-fi.mid{background:linear-gradient(90deg,var(--gold),rgba(196,135,90,.5));}
+.ex-cat-bar-fi.low{background:linear-gradient(90deg,#b85a5a,rgba(184,90,90,.5));}
+.ex-cat-gap{font-size:11px;color:var(--soft);line-height:1.55;font-style:italic;}
+/* Low-tier cards get visible weight so the eye lingers on the conversations that matter most */
+.ex-cat-card.low{padding:18px 18px 16px;}
+.ex-cat-card.low .ex-cat-nm{color:#3d2a2a;}
+.ex-cat-card.low .ex-cat-gap{font-size:12.5px;color:#5a3f3f;line-height:1.7;margin-top:4px;}
+.ex-pr-section{padding:16px 24px 28px;background:var(--cream);}
+.ex-pr-grid{display:flex;gap:10px;}
+.ex-pr-col{flex:1;padding:18px 16px 14px;background:var(--white);border:1px solid var(--rule);border-left:2px solid var(--gold);}
+.ex-pr-nm{font-family:var(--fm);font-size:8px;letter-spacing:2px;color:var(--soft);text-transform:uppercase;margin-bottom:10px;}
+.ex-pr-list{list-style:none;padding:0;margin:0;counter-reset:pr-rank;}
+.ex-pr-list li{counter-increment:pr-rank;padding:7px 0;border-bottom:1px solid var(--rule);font-size:12px;color:var(--ink);line-height:1.4;display:flex;align-items:baseline;gap:8px;}
+.ex-pr-list li:last-child{border-bottom:none;}
+.ex-pr-list li::before{content:"#" counter(pr-rank);font-family:var(--fb);font-size:14px;color:var(--gold);flex-shrink:0;}
+.ex-pr-note{font-size:11px;color:var(--soft);font-style:italic;line-height:1.6;margin-top:14px;padding-top:14px;border-top:1px solid var(--rule);}
+.ex-capstone{background:var(--ink);padding:40px 24px 36px;color:var(--white);position:relative;overflow:hidden;}
+.ex-capstone::before{content:'12';position:absolute;bottom:-30px;right:-8px;font-family:var(--fb);font-size:180px;font-weight:300;color:rgba(255,255,255,.035);line-height:1;pointer-events:none;}
+.ex-capstone-lb{font-family:var(--fm);font-size:8px;letter-spacing:3px;color:var(--gold);text-transform:uppercase;margin-bottom:14px;position:relative;}
+.ex-capstone-q{font-family:var(--fb);font-size:19px;font-weight:300;font-style:italic;color:rgba(255,255,255,.92);line-height:1.55;margin-bottom:28px;position:relative;}
+.ex-cap-resp{padding:18px 0;border-top:1px solid rgba(255,255,255,.12);position:relative;}
+.ex-cap-resp:last-child{padding-bottom:0;}
+.ex-cap-nm{font-family:var(--fm);font-size:8px;letter-spacing:2.5px;color:var(--gold);text-transform:uppercase;margin-bottom:8px;}
+.ex-cap-body{font-size:13px;color:rgba(255,255,255,.78);line-height:1.75;font-style:italic;}
+.ex-footer-block{padding:28px 24px 36px;background:var(--cream);text-align:center;}
+.ex-footer-note{font-size:11px;color:var(--soft);line-height:1.65;margin-bottom:16px;font-style:italic;max-width:320px;margin-left:auto;margin-right:auto;}
+/* Example picker buttons on splash */
+.sp-examples{margin-top:18px;padding-top:18px;border-top:1px solid rgba(196,135,90,.18);}
+.sp-examples-lb{font-family:var(--fm);font-size:7px;letter-spacing:2.5px;color:rgba(196,135,90,.62);text-transform:uppercase;margin-bottom:12px;text-align:center;}
+.sp-examples-row{display:flex;gap:10px;}
+.sp-ex-btn{flex:1;background:rgba(255,255,255,.03);border:1px solid rgba(196,135,90,.3);padding:16px 14px;cursor:pointer;text-align:left;transition:all .25s;position:relative;}
+.sp-ex-btn:hover{border-color:var(--gold);background:rgba(196,135,90,.06);}
+.sp-ex-tag{font-family:var(--fm);font-size:6.5px;letter-spacing:1.8px;color:rgba(196,135,90,.72);text-transform:uppercase;margin-bottom:5px;}
+.sp-ex-nm{font-family:var(--fb);font-size:14px;font-weight:300;color:rgba(255,255,255,.92);line-height:1.3;margin-bottom:4px;}
+.sp-ex-nm em{font-style:italic;color:rgba(255,255,255,.6);}
+.sp-ex-sb{font-size:10px;color:rgba(255,255,255,.5);line-height:1.5;margin-bottom:10px;}
+.sp-ex-sc{font-family:var(--fb);font-size:24px;font-weight:300;color:var(--gold);line-height:1;}
+.sp-ex-sc sup{font-size:11px;color:rgba(196,135,90,.72);}
 /* HOME */
 .hm{background:var(--white);padding:28px 24px 24px;border-bottom:1px solid var(--rule);}
 .hm-gr{font-family:var(--fb);font-size:28px;font-weight:300;color:var(--ink);}
@@ -208,6 +322,33 @@ body{background:var(--white);color:var(--ink);font-family:var(--fs);min-height:1
 .sf-fi{height:100%;width:80%;background:linear-gradient(90deg,var(--gold),rgba(184,150,90,.4));}
 .sf-dm{display:flex;justify-content:space-between;margin-top:18px;}
 .sf-d{font-family:var(--fm);font-size:7px;color:rgba(255,255,255,.7);letter-spacing:1px;text-transform:uppercase;}
+/* WEEKLY CHECK-IN CARD (home entry point) */
+.ci-card{margin:20px 24px 4px;padding:22px 24px 20px;background:linear-gradient(135deg,#1a0f16 0%,#241620 60%,#2c1a24 100%);border:1px solid rgba(196,135,90,.28);cursor:pointer;position:relative;transition:border-color .25s,transform .25s;overflow:hidden;}
+.ci-card::before{content:'';position:absolute;top:0;right:0;width:140px;height:100%;background:radial-gradient(ellipse at right,rgba(196,135,90,.08),transparent 70%);pointer-events:none;}
+.ci-card:hover{border-color:var(--gold);}
+.ci-card:hover .ci-arrow{color:var(--gold);}
+.ci-badge{position:absolute;top:12px;right:12px;background:rgba(196,135,90,.12);border:1px solid rgba(196,135,90,.55);color:var(--gold);font-family:var(--fm);font-size:6.5px;letter-spacing:1.5px;padding:4px 8px;text-transform:uppercase;}
+.ci-eyebrow{font-family:var(--fm);font-size:8px;letter-spacing:3px;color:rgba(196,135,90,.78);text-transform:uppercase;margin-bottom:8px;padding-right:120px;}
+.ci-title{font-family:var(--fb);font-size:22px;font-weight:300;color:var(--white);line-height:1.2;margin-bottom:8px;}
+.ci-title em{font-style:italic;color:rgba(255,255,255,.65);}
+.ci-sub{font-size:12px;color:rgba(255,255,255,.55);line-height:1.55;margin-bottom:14px;max-width:320px;}
+.ci-arrow{font-family:var(--fm);font-size:9px;letter-spacing:2px;color:rgba(255,255,255,.55);text-transform:uppercase;transition:color .25s;}
+/* WEEKLY CHECK-IN SCREEN */
+.pulse-row{display:flex;gap:8px;margin-bottom:10px;}
+.pulse-dot{flex:1;padding:18px 0;background:var(--white);border:1px solid var(--rule);font-family:var(--fb);font-size:18px;font-weight:300;color:var(--mid);cursor:pointer;transition:all .2s;}
+.pulse-dot:hover{border-color:var(--gold);color:var(--ink);}
+.pulse-dot.active{background:var(--ink);color:var(--white);border-color:var(--ink);}
+.pulse-lbs{display:flex;justify-content:space-between;font-family:var(--fm);font-size:8px;letter-spacing:2px;color:var(--soft);text-transform:uppercase;}
+.ci-qblock{padding:22px 20px;background:var(--off);border-left:2px solid var(--gold);margin-bottom:28px;}
+.ci-qlabel{font-family:var(--fm);font-size:8px;letter-spacing:3px;color:var(--gold);text-transform:uppercase;margin-bottom:12px;}
+.ci-qtext{font-family:var(--fb);font-size:17px;font-style:italic;font-weight:300;color:var(--ink);line-height:1.55;}
+.ci-shift{padding:18px 20px;background:var(--white);border:1px solid var(--rule);margin-bottom:28px;}
+.ci-shift-lb{font-family:var(--fm);font-size:8px;letter-spacing:2px;color:var(--soft);text-transform:uppercase;margin-bottom:8px;}
+.ci-shift-tx{font-size:14px;color:var(--ink);line-height:1.65;margin-bottom:14px;}
+.ci-shift-btns{display:flex;gap:8px;flex-wrap:wrap;}
+.ci-shift-btn{flex:1;min-width:90px;padding:12px 8px;background:none;border:1px solid var(--rule);font-family:var(--fm);font-size:8px;letter-spacing:1.5px;color:var(--mid);text-transform:uppercase;cursor:pointer;transition:all .2s;}
+.ci-shift-btn:hover{border-color:var(--ink);color:var(--ink);}
+.ci-shift-btn.active{background:var(--ink);color:var(--white);border-color:var(--ink);}
 /* CAT LIST */
 .ct{margin:0 24px 24px;}
 .cr{display:flex;align-items:center;gap:16px;padding:18px 0;border-bottom:1px solid var(--rule);cursor:pointer;transition:all .2s;}
@@ -242,21 +383,49 @@ body{background:var(--white);color:var(--ink);font-family:var(--fs);min-height:1
 .q-tx{font-family:var(--fb);font-size:20px;font-weight:300;font-style:italic;color:var(--ink);line-height:1.6;}
 .q-ta{width:100%;margin-top:20px;padding:16px 0;background:transparent;border:none;border-bottom:1px solid var(--rule);font-family:var(--fs);font-size:14px;font-weight:300;color:var(--ink);outline:none;resize:none;line-height:1.7;min-height:80px;}
 .q-ta::placeholder{color:var(--faint);font-style:italic;}
+/* Example answer toggle + panel */
+.q-ex-toggle{display:block;background:none;border:none;font-family:var(--fm);font-size:9px;letter-spacing:2px;color:var(--gold);text-transform:uppercase;padding:10px 0 6px;cursor:pointer;margin-top:6px;transition:color .2s;}
+.q-ex-toggle:hover{color:var(--rose);}
+.q-ex-toggle.hidden{display:none;}
+.q-ex{display:none;margin-top:10px;padding:18px 20px;background:rgba(196,135,90,.055);border-left:2px solid var(--gold);animation:exIn .35s cubic-bezier(.16,1,.3,1);}
+.q-ex.open{display:block;}
+@keyframes exIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+.q-ex-label{font-family:var(--fm);font-size:8px;letter-spacing:3px;color:var(--gold);text-transform:uppercase;margin-bottom:12px;}
+.q-ex-text{font-family:var(--fb);font-size:14px;font-weight:300;font-style:italic;color:var(--mid);line-height:1.75;margin-bottom:16px;white-space:pre-wrap;}
+.q-ex-note{font-family:var(--fs);font-size:11px;color:var(--soft);line-height:1.6;font-style:normal;margin-bottom:14px;padding-left:12px;border-left:1px solid var(--rule);}
+.q-ex-close{background:none;border:1px solid var(--rule);font-family:var(--fm);font-size:8px;letter-spacing:2px;color:var(--soft);text-transform:uppercase;padding:9px 14px;cursor:pointer;transition:all .2s;}
+.q-ex-close:hover{color:var(--ink);border-color:var(--ink);}
+/* Priority rank help */
+.pr-help{font-size:12px;color:var(--soft);line-height:1.65;margin-bottom:14px;font-style:italic;}
 .fxs{margin:0 24px 20px;}
 .fx-lb{font-family:var(--fm);font-size:8px;letter-spacing:3px;color:var(--soft);text-transform:uppercase;margin-bottom:14px;}
-.fg{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
-.fo{padding:16px 14px;background:var(--white);border:1px solid var(--rule);cursor:pointer;transition:all .2s;}
+.fg{display:flex;flex-direction:column;gap:8px;}
+.fo{padding:16px 18px;background:var(--white);border:1px solid var(--rule);cursor:pointer;transition:all .2s;}
 .fo:hover{border-color:var(--ink);}
 .fo.sel{background:var(--ink);border-color:var(--ink);}
-.fo-nm{font-family:var(--fb);font-size:14px;font-weight:400;color:var(--ink);}
+.fo-nm{font-family:var(--fb);font-size:15px;font-weight:400;color:var(--ink);}
 .fo.sel .fo-nm{color:var(--white);}
-.fo-sb{font-size:10px;color:var(--soft);margin-top:3px;}
+.fo-sb{font-size:11.5px;color:var(--soft);margin-top:5px;line-height:1.55;}
 .fo.sel .fo-sb{color:rgba(255,255,255,.85);}
 .prb{margin:0 24px 24px;}
 .pr-lb{font-family:var(--fm);font-size:8px;letter-spacing:3px;color:var(--soft);text-transform:uppercase;margin-bottom:14px;}
-.pr-rw{display:flex;align-items:center;gap:16px;border-bottom:1px solid var(--rule);padding-bottom:16px;}
-.pr-tx{font-size:13px;color:var(--mid);flex:1;}
+.pr-rw{display:flex;align-items:center;gap:16px;border-bottom:1px solid var(--rule);padding-bottom:16px;flex-wrap:wrap;}
+.pr-tx{font-size:13px;color:var(--mid);flex:1 1 200px;line-height:1.55;}
+.pr-tx em{font-style:italic;color:var(--ink);font-weight:400;}
 .pr-se{padding:10px 16px;background:transparent;border:none;border-bottom:2px solid var(--ink);font-family:var(--fb);font-size:18px;color:var(--ink);outline:none;cursor:pointer;-webkit-appearance:none;}
+/* Priority rank LOCKED state — free tier paywall tease */
+.prb-locked{margin:0 24px 24px;padding:22px 22px 20px;background:linear-gradient(180deg,var(--off) 0%,var(--white) 100%);border:1px solid var(--rule);border-left:2px solid var(--gold);position:relative;}
+.prbl-tag{display:inline-flex;align-items:center;gap:7px;font-family:var(--fm);font-size:8px;letter-spacing:2.5px;color:var(--gold);text-transform:uppercase;margin-bottom:12px;}
+.prbl-icon{width:11px;height:11px;stroke:var(--gold);fill:none;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;}
+.prbl-title{font-family:var(--fb);font-size:18px;font-weight:300;font-style:italic;color:var(--ink);line-height:1.4;margin-bottom:10px;}
+.prbl-body{font-size:12.5px;color:var(--soft);line-height:1.65;margin-bottom:16px;}
+.prbl-cta{background:var(--ink);color:var(--white);border:none;font-family:var(--fm);font-size:9px;letter-spacing:2.5px;text-transform:uppercase;padding:14px 20px;cursor:pointer;transition:all .25s;}
+.prbl-cta:hover{background:var(--gold);}
+.prbl-actions{display:flex;flex-wrap:wrap;gap:10px;align-items:center;}
+.prbl-remove{background:none;color:var(--soft);border:1px solid var(--rule);font-family:var(--fm);font-size:9px;letter-spacing:2px;text-transform:uppercase;padding:13px 16px;cursor:pointer;transition:all .25s;}
+.prbl-remove:hover{border-color:var(--ink);color:var(--ink);}
+/* Free-rank indicator pill on paid block */
+.free-rank-pill{display:inline-block;margin-left:10px;padding:3px 9px;background:rgba(196,135,90,.13);border:1px solid rgba(196,135,90,.45);color:var(--gold);font-family:var(--fm);font-size:7px;letter-spacing:1.5px;text-transform:uppercase;vertical-align:1px;border-radius:1px;}
 /* WAITING */
 .wc{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 28px;text-align:center;}
 .wr-w{width:80px;height:80px;margin:0 auto 32px;position:relative;}
@@ -449,6 +618,47 @@ body.demo-mode .demo-only.db{display:block !important;}
 <div class="sp-ft">
   <button class="btn btn-cream" onclick="nav('s-onboard')">Create an Account</button>
   <button class="btn btn-naked" onclick="nav('s-signin')">Sign In</button>
+  <div class="sp-inv">
+    <div class="sp-inv-hd">Investor Demo</div>
+    <div class="sp-inv-sub">See the product in a fully-populated state, no signup required.</div>
+    <!-- Teased reveal card: static preview of what a real alignment reveal looks like -->
+    <div class="tr-card">
+      <div class="tr-tag">A taste of the reveal</div>
+      <div class="tr-head">
+        <div class="tr-cat">
+          <div class="tr-num">03</div>
+          <div class="tr-nm">Money &amp; Financial Philosophy</div>
+        </div>
+        <div class="tr-sc">68<sup>%</sup></div>
+      </div>
+      <div class="tr-bar"><div class="tr-fi"></div></div>
+      <div class="tr-insight">Alex treats financial transparency as a dealbreaker. You rated it a strong preference with some flexibility. This gap is worth a real conversation before it becomes an assumption.</div>
+      <div class="tr-footer">
+        <div class="tr-chip"><span class="tr-chip-lb">You</span><span class="tr-chip-vl">Strong Preference</span></div>
+        <div class="tr-chip"><span class="tr-chip-lb">Alex</span><span class="tr-chip-vl">Non-Negotiable</span></div>
+      </div>
+      <div class="tr-foot-note">Every completed category generates a reveal like this. Investor demo below shows the full flow.</div>
+    </div>
+    <button class="sp-inv-cta" onclick="enterDemo()">Launch Interactive Demo &rarr;</button>
+    <div class="sp-inv-note">No signup. You&rsquo;ll enter as Jordan, mid-framework, paired with Alex.</div>
+    <div class="sp-examples">
+      <div class="sp-examples-lb">Or explore a completed framework</div>
+      <div class="sp-examples-row">
+        <button class="sp-ex-btn" onclick="showFrameworkExample('chen-williams')">
+          <div class="sp-ex-tag">Example A</div>
+          <div class="sp-ex-nm">The Chen-Williams<br><em>framework</em></div>
+          <div class="sp-ex-sb">Deeply aligned couple &middot; engaged</div>
+          <div class="sp-ex-sc">84<sup>%</sup></div>
+        </button>
+        <button class="sp-ex-btn" onclick="showFrameworkExample('rodriguez-park')">
+          <div class="sp-ex-tag">Example B</div>
+          <div class="sp-ex-nm">The Rodriguez-Park<br><em>framework</em></div>
+          <div class="sp-ex-sb">Significant gaps &middot; considering engagement</div>
+          <div class="sp-ex-sc">58<sup>%</sup></div>
+        </button>
+      </div>
+    </div>
+  </div>
   <div class="demo-only db" style="margin-top:8px;text-align:center;padding:6px 12px;background:rgba(196,135,90,.08);border:1px dashed rgba(196,135,90,.35);align-items:center;gap:8px;align-self:center;">
     <span style="font-family:var(--fm);font-size:7px;letter-spacing:2px;color:rgba(196,135,90,.7);text-transform:uppercase;">DEMO ONLY</span>
     <button onclick="simulateInviteLink('Alex')" style="background:none;border:none;font-family:var(--fm);font-size:8px;letter-spacing:1px;color:rgba(196,135,90,.85);cursor:pointer;">Simulate invite link &rarr;</button>
@@ -458,6 +668,69 @@ body.demo-mode .demo-only.db{display:block !important;}
   <button onclick="openPF('pricing')">Pricing</button>
   <span class="sp-footer-sep">&middot;</span>
   <button onclick="openPF('faq')">FAQ</button>
+</div>
+</div>
+
+<!-- FRAMEWORK EXAMPLE (completed-state preview for investors) -->
+<div id="s-example" class="screen" style="background:var(--cream);">
+<div class="tb">
+  <button class="bk" onclick="nav('s-splash')">&larr; Back</button>
+  <div class="tb-lb">Example Framework</div>
+  <div></div>
+</div>
+<div class="scroll" style="padding:0;">
+  <div class="ex-hero">
+    <div class="ex-hero-watermark" id="ex-hero-num">12</div>
+    <div class="ex-badge">Preview &middot; Completed Framework</div>
+    <div class="ex-name" id="ex-name">&nbsp;</div>
+    <div class="ex-stage" id="ex-stage">&nbsp;</div>
+    <div class="ex-score-lb">Overall Alignment</div>
+    <div class="ex-score-sc"><span id="ex-score">0</span><sup>%</sup></div>
+    <div class="ex-score-bar"><div class="ex-score-fi" id="ex-score-fi" style="width:0%;"></div></div>
+    <div class="ex-score-dm"><span>Critical</span><span>Growing</span><span>Aligned</span><span>Deeply Aligned</span></div>
+  </div>
+  <div class="ex-narrative">
+    <div class="ex-section-lb">What this framework reveals</div>
+    <div class="ex-narrative-body" id="ex-narrative">&nbsp;</div>
+  </div>
+  <div class="ex-cat-section">
+    <div class="ex-section-lb ex-section-with-breakdown">
+      <span>All 12 categories</span>
+      <div class="ex-section-rule"></div>
+      <div class="ex-tier-breakdown" id="ex-tier-breakdown"></div>
+    </div>
+    <div class="ex-cat-grid" id="ex-cat-grid"></div>
+  </div>
+  <div class="ex-pr-section">
+    <div class="ex-section-lb">Top priorities compared</div>
+    <div class="ex-pr-grid">
+      <div class="ex-pr-col">
+        <div class="ex-pr-nm" id="ex-pa-name">&nbsp;</div>
+        <ol class="ex-pr-list" id="ex-pa-list"></ol>
+      </div>
+      <div class="ex-pr-col">
+        <div class="ex-pr-nm" id="ex-pb-name">&nbsp;</div>
+        <ol class="ex-pr-list" id="ex-pb-list"></ol>
+      </div>
+    </div>
+    <div class="ex-pr-note" id="ex-pr-note">&nbsp;</div>
+  </div>
+  <div class="ex-capstone">
+    <div class="ex-capstone-lb">The framework capstone</div>
+    <div class="ex-capstone-q">&ldquo;If we choose each other, what are we committing to protect &mdash; even when it is inconvenient?&rdquo;</div>
+    <div class="ex-cap-resp">
+      <div class="ex-cap-nm" id="ex-cap-a-name">&nbsp;</div>
+      <div class="ex-cap-body" id="ex-cap-a-body">&nbsp;</div>
+    </div>
+    <div class="ex-cap-resp">
+      <div class="ex-cap-nm" id="ex-cap-b-name">&nbsp;</div>
+      <div class="ex-cap-body" id="ex-cap-b-body">&nbsp;</div>
+    </div>
+  </div>
+  <div class="ex-footer-block">
+    <div class="ex-footer-note">This is an illustrative example of what a completed framework looks like for one couple. Every couple&rsquo;s framework is different. Both partners complete the 12 categories independently over 4&ndash;8 weeks before reaching this view.</div>
+    <button class="btn btn-ghost" onclick="nav('s-splash')" style="padding:14px 24px;">&larr; Back to splash</button>
+  </div>
 </div>
 </div>
 
@@ -743,7 +1016,7 @@ body.demo-mode .demo-only.db{display:block !important;}
     <div style="font-family:var(--fm);font-size:8px;letter-spacing:2px;color:rgba(196,135,90,.8);text-transform:uppercase;margin-bottom:10px;">Continue with a partner</div>
     <select id="partner-select" onchange="handlePartnerSelect(this)" style="width:100%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);color:var(--white);font-family:var(--fb);font-size:15px;font-weight:300;padding:12px 14px;cursor:pointer;outline:none;-webkit-appearance:none;appearance:none;border-radius:0;">
       <option value="" style="background:#150d12;color:rgba(255,255,255,.4);">&mdash; Select a partner &mdash;</option>
-      <option value="alex" style="background:#150d12;">Alex &middot; 2 of 16 categories complete</option>
+      <option value="alex" style="background:#150d12;">Alex &middot; 2 of 12 categories complete</option>
     </select>
     <div id="session-go-btn" style="display:none;margin-top:10px;">
       <button onclick="goToSession()" style="width:100%;background:var(--gold);color:var(--ink);border:none;font-family:var(--fm);font-size:9px;letter-spacing:3px;text-transform:uppercase;padding:14px;cursor:pointer;font-weight:600;">Go to Alignment &rarr;</button>
@@ -813,7 +1086,7 @@ body.demo-mode .demo-only.db{display:block !important;}
     <div style="font-family:var(--fb);font-size:24px;font-weight:300;color:var(--ink);margin-bottom:8px;">Your answers are<br><em>your foundation.</em></div>
     <div style="font-size:13px;color:var(--soft);line-height:1.7;margin-bottom:16px;">No partner connected yet. Start answering categories &mdash; everything saves automatically. Connect a partner anytime.</div>
     <div style="display:flex;flex-direction:column;gap:10px;">
-      <button onclick="startFreshCat('money')" style="background:var(--ink);color:var(--white);border:none;font-family:var(--fm);font-size:9px;letter-spacing:3px;text-transform:uppercase;padding:14px;cursor:pointer;text-align:left;display:flex;justify-content:space-between;align-items:center;">Start Category 01 &mdash; Money &amp; Financial Philosophy<span>&rarr;</span></button>
+      <button onclick="startFreshCat('location')" style="background:var(--ink);color:var(--white);border:none;font-family:var(--fm);font-size:9px;letter-spacing:3px;text-transform:uppercase;padding:14px;cursor:pointer;text-align:left;display:flex;justify-content:space-between;align-items:center;">Start Category 01 &mdash; Location &amp; Lifestyle<span>&rarr;</span></button>
       <button onclick="showToast('Invite link copied')" style="background:none;border:1px solid var(--rule);color:var(--soft);font-family:var(--fm);font-size:9px;letter-spacing:3px;text-transform:uppercase;padding:12px;cursor:pointer;text-align:left;display:flex;justify-content:space-between;align-items:center;">Copy partner invite link<span>&rarr;</span></button>
     </div>
   </div>
@@ -831,7 +1104,7 @@ body.demo-mode .demo-only.db{display:block !important;}
       <div class="sf-bg">80</div>
       <div class="sf-lb">Overall Alignment</div>
       <div class="sf-sc">80<sup>%</sup></div>
-      <div class="sf-sb">Strong foundation. Two of sixteen categories complete.</div>
+      <div class="sf-sb">Strong foundation. Two of twelve categories complete.</div>
       <div class="sf-bar">
         <div class="sf-fi"></div>
         <div style="position:absolute;top:-5px;left:80%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:2px;">
@@ -842,9 +1115,17 @@ body.demo-mode .demo-only.db{display:block !important;}
       <div class="sf-dm"><span class="sf-d">Critical</span><span class="sf-d">Growing</span><span class="sf-d">Aligned</span><span class="sf-d">Deeply Aligned</span></div>
       <div style="margin-top:20px;padding:14px 16px;background:rgba(255,255,255,.05);border-left:2px solid var(--gold);">
         <div style="font-family:var(--fm);font-size:8px;letter-spacing:2px;color:var(--gold);text-transform:uppercase;margin-bottom:6px;">What to do next</div>
-        <div style="font-size:13px;color:rgba(255,255,255,.75);line-height:1.6;">You&rsquo;ve completed <strong style="color:#fff;">2 of 16 categories</strong>. Before moving on, discuss your Money results &mdash; 68% means real differences worth exploring.</div>
-        <button onclick="startFreshCat('conflict')" style="margin-top:12px;background:none;border:1px solid var(--gold);color:var(--gold);font-family:var(--fm);font-size:9px;letter-spacing:2px;padding:8px 16px;cursor:pointer;text-transform:uppercase;">Start Category 3 &rarr;</button>
+        <div style="font-size:13px;color:rgba(255,255,255,.75);line-height:1.6;">You&rsquo;ve completed <strong style="color:#fff;">2 of 12 categories</strong>. Before moving on, discuss your Money results &mdash; 68% means real differences worth exploring.</div>
+        <button onclick="startFreshCat('conflict')" style="margin-top:12px;background:none;border:1px solid var(--gold);color:var(--gold);font-family:var(--fm);font-size:9px;letter-spacing:2px;padding:8px 16px;cursor:pointer;text-transform:uppercase;">Start Conflict &amp; Emotional Regulation &rarr;</button>
       </div>
+    </div>
+    <!-- Weekly Check-In entry (preview / coming Month 4) -->
+    <div class="ci-card" onclick="nav('s-checkin')">
+      <div class="ci-badge">Preview &middot; Coming Month 4</div>
+      <div class="ci-eyebrow">This Week&rsquo;s Check-In</div>
+      <div class="ci-title">How are you doing<em> this week?</em></div>
+      <div class="ci-sub">A two-minute pulse. Keeps the framework alive between full categories.</div>
+      <div class="ci-arrow">Open check-in &rarr;</div>
     </div>
     <!-- Waiting nudge -->
     <div style="margin:0 0 4px;padding:12px 16px;background:rgba(196,135,90,.06);border-left:2px solid var(--gold);display:flex;align-items:flex-start;gap:10px;">
@@ -863,6 +1144,61 @@ body.demo-mode .demo-only.db{display:block !important;}
   <button class="ntb" onclick="nav('s-health')"><span class="nti"><svg viewBox="0 0 24 24"><path d="M12 20s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.5-7 10-7 10z"/></svg></span><div class="ntl">Health</div></button>
   <button class="ntb" onclick="nav('s-tools')"><span class="nti"><svg viewBox="0 0 24 24"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/><circle cx="9" cy="7" r="2"/><circle cx="15" cy="12" r="2"/><circle cx="11" cy="17" r="2"/></svg></span><div class="ntl">Tools</div></button>
   <button class="ntb" onclick="nav('s-settings')"><span class="nti"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c0-4 3-6 7-6s7 2 7 6"/></svg></span><div class="ntl">Profile</div></button>
+</div>
+</div>
+
+<!-- WEEKLY CHECK-IN (Preview · Coming Month 4) -->
+<div id="s-checkin" class="screen" style="background:var(--cream);">
+<div class="tb">
+  <button class="bk" onclick="nav('s-home')">&larr; Home</button>
+  <div class="tb-lb">Weekly Check-In</div>
+  <div></div>
+</div>
+<div class="scroll" style="padding:0;">
+  <div style="background:var(--ink);padding:34px 24px 30px;border-bottom:1px solid rgba(255,255,255,.08);position:relative;overflow:hidden;">
+    <div style="position:absolute;bottom:-24px;right:-8px;font-family:var(--fb);font-size:140px;font-weight:300;color:rgba(255,255,255,.035);line-height:1;pointer-events:none;">14</div>
+    <div style="position:absolute;top:18px;right:18px;background:rgba(196,135,90,.12);border:1px solid rgba(196,135,90,.55);color:var(--gold);font-family:var(--fm);font-size:7px;letter-spacing:2px;padding:5px 10px;text-transform:uppercase;">Preview &middot; Month 4</div>
+    <div style="font-family:var(--fm);font-size:9px;letter-spacing:3px;color:rgba(196,135,90,.72);text-transform:uppercase;margin-bottom:8px;">Week 14 &middot; Tuesday</div>
+    <div style="font-family:var(--fb);font-size:30px;font-weight:300;color:var(--white);line-height:1.2;">How are you doing<br><em style="color:rgba(255,255,255,.6);">this week?</em></div>
+    <div style="font-size:13px;color:rgba(255,255,255,.62);line-height:1.65;margin-top:14px;max-width:310px;">A two-minute temperature check. Just for you &mdash; your answers stay private until you choose to share them with your partner.</div>
+  </div>
+  <div style="padding:30px 24px 40px;">
+    <div style="margin-bottom:32px;">
+      <div style="font-family:var(--fm);font-size:8px;letter-spacing:2px;color:var(--soft);text-transform:uppercase;margin-bottom:14px;">Relationship pulse this week</div>
+      <div class="pulse-row">
+        <button class="pulse-dot" onclick="selPulse(this)">1</button>
+        <button class="pulse-dot" onclick="selPulse(this)">2</button>
+        <button class="pulse-dot" onclick="selPulse(this)">3</button>
+        <button class="pulse-dot active" onclick="selPulse(this)">4</button>
+        <button class="pulse-dot" onclick="selPulse(this)">5</button>
+      </div>
+      <div class="pulse-lbs"><span>Struggling</span><span>Thriving</span></div>
+    </div>
+    <div class="ci-qblock">
+      <div class="ci-qlabel">Question of the Week</div>
+      <div class="ci-qtext">&ldquo;What&rsquo;s one thing your partner did this week that you want them to know you noticed?&rdquo;</div>
+      <textarea class="q-ta" style="margin-top:16px;background:var(--white);" placeholder="A moment. A gesture. A word. Keep it short." rows="3"></textarea>
+    </div>
+    <div class="ci-shift">
+      <div class="ci-shift-lb">Has anything shifted?</div>
+      <div class="ci-shift-tx">You both ranked <strong>Money</strong> as a top-3 priority. Has your thinking about it changed at all this week?</div>
+      <div class="ci-shift-btns">
+        <button class="ci-shift-btn" onclick="selShift(this)">Not really</button>
+        <button class="ci-shift-btn" onclick="selShift(this)">A little</button>
+        <button class="ci-shift-btn" onclick="selShift(this)">Yes &mdash; let&rsquo;s revisit</button>
+      </div>
+    </div>
+    <div style="padding:16px 18px;background:rgba(196,135,90,.06);border-left:2px solid var(--gold);margin-bottom:24px;">
+      <div style="font-family:var(--fm);font-size:8px;letter-spacing:2px;color:var(--gold);text-transform:uppercase;margin-bottom:6px;">Since last week</div>
+      <div style="font-size:13px;color:var(--mid);line-height:1.65;">Your pulse has been between 3 and 4 for the past 3 weeks. That&rsquo;s steady ground. Alex&rsquo;s pulse has been between 4 and 5. Worth a check-in conversation about what&rsquo;s working for them.</div>
+    </div>
+    <button class="btn btn-ink" style="width:100%;padding:18px;" onclick="showToast('Check-in saved · See you next week');setTimeout(()=>nav('s-home'),1200);">Complete Check-In &rarr;</button>
+    <button class="btn btn-naked" style="width:100%;margin-top:10px;" onclick="nav('s-home')">Skip this week</button>
+    <div style="margin-top:24px;padding:14px 16px;background:var(--off);border:1px dashed rgba(196,135,90,.4);">
+      <div style="font-family:var(--fm);font-size:7.5px;letter-spacing:2px;color:var(--gold);text-transform:uppercase;margin-bottom:6px;">About this preview</div>
+      <div style="font-size:11px;color:var(--soft);line-height:1.6;">The Weekly Check-In is part of the Month 4 product update. It&rsquo;s shown here as a preview so you can see how the framework stays alive between full category work. Final version will include pulse history charts, shared vs. private modes, and partner notifications.</div>
+    </div>
+  </div>
 </div>
 </div>
 
@@ -889,22 +1225,42 @@ body.demo-mode .demo-only.db{display:block !important;}
     <div class="q-rl"></div>
     <div class="q-lb">Core Question</div>
     <div class="q-tx" id="cat-q">&ldquo;What role does money play in your sense of security &mdash; and how much financial transparency do you need from a partner?&rdquo;</div>
+    <button class="q-ex-toggle" id="cat-ex-toggle" onclick="toggleExample()">See example answer &rarr;</button>
+    <div class="q-ex" id="cat-example">
+      <div class="q-ex-label">One person&rsquo;s example</div>
+      <div class="q-ex-text" id="cat-ex-text"></div>
+      <div class="q-ex-note">This is one person&rsquo;s perspective, not a template. Your answer should reflect your own experience, not echo this one.</div>
+      <button class="q-ex-close" onclick="toggleExample()">Hide example</button>
+    </div>
     <textarea class="q-ta" placeholder="Write your honest answer. There is no right answer &mdash; only yours." rows="3"></textarea>
   </div>
   <div class="fxs">
     <div class="fx-lb">How flexible are you on this?</div>
     <div class="fg">
-      <div class="fo" id="fo-nn" onclick="selFo('nn')"><div class="fo-nm">Non-Negotiable</div><div class="fo-sb">Dealbreaker for me</div></div>
-      <div class="fo" id="fo-sp" onclick="selFo('sp')"><div class="fo-nm">Strong Preference</div><div class="fo-sb">Very important, little room</div></div>
-      <div class="fo" id="fo-fl" onclick="selFo('fl')"><div class="fo-nm">Flexible</div><div class="fo-sb">Important but I can adapt</div></div>
-      <div class="fo" id="fo-un" onclick="selFo('un')"><div class="fo-nm">Unsure</div><div class="fo-sb">Haven&rsquo;t fully decided</div></div>
+      <div class="fo" id="fo-nn" onclick="selFo('nn')"><div class="fo-nm">Non-Negotiable</div><div class="fo-sb">Essential to your long-term happiness. Misalignment here would prevent the relationship from moving forward.</div></div>
+      <div class="fo" id="fo-sp" onclick="selFo('sp')"><div class="fo-nm">Strong Preference</div><div class="fo-sb">Important to you. Adjustment would require meaningful compromise and intentional discussion.</div></div>
+      <div class="fo" id="fo-fl" onclick="selFo('fl')"><div class="fo-nm">Flexible</div><div class="fo-sb">You have a preference, but you could adapt without long-term resentment.</div></div>
+      <div class="fo" id="fo-un" onclick="selFo('un')"><div class="fo-nm">Unsure</div><div class="fo-sb">You have not yet formed a clear position.</div></div>
     </div>
   </div>
-  <div class="prb">
-    <div class="pr-lb">Priority rank across all 16 categories</div>
+  <div class="prb" id="prb-paid">
+    <div class="pr-lb">Priority Rank<span id="free-rank-badge" class="free-rank-pill" style="display:none;">Your 1 free rank</span></div>
+    <div class="pr-help">Rank this category against the others in the framework. The category you rank #1 is the single most important dimension of the shared life you want to build. Each number should be used only once. Two partners can share identical answers and still be misaligned if they disagree on what matters most.</div>
     <div class="pr-rw">
-      <div class="pr-tx">Where does this rank in importance to you?</div>
-      <select class="pr-se" id="priority-sel"></select>
+      <div class="pr-tx" id="cat-pr-tx">Where does <em>this category</em> rank in your 12 core categories?</div>
+      <select class="pr-se" id="priority-sel" onchange="onRankChange(this)"></select>
+    </div>
+  </div>
+  <div class="prb-locked" id="prb-locked" style="display:none;">
+    <div class="prbl-tag">
+      <svg viewBox="0 0 24 24" class="prbl-icon"><rect x="5" y="11" width="14" height="9" rx="1"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>
+      <span>Priority Rank &middot; Premium feature</span>
+    </div>
+    <div class="prbl-title">Ranking is where priorities become visible.</div>
+    <div class="prbl-body" id="prbl-body">Two partners can share identical answers and still be misaligned if they disagree on what matters most. Priority ranking is the mechanism that surfaces those hidden conflicts &mdash; and it&rsquo;s a Premium feature. Unlock it to rank this category against all 12 in your framework.</div>
+    <div class="prbl-actions">
+      <button class="prbl-cta" onclick="nav('s-paywall')">Unlock with Premium &rarr;</button>
+      <button class="prbl-remove" id="prbl-remove" onclick="removeFreeRank()" style="display:none;">Remove existing rank &larr;</button>
     </div>
   </div>
 </div>
@@ -1008,7 +1364,7 @@ body.demo-mode .demo-only.db{display:block !important;}
     <button class="ptb act" onclick="showP(0,this)">01</button>
     <button class="ptb" onclick="showP(1,this)">02</button>
     <button class="ptb" onclick="showP(2,this)">03</button>
-    <button class="ptb" onclick="showP(3,this)">Capstone</button>
+    <button class="ptb" onclick="showP(3,this)">04</button>
   </div>
   <div class="pb" id="prompt-body">
     <div class="pb-co"></div>
@@ -1127,9 +1483,10 @@ body.demo-mode .demo-only.db{display:block !important;}
   <div style="font-family:var(--fm);font-size:9px;letter-spacing:4px;color:rgba(196,135,90,.7);text-transform:uppercase;margin-bottom:8px;">Unlock More</div>
   <div style="font-family:var(--fb);font-size:28px;font-weight:300;color:var(--white);margin-bottom:6px;">Go deeper<br><em style="color:rgba(255,255,255,.6);">together.</em></div>
   <div style="width:32px;height:1px;background:var(--gold);margin:20px 0;opacity:.6;"></div>
-  <div class="pt"><div class="pt-top"><div><div class="pt-nm">Free Tier</div><div class="pt-tg" style="color:var(--soft);">Always free</div></div><div class="pt-pr">$0</div></div><div class="pt-ds">5 categories matched to your stage &middot; Full alignment scores for those 5 &middot; Partner invite included</div></div>
-  <div class="pt feat"><div class="pt-top"><div><div class="pt-nm">FUSE Premium</div><div class="pt-tg" style="color:var(--gold);">Best value</div></div><div class="pt-pr">$9.99<span>/mo</span><div style="font-size:10px;color:var(--soft);margin-top:2px;">or $99/yr</div></div></div><div class="pt-ds">All 16 categories &middot; Full alignment scores &middot; Guided conversation library &middot; Check-ins &middot; Relationship Evolution Dashboard &middot; Therapist export &middot; Capstone question</div></div>
-  <div class="pt"><div class="pt-top"><div><div class="pt-nm">FUSE Align+</div><div class="pt-tg" style="color:var(--soft);">Everything + AI coaching</div></div><div class="pt-pr">$14.99<span>/mo</span><div style="font-size:10px;color:var(--soft);margin-top:2px;">or $149/yr</div></div></div><div class="pt-ds">Everything in Premium &middot; AI conversation coaching &middot; Compatibility trend analysis &middot; Shared growth goals &middot; Priority access to new categories</div></div>
+  <div class="pt"><div class="pt-top"><div><div class="pt-nm">Free Tier</div><div class="pt-tg" style="color:var(--soft);">Always free &middot; Per user</div></div><div class="pt-pr">$0</div></div><div class="pt-ds">3 categories matched to your stage &middot; Flexibility ratings &middot; Partner invite included &middot; Each person creates their own account &middot; Priority ranking not included</div></div>
+  <div class="pt"><div class="pt-top"><div><div class="pt-nm">&Agrave; la carte unlocks</div><div class="pt-tg" style="color:var(--soft);">One-time per category</div></div><div class="pt-pr">$4.99<span>/each</span></div></div><div class="pt-ds">Unlock individual categories permanently, one at a time. For users who want more than 3 free but don&rsquo;t want to subscribe.</div></div>
+  <div class="pt feat"><div class="pt-top"><div><div class="pt-nm">FUSE Premium</div><div class="pt-tg" style="color:var(--gold);">Most popular</div></div><div class="pt-pr">$99<span>/yr</span><div style="font-size:10px;color:var(--soft);margin-top:2px;">or $9.99/mo &middot; 12-month commitment</div></div></div><div class="pt-ds">All 12 core categories &middot; Priority ranking (the #1-through-#12 framework) &middot; Full alignment scores &middot; Guided conversation library &middot; Periodic check-ins &middot; Evolution Dashboard &middot; Therapist export &middot; Framework capstone &middot; New categories added over time &middot; Per user</div></div>
+  <div class="pt"><div class="pt-top"><div><div class="pt-nm">FUSE Align+</div><div class="pt-tg" style="color:var(--soft);">Everything + AI coaching</div></div><div class="pt-pr">$149<span>/yr</span><div style="font-size:10px;color:var(--soft);margin-top:2px;">or $14.99/mo &middot; 12-month commitment</div></div></div><div class="pt-ds">Everything in Premium &middot; AI conversation coaching &middot; Compatibility trend analysis &middot; Shared growth goals &middot; Priority access to new categories &middot; Per user</div></div>
   <button class="btn btn-cream" style="width:100%;margin-top:20px;padding:18px;font-size:10px;letter-spacing:4px;" onclick="unlockPremium()">Upgrade to Premium &rarr;</button>
   <div style="height:16px;"></div>
 </div>
@@ -1139,15 +1496,19 @@ body.demo-mode .demo-only.db{display:block !important;}
 <div id="s-capstone" class="screen" style="background:var(--cream);">
 <div class="tb">
   <button class="bk" onclick="nav('s-reveal')">&larr; Reveal</button>
-  <div class="tb-lb">Capstone Question</div>
+  <div class="tb-lb">Framework Capstone</div>
   <div></div>
 </div>
 <div class="scroll">
-  <div style="background:var(--ink);padding:48px 24px 36px;text-align:center;">
-    <div style="font-family:var(--fm);font-size:8px;letter-spacing:4px;color:var(--gold);text-transform:uppercase;margin-bottom:14px;">The Final Question</div>
-    <div style="font-family:var(--fb);font-size:24px;font-weight:300;font-style:italic;color:var(--white);line-height:1.6;max-width:280px;margin:0 auto;">&ldquo;If we choose each other, what are we committing to protect in our financial life together &mdash; even when it is inconvenient?&rdquo;</div>
+  <div style="background:var(--ink);padding:48px 24px 36px;text-align:center;position:relative;overflow:hidden;">
+    <div style="position:absolute;bottom:-18px;right:-8px;font-family:var(--fb);font-size:120px;font-weight:300;color:rgba(255,255,255,.04);line-height:1;pointer-events:none;">12</div>
+    <div style="font-family:var(--fm);font-size:8px;letter-spacing:4px;color:var(--gold);text-transform:uppercase;margin-bottom:14px;">After all 12 categories</div>
+    <div style="font-family:var(--fb);font-size:24px;font-weight:300;font-style:italic;color:var(--white);line-height:1.6;max-width:300px;margin:0 auto;">&ldquo;If we choose each other, what are we committing to protect &mdash; even when it is inconvenient?&rdquo;</div>
   </div>
-  <div style="padding:24px;"><div style="font-size:13px;color:var(--soft);line-height:1.7;margin-bottom:20px;">This is the capstone question. Answer independently, then share.</div><textarea class="q-ta" placeholder="Your answer..." rows="5"></textarea></div>
+  <div style="padding:24px;">
+    <div style="font-size:13px;color:var(--soft);line-height:1.75;margin-bottom:18px;">This is the framework&rsquo;s single capstone question. It&rsquo;s not about any one category &mdash; it&rsquo;s about the life you are choosing to build together. You&rsquo;ll reach this question once both of you have completed all 12 core categories. Answer independently, then share.</div>
+    <textarea class="q-ta" placeholder="What would you protect, even when it is inconvenient?" rows="6"></textarea>
+  </div>
   <div style="height:16px;"></div>
 </div>
 <div class="ab">
@@ -1251,7 +1612,7 @@ body.demo-mode .demo-only.db{display:block !important;}
       <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
         <div>
           <div style="font-size:14px;font-weight:500;color:var(--ink);" id="settings-stage-label">Not set</div>
-          <div style="font-size:11px;color:var(--soft);margin-top:2px;">Your free 5 categories are matched to this stage</div>
+          <div style="font-size:11px;color:var(--soft);margin-top:2px;">Your 3 free categories are matched to this stage</div>
         </div>
         <button onclick="toggleStageSelector()" style="background:none;border:1px solid var(--rule);font-family:var(--fm);font-size:8px;letter-spacing:2px;text-transform:uppercase;padding:8px 12px;cursor:pointer;color:var(--soft);">Change</button>
       </div>
@@ -1305,7 +1666,7 @@ body.demo-mode .demo-only.db{display:block !important;}
   <div style="padding:8px 24px 0;">
     <div style="font-family:var(--fm);font-size:8px;letter-spacing:3px;color:var(--soft);text-transform:uppercase;margin-bottom:12px;">Subscription</div>
     <div style="padding:16px;background:var(--off);border:1px solid var(--rule);margin-bottom:10px;display:flex;align-items:center;justify-content:space-between;">
-      <div><div style="font-size:13px;font-weight:500;color:var(--ink);">Free Tier</div><div style="font-size:11px;color:var(--soft);margin-top:2px;">4 of 16 categories</div></div>
+      <div><div style="font-size:13px;font-weight:500;color:var(--ink);">Free Tier</div><div style="font-size:11px;color:var(--soft);margin-top:2px;">3 of 12 categories</div></div>
       <button onclick="nav('s-paywall')" style="background:var(--ink);color:var(--white);border:none;font-family:var(--fm);font-size:8px;letter-spacing:2px;text-transform:uppercase;padding:9px 14px;cursor:pointer;">Upgrade</button>
     </div>
   </div>
@@ -1341,11 +1702,11 @@ body.demo-mode .demo-only.db{display:block !important;}
     <div class="pfh"></div>
     <div class="pfhd"><div class="pfht">Simple Pricing</div><button class="pfcl" onclick="closePF(null,'pf-pricing')">&times;</button></div>
     <div class="pfl">
-      <div style="font-size:12px;color:var(--soft);margin-bottom:16px;line-height:1.6;">5 categories free, matched to your relationship stage. Unlock all 16 anytime &mdash; no card required to start.</div>
-      <div class="pt"><div class="pt-top"><div><div class="pt-nm">Free</div><div class="pt-tg" style="color:var(--soft);">Always free</div></div><div class="pt-pr">$0</div></div><div class="pt-ds">5 categories matched to your stage &middot; Full alignment scores for those 5 &middot; Partner invite included</div></div>
-      <div class="pt"><div class="pt-top"><div><div class="pt-nm">Category Unlocks</div><div class="pt-tg" style="color:var(--soft);">&agrave; la carte</div></div><div class="pt-pr">$2.99<span>&ndash;$4.99 each</span></div></div><div class="pt-ds">Unlock individual categories one at a time. Each unlock improves your alignment score.</div></div>
-      <div class="pt feat"><div class="pt-top"><div><div class="pt-nm">FUSE Premium</div><div class="pt-tg" style="color:var(--gold);">Best value</div></div><div class="pt-pr">$9.99<span>/mo</span><div style="font-size:10px;color:var(--soft);margin-top:2px;">or $99/yr</div></div></div><div class="pt-ds">All 16 categories &middot; Full alignment scores &middot; Guided conversation library &middot; Check-ins &middot; Evolution Dashboard &middot; Therapist export &middot; Capstone question</div></div>
-      <div class="pt"><div class="pt-top"><div><div class="pt-nm">FUSE Align+</div><div class="pt-tg" style="color:var(--soft);">Everything + AI coaching</div></div><div class="pt-pr">$14.99<span>/mo</span><div style="font-size:10px;color:var(--soft);margin-top:2px;">or $149/yr</div></div></div><div class="pt-ds">Everything in Premium &middot; AI conversation coaching &middot; Compatibility trend analysis &middot; Shared growth goals</div></div>
+      <div style="font-size:12px;color:var(--soft);margin-bottom:16px;line-height:1.6;">3 categories free, matched to your relationship stage. Unlock all 12 core categories anytime. Each person pays their own subscription &mdash; no card required to start.</div>
+      <div class="pt"><div class="pt-top"><div><div class="pt-nm">Free</div><div class="pt-tg" style="color:var(--soft);">Always free &middot; Per user</div></div><div class="pt-pr">$0</div></div><div class="pt-ds">3 categories matched to your stage &middot; Flexibility ratings &middot; Partner invite included &middot; Priority ranking not included</div></div>
+      <div class="pt"><div class="pt-top"><div><div class="pt-nm">Category Unlocks</div><div class="pt-tg" style="color:var(--soft);">&agrave; la carte</div></div><div class="pt-pr">$4.99<span>/each</span></div></div><div class="pt-ds">Unlock individual categories permanently. One-time payment per category. Perfect if you want more than 3 but don&rsquo;t want a subscription.</div></div>
+      <div class="pt feat"><div class="pt-top"><div><div class="pt-nm">FUSE Premium</div><div class="pt-tg" style="color:var(--gold);">Most popular</div></div><div class="pt-pr">$99<span>/yr</span><div style="font-size:10px;color:var(--soft);margin-top:2px;">or $9.99/mo &middot; 12-month commitment</div></div></div><div class="pt-ds">All 12 core categories &middot; Priority ranking (the #1-through-#12 framework) &middot; Full alignment scores &middot; Guided conversation library &middot; Check-ins &middot; Evolution Dashboard &middot; Therapist export &middot; Framework capstone &middot; New categories added over time &middot; Per user</div></div>
+      <div class="pt"><div class="pt-top"><div><div class="pt-nm">FUSE Align+</div><div class="pt-tg" style="color:var(--soft);">Everything + AI coaching</div></div><div class="pt-pr">$149<span>/yr</span><div style="font-size:10px;color:var(--soft);margin-top:2px;">or $14.99/mo &middot; 12-month commitment</div></div></div><div class="pt-ds">Everything in Premium &middot; AI conversation coaching &middot; Compatibility trend analysis &middot; Shared growth goals &middot; Per user</div></div>
       <button class="btn btn-ink" onclick="nav('s-onboard');closePF(null,'pf-pricing')" style="width:100%;margin-top:18px;">Create a Free Account &rarr;</button>
     </div>
   </div>
@@ -1364,40 +1725,52 @@ body.demo-mode .demo-only.db{display:block !important;}
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false">
 // ── DATA ──────────────────────────────────────────────────────────────
 // ── ACCESS TIERS ─────────────────────────────────────────────────────────
-const allCats = ['money','children','conflict','trust','structure',
-                 'career','location','intimacy','growth','health',
-                 'legacy','spirituality','family-ext','finances2','home','social'];
+const allCats = ['location','children','money','career','structure','conflict',
+                 'intimacy','social','family-ext','values','communication','spirituality',
+                 'trust','growth','health','legacy','finances2','home'];
 
 const stageUnlocks = {
-  new:       ['money','intimacy','growth','social','location'],
-  committed: ['money','children','structure','home','career'],
-  engaged:   ['money','children','family-ext','finances2','spirituality'],
-  married:   ['conflict','intimacy','growth','legacy','health'],
-  parents:   ['children','family-ext','home','career','health'],
-  empty:     ['intimacy','legacy','growth','finances2','health']
+  new:       ['money','intimacy','values'],
+  committed: ['money','children','structure'],
+  engaged:   ['money','children','spirituality'],
+  married:   ['conflict','intimacy','communication'],
+  parents:   ['children','family-ext','communication'],
+  empty:     ['intimacy','values','communication']
 };
 
 let currentStage = null;
-let unlockedCats = ['money','children','conflict','trust','structure']; // default until stage set
+let unlockedCats = ['location','children','money']; // 3 core defaults until stage set
 let lockedCats   = allCats.filter(k => !unlockedCats.includes(k));
 
 const cats = {
-  money:    {nu:'Category 01',ic:'01',nm:'Money & Financial Philosophy',sb:'How you think about money, debt, risk appetite, and financial transparency.',q:'"What role does money play in your sense of security — and how much financial transparency do you need from a partner?"'},
-  children: {nu:'Category 02',ic:'02',nm:'Children & Family',sb:'Whether you want children, timing, and philosophy of how you would raise them.',q:'"Do you want children? When? And what kind of parent do you imagine being?"'},
-  conflict: {nu:'Category 03',ic:'03',nm:'Conflict & Emotional Regulation',sb:'How you fight, how you repair, and how you recover from rupture as a couple.',q:'"In the middle of a real fight, what do you need from your partner — and what do you tend to do that makes things worse?"'},
-  trust:    {nu:'Category 04',ic:'04',nm:'Trust & Digital Privacy',sb:'Phone access, social media boundaries, and what loyalty looks like in practice.',q:'"What does loyalty look like for you in practice — and where are your personal limits around phones, social media, and privacy?"'},
-  structure:  {nu:'Category 05',ic:'05',nm:'Relationship Structure & Boundaries',sb:'Exclusivity, commitment, and whether the structure of your relationship is something you discuss.',q:'"What does commitment mean to you specifically — and is the structure of your relationship something you see as fixed, or something two people define together?"'},
-  career:     {nu:'Category 06',ic:'06',nm:'Career & Ambition',sb:'How you each think about ambition, sacrifice, and supporting each other\'s professional goals.',q:'"What does success look like for you professionally — and what are you willing to sacrifice for it, and not willing to sacrifice?"'},
-  location:   {nu:'Category 07',ic:'07',nm:'Location & Lifestyle',sb:'Where you want to live, how you want to live, and whether those visions are compatible.',q:'"Where do you see yourself living in five years — and how non-negotiable is that for you?"'},
-  intimacy:   {nu:'Category 08',ic:'08',nm:'Intimacy & Physical Connection',sb:'Physical and emotional intimacy — how you express it, how often you need it, and what makes you feel desired.',q:'"How central is physical intimacy to feeling loved — and how do you want to be approached when your needs differ from your partner\'s?"'},
-  growth:     {nu:'Category 09',ic:'09',nm:'Personal Growth & Individuality',sb:'How much independence, self-development, and individual identity you each need within a partnership.',q:'"How much of your individual self do you expect to maintain inside a committed relationship — and what does that look like in practice?"'},
-  health:     {nu:'Category 10',ic:'10',nm:'Health & Emotional Wellbeing',sb:'Mental and physical health, therapy, substances, and how you show up for each other during hard times.',q:'"What does supporting a partner through a mental health struggle look like to you — and what would you need from them in return?"'},
-  legacy:     {nu:'Category 11',ic:'11',nm:'Legacy & Long-Term Vision',sb:'How you want to be remembered, what you want to build together, and whether your five-year visions align.',q:'"What do you want to have built together in ten years — and how do you want to be living?"'},
-  spirituality:{nu:'Category 12',ic:'12',nm:'Spirituality & Meaning',sb:'Religion, spirituality, rituals, and how you make meaning — individually and together.',q:'"What role does spirituality, religion, or a sense of higher purpose play in your daily life — and how important is it that your partner shares that?"'},
-  'family-ext':{nu:'Category 13',ic:'13',nm:'Extended Family & In-Laws',sb:'Family of origin dynamics, holidays, boundaries, and how much family influences your relationship.',q:'"How involved do you expect your families of origin to be in your life as a couple — and where would you draw a boundary if needed?"'},
-  finances2:  {nu:'Category 14',ic:'14',nm:'Financial Future & Wealth Building',sb:'Investment philosophy, retirement, financial goals, and how you build wealth as a unit.',q:'"What does financial security look like for you by retirement — and how do you think couples should make big financial decisions together?"'},
-  home:       {nu:'Category 15',ic:'15',nm:'Home & Domestic Life',sb:'Household responsibilities, cleanliness standards, hosting, and how you build a shared physical space.',q:'"What does a home feel like to you at its best — and what domestic responsibilities feel non-negotiable for you to share?"'},
-  social:     {nu:'Category 16',ic:'16',nm:'Social Life & Friendship',sb:'Friendships, socializing, alone time, and how you navigate your social lives as a couple.',q:'"How much of your social life do you expect to share with your partner — and how do you protect time for individual friendships?"'}
+  // ── CORE 12 (canonical framework) ──────────────────────────
+  location: {nu:'Category 01',ic:'01',nm:'Location & Lifestyle',sb:'Where you want to live and what kind of daily life you want there.',q:'"Where do you see yourself living long term, and what kind of daily life do you want there?"',ex:`I want to live long term in coastal Orange County or San Diego, within 60–90 minutes of family. Climate affects my daily well-being, and proximity to the ocean and diversity matters to me. I would consider 1–2 years abroad for a strategic opportunity, but I would not permanently relocate somewhere that isolates me from my support system. Stability and community are not negotiable for me.`,dq:['What makes a place feel grounding to you?','If a significant financial opportunity required relocation and conflicted with agreed goals, how should we evaluate that decision together?']},
+  children: {nu:'Category 02',ic:'02',nm:'Children & Family',sb:'Whether you want children, when, and how you imagine parenting.',q:'"What does family look like in your long term vision?"',ex:`I want 1–2 children within the next 3–5 years. I believe parenting requires intentional structure, emotional intelligence, and active presence. I would not want to postpone that decision indefinitely because I see family as foundational to how I define fulfillment. If we were uncertain, I would want clarity rather than avoidance.`,dq:['What from your upbringing would you keep or change?','If timing disagreements arose, how should we resolve them?']},
+  money: {nu:'Category 03',ic:'03',nm:'Money & Financial Philosophy',sb:'How you think about money, debt, risk, stability, and transparency.',q:'"What role does money play in your long term life vision?"',ex:`I think about money in terms of ownership, assets, and long-term stability. I'm comfortable taking calculated risks when the upside aligns with our larger goals, but I do not believe in gambling stability for ego. Debt should be strategic, not emotional. I expect financial transparency, shared awareness, and long-term planning.`,dq:['What financial lesson shaped you most?','If risk and stability conflicted, how should we decide?']},
+  career: {nu:'Category 04',ic:'04',nm:'Career & Ambition',sb:'The role work plays in your identity and how you support a partner through growth seasons.',q:'"What role does your work play in your identity and future?"',ex:`My work is part of my identity, but not at the expense of my integrity or my relationship. I expect seasons of intensity, but I also expect us to protect stability. I respect ambition in a partner and would not want competition or quiet resentment if one of us advances faster.`,dq:['What does support look like in growth seasons?','If one advanced faster, how should we navigate that shift?']},
+  structure: {nu:'Category 05',ic:'05',nm:'Relationship Structure & Boundaries',sb:'What commitment and loyalty look like in practice, day to day.',q:'"What does commitment and loyalty look like in practice?"',ex:`I value monogamy and emotional exclusivity. I do not believe in keeping options open once committed. Opposite-sex friendships are fine if transparent and respectful, but secrecy erodes trust. Loyalty should be visible, not assumed.`,dq:['What behaviors protect a relationship?','If trust were shaken, what would rebuilding require?']},
+  conflict: {nu:'Category 06',ic:'06',nm:'Conflict & Emotional Regulation',sb:'How you fight, how you repair, and how you recover from rupture.',q:'"What does respectful disagreement look like to you?"',ex:`When I'm upset, I take space to regulate rather than react. I do not believe in yelling, public disrespect, or prolonged silent treatment. If I'm wrong, I want to own it directly. Repair should happen within 24–48 hours, not weeks later.`,dq:['Tell me about a disagreement that changed you.','When upset, what responsibility do you carry for your reactions?']},
+  intimacy: {nu:'Category 07',ic:'07',nm:'Sexual Connection & Emotional Closeness',sb:'Sexual connection, physical affection, and emotional closeness in a long-term relationship.',q:'"How do you experience and express sexual connection, physical affection, and emotional closeness in a long-term relationship?"',ex:`I have a moderate to high libido and value sexual connection regularly. I'm physically affectionate in private but not overly demonstrative in public. I don't naturally write love notes, but I show care through presence and consistency. I may not need constant verbal reassurance, but I value steady connection.`,dq:['What makes you feel desired?','What makes you feel emotionally secure?','How do you show love when you feel it?','If one of us needed more reassurance or touch than the other, how should we navigate that difference?']},
+  social: {nu:'Category 08',ic:'08',nm:'Social Life & Community',sb:'What a healthy social life looks like for you, and how it integrates with your partnership.',q:'"What does a healthy social life look like for you?"',ex:`I value having a small but strong community. I prefer 1–2 social engagements per week and meaningful downtime. I want integration between our social circles, but I also want individual autonomy. Isolation or over-dependence on one social unit would not feel healthy.`,dq:['How do you balance partnership and friendships?','If discomfort arises socially, how should it be handled?']},
+  'family-ext': {nu:'Category 09',ic:'09',nm:'Family & Social Boundaries',sb:'Healthy involvement from family and friends, and how outside relationships factor into the primary unit.',q:'"What does healthy involvement from family and friends look like?"',ex:`I value close relationships with my family, but once I'm committed, my partner and I are the primary unit. Major life decisions should be made between us first, not influenced by outside pressure.
+
+If conflict arose between my partner and my family, I would not stay neutral. I would listen carefully to both sides, but I would protect my partner publicly and address concerns privately. I believe disagreements with family should never create instability inside the relationship.
+
+Advice is welcome, interference is not. Holidays and traditions should feel equitable and intentional. I would not tolerate ongoing disrespect toward my partner from anyone, including family.`,dq:['When conflict happens in the relationship, who do you turn to and why?','If outside influence grows strong, how should we protect the relationship?','If conflict arose between your partner and your family, how would you handle it?']},
+  values: {nu:'Category 10',ic:'10',nm:'Values & Growth Alignment',sb:'Core values and your willingness to grow, be accountable, and change when you\\\'re wrong.',q:'"What core values should define our partnership?"',ex:`Integrity, accountability, and growth are essential. Integrity means telling the truth even when it's uncomfortable. Accountability means taking responsibility without being forced. Growth, to me, looks like being willing to examine my own patterns, admit when I'm wrong, and actively change behavior when something isn't working.
+
+If I realize I've hurt my partner, I don't want to defend myself — I want to understand the impact and correct it. If a belief I've held is limiting us, I want to be open enough to reevaluate it. I believe personal growth requires humility, reflection, and sometimes outside support, not just good intentions.`,dq:['How do you grow when you realize you were wrong?','If one of us changed significantly, how should we respond?']},
+  communication: {nu:'Category 11',ic:'11',nm:'Communication & Intellectual Compatibility',sb:'How you connect through conversation, feel understood, and express appreciation.',q:'"What makes you feel deeply understood and respected?"',ex:`I value thoughtful, curious conversation and mental engagement. I'm most connected when I can explore ideas, challenge perspectives respectfully, and think out loud without feeling dismissed. Humor matters to me, especially shared humor that feels natural, not forced. I feel appreciated when effort is acknowledged directly — not just assumed. I try to show appreciation through consistency, presence, and verbal affirmation.
+
+I prefer calm, direct communication — even during disagreement — and I want difficult topics to feel safe to explore. I don't thrive in relationships where conversations stay surface-level or where intellectual differences turn into power struggles. I need a partner who can sit in complex conversations without shrinking, posturing, or performing. Mutual respect in conversation sustains attraction for me.`,dq:['What kinds of conversations energize you?','How do you engage when someone challenges your perspective?','What makes you feel mentally connected to someone?','If we strongly disagreed on something important, how would you want that conversation to unfold?','How do you prefer to receive appreciation?','How do you naturally express appreciation?']},
+  spirituality: {nu:'Category 12',ic:'12',nm:'Spiritual Foundation & Faith',sb:'The role of faith, spirituality, and meaning in your daily life and long-term vision.',q:'"What role does faith play in your daily life, your decision-making, and your long-term vision?"',ex:`I view faith as foundational, not peripheral. It shapes how I make decisions, handle conflict, think about money, and define commitment. I believe shared spiritual direction strengthens long-term stability. I would not feel aligned in a partnership where faith is dismissed, minimized, treated as optional, or compartmentalized.`,dq:['How does faith influence the way you make difficult decisions?','What does living your faith look like in practice?','If we differed in spiritual intensity or interpretation, how should we navigate that?','How would we handle raising children within our faith and spirituality?']},
+  // ── YEAR 2+ ADDITIONAL (beyond the core 12) ────────────────
+  trust: {nu:'Category 13',ic:'13',nm:'Trust & Digital Privacy',sb:'Phone access, social media boundaries, and what digital transparency means to you.',q:'"What does loyalty look like for you in practice — and where are your personal limits around phones, social media, and privacy?"',ex:'',tier:'y2'},
+  growth: {nu:'Category 14',ic:'14',nm:'Individual Identity & Autonomy',sb:'How much independence and individual identity you need within a partnership, and how that evolves over time.',q:'"How much of your individual self do you expect to maintain inside a committed relationship — and what does that look like in practice?"',ex:'',tier:'y2'},
+  health: {nu:'Category 15',ic:'15',nm:'Health & Emotional Wellbeing',sb:'Mental and physical health, therapy, substances, and mutual care through hard times.',q:'"What does supporting a partner through a mental health struggle look like to you — and what would you need from them in return?"',ex:'',tier:'y2'},
+  legacy: {nu:'Category 16',ic:'16',nm:'Legacy & Long-Term Vision',sb:'What you want to build together, how you want to be remembered, whether your long-term visions align.',q:'"What do you want to have built together in ten years — and how do you want to be living?"',ex:'',tier:'y2'},
+  finances2: {nu:'Category 17',ic:'17',nm:'Financial Future & Wealth Building',sb:'Investment philosophy, retirement, and how you build wealth as a unit.',q:'"What does financial security look like for you by retirement — and how do you think couples should make big financial decisions together?"',ex:'',tier:'y2'},
+  home: {nu:'Category 18',ic:'18',nm:'Home & Domestic Life',sb:'Household responsibilities, cleanliness standards, and how you build a shared space.',q:'"What does a home feel like to you at its best — and what domestic responsibilities feel non-negotiable for you to share?"',ex:'',tier:'y2'}
 };
 
 const completedCats = {
@@ -1409,19 +1782,149 @@ const prompts = [
   {st:'Prompt 01 of 04',q:'"When you imagine full financial transparency in a relationship, what specifically do you picture — and what does having that tell you about trust?"',sb:'Answer independently first, then share. The goal is to understand where each position comes from.'},
   {st:'Prompt 02 of 04',q:'"Think of a time money caused tension — in a past relationship or growing up. What did that teach you about how finances should work between partners?"',sb:'Past experience shapes current expectations more than we realize.'},
   {st:'Prompt 03 of 04',q:'"If we had completely different spending styles — one a saver, one a spender — what would you need in place to feel secure and not resentful over time?"',sb:'Listen for what each of you actually needs, not just what you prefer.'},
-  {st:'Capstone',q:'"If we choose each other, what are we committing to protect in our financial life together — even when it is inconvenient?"',sb:'This is the capstone question. How you answer it reveals character, maturity, and readiness for partnership.'}
+  {st:'Closing Reflection',q:'"When you think about how you want money to feel between you ten years from now, what would you want to protect — even when it is inconvenient?"',sb:'The final reflection of this guided conversation. The framework&rsquo;s single capstone question comes later, after all 12 categories are complete.'}
 ];
 
 const FAQS = [
   {q:'Does my partner see my answers before they submit theirs?',a:'No — never. Both partners answer independently. Your responses are sealed until your partner completes their side. This prevents anchoring, people-pleasing, and the "I\'ll just agree with them" dynamic that makes most compatibility tools useless.'},
   {q:'Is FUSE Align therapy or couples counseling?',a:'No. FUSE Align is a relationship intelligence and conversation tool. It surfaces areas of alignment and difference so you can talk about them. Many therapists use FUSE Align as a structured intake tool, but the app is not a substitute for professional support.'},
-  {q:'Do both partners need the app?',a:'Yes — FUSE Align is built for two. You\'ll invite your partner after creating your account. They get their own free account and complete each category independently. You both see results only after you\'ve both answered.'},
-  {q:'What happens to our data if we break up?',a:'Either partner can delete their account and all associated data at any time. Your individual responses are permanently removed. Shared alignment scores are also removed. We don\'t retain your data after deletion.'},
+  {q:'Do both partners need the app?',a:'Yes. FUSE Align is built for two, and each person has their own subscription. You\'ll invite your partner after creating your account. They create their own free account and complete each category independently. Because your responses follow you across partners (Solo Mode and Network Mode both let you align with multiple people over time), each person pays their own subscription.'},
+  {q:'What happens to our data if we break up?',a:'Either partner can delete their account and all associated data at any time. Your individual responses are permanently removed. Shared alignment scores are also removed. We don\'t retain your data after deletion. Because each person owns their own account and subscription, you keep your own framework data across future relationships if you choose to.'},
   {q:'Is our data private?',a:'Yes. Your individual answers are never shown to your partner before they submit — and they\'re never shared with third parties, sold, or used for advertising. Alignment scores are only visible to you and your partner.'},
-  {q:'Can we use it long-term, or is it just for setup?',a:'Both. The 16 categories give you a foundation — most couples complete them over 4–8 weeks. After that, FUSE Align continues with periodic check-ins, compatibility trend tracking, and new categories as they\'re developed.'},
-  {q:'What\'s the difference between Premium and FUSE+?',a:'Premium gives you everything you need to go deep — all 16 categories, full alignment scores, the conversation library, and the capstone question. FUSE+ adds AI-powered coaching during difficult conversations, shared growth goal tracking, and early access to new categories.'},
+  {q:'Can we use it long-term, or is it just for setup?',a:'Both. The 12 core categories give you a foundation — most couples complete them over 4–8 weeks. After that, FUSE Align continues with weekly check-ins, monthly conversation prompts, quarterly re-scorings, and new categories added regularly as part of your subscription. The framework is the starting point, not the endpoint.'},
+  {q:'What\'s the difference between Premium and FUSE+?',a:'Premium gives you everything you need to go deep — all 12 core categories, full alignment scores, the conversation library, and the capstone question. FUSE+ adds AI-powered coaching during difficult conversations, shared growth goal tracking, and early access to new categories.'},
+  {q:'Why is there a 12-month commitment on monthly payment?',a:'The framework delivers its full value over time — not just during the initial 4–8 weeks of completion. Weekly check-ins, periodic re-scorings, and new categories added throughout the year are where couples see real behavior change. The 12-month commitment protects that long-term value. You can pay upfront annually ($99/yr) or monthly ($9.99/mo) — both options commit you for 12 months. After 12 months, you can cancel or continue month-to-month.'},
   {q:'Does FUSE Align support polyamorous relationships?',a:'Yes. In Settings, you can enable Relationship Network Mode, which lets you connect and align with multiple partners independently. Each pairing has its own separate alignment scores, category responses, and conversation threads. Your answers with one partner are never visible to another.'}
 ];
+
+
+// ── FRAMEWORK EXAMPLES (completed-state previews for investors) ──────────
+// Two archetypal scenarios that demonstrate the product's emotional range:
+// a deeply-aligned couple using the framework to articulate what they've built,
+// and a couple with significant gaps using the framework to surface the
+// conversations they've been avoiding before they make a bigger commitment.
+const frameworkExamples = {
+  'chen-williams': {
+    hero: 'The Chen-Williams<br><em>framework</em>',
+    stage: 'Engaged &middot; 3.5 years together',
+    overall: 84,
+    narrative: [
+      'Mia and Jordan completed the framework three weeks before their wedding. What the framework reveals is not perfection &mdash; it is something rarer: a couple who had already done the invisible work of aligning on what mattered most, and who used the framework not to discover whether they were compatible, but to put language to the compatibility they had already built.',
+      'Eleven of their twelve categories landed above 75%. Their only meaningful gap is in Communication (68%). Mia is a processor who needs time alone before hard conversations; Jordan wants to talk through things in the moment. They both named this gap independently before they ever opened the framework. The framework&rsquo;s value for them was not revelation &mdash; it was articulation.',
+      'What the framework suggests for Mia and Jordan is maintenance, not repair. The single conversation worth having before the wedding is the Communication one. The framework&rsquo;s guidance language is protective: here is what to preserve; here are the small conversations that will matter when life gets harder.'
+    ],
+    cats: [
+      {nu:'01', nm:'Location & Lifestyle',               sc:86, gap:'Both prefer urban now with an eventual suburban move for children. Aligned on the shape of the life they want to live, with minor differences in timing.'},
+      {nu:'02', nm:'Children & Family',                  sc:95, gap:'Rare clarity. Both want two children, both want involved parenting, both believe in raising kids in faith, both committed to shared caregiving.'},
+      {nu:'03', nm:'Money & Financial Philosophy',       sc:82, gap:'Aligned on joint finances and saving philosophy. Small gap on risk tolerance &mdash; Jordan is slightly more comfortable with investment risk than Mia.'},
+      {nu:'04', nm:'Career & Ambition',                  sc:78, gap:'Both support each other&rsquo;s growth. Minor gap on travel &mdash; Jordan is open to frequent business travel, Mia wants cap at one trip per month.'},
+      {nu:'05', nm:'Structure, Commitment & Loyalty',    sc:89, gap:'Aligned definition of commitment. Both understand loyalty as protecting the relationship from outside influence and keeping private conversations private.'},
+      {nu:'06', nm:'Conflict & Emotional Regulation',    sc:74, gap:'Different processing styles &mdash; Mia withdraws, Jordan presses. They have worked on this together for two years. The 74% reflects real progress.'},
+      {nu:'07', nm:'Sexual Connection & Emotional Closeness', sc:81, gap:'Aligned on frequency expectations and what makes each of them feel desired. Both named emotional security as a prerequisite for physical closeness.'},
+      {nu:'08', nm:'Social Life & Community',            sc:77, gap:'Jordan is more extroverted, Mia is more introverted. They balance each other well, but need to negotiate weekend social commitments intentionally.'},
+      {nu:'09', nm:'Family & Social Boundaries',         sc:84, gap:'Aligned on in-law dynamics. Both families are healthy and involved. Mia&rsquo;s mother occasionally oversteps; they have agreed on how to handle that together.'},
+      {nu:'10', nm:'Values & Growth Alignment',          sc:92, gap:'Both value humility, honesty, and intellectual growth. Both can name times they were wrong and what they learned. This is their strongest category.'},
+      {nu:'11', nm:'Communication',                      sc:68, gap:'The growing edge. Mia needs 24 hours before hard conversations; Jordan wants to resolve things quickly. They have named this gap but not yet built a shared protocol for it.'},
+      {nu:'12', nm:'Spirituality',                       sc:88, gap:'Both practicing Christians. Aligned on raising children in faith, on prayer as a shared practice, and on how to handle differences in denominational preference.'}
+    ],
+    priorities: {
+      a: {name:'Mia', list:['Children & Family','Values & Growth','Communication']},
+      b: {name:'Jordan', list:['Children & Family','Values & Growth','Money & Financial']},
+      note: 'Mia and Jordan agree on their top two priorities (Children and Values) and differ only on third place. This pattern &mdash; agreement on the foundation, small differences on the third tier &mdash; is characteristic of couples whose framework reveals deep alignment.'
+    },
+    capstone: {
+      a: {name:'Mia', body:'I am committing to protect the slowness of our mornings, even when the world asks us to move faster. I am committing to protect Jordan&rsquo;s need to think out loud, even when I wish he would just wait. And I am committing to protect the child we will have someday from inheriting my belief that feelings are interruptions.'},
+      b: {name:'Jordan', body:'I am committing to protect the version of Mia who processes alone. I used to think her silences meant something was wrong. Now I know they mean something is being made. I am committing to protect the life we want to build &mdash; the one where Sundays are slow, the kids know they are loved, and we do not keep score.'}
+    }
+  },
+  'rodriguez-park': {
+    hero: 'The Rodriguez-Park<br><em>framework</em>',
+    stage: 'Considering engagement &middot; 2 years together',
+    overall: 58,
+    narrative: [
+      'Sam and Iris completed the framework eight months into serious conversations about engagement. What the framework reveals is what most couples discover only after the wedding &mdash; and sometimes only after therapy: that loving each other and being structurally aligned are not the same thing. The framework did not tell Sam and Iris whether to stay together. It told them what they would need to talk about, with honesty and without defensiveness, before they decided.',
+      'Their overall alignment is 58%. Three categories are in the yellow zone or below: Money (34%), Children (41%), and Spirituality (47%). Sam grew up in financial scarcity and treats money as a survival tool; Iris grew up with plenty and treats money as a creative medium. Sam has assumed for most of the relationship that they both wanted children; Iris has been privately uncertain for about a year. Sam is a lapsed Catholic who expects to return to the church when kids arrive; Iris is a secular humanist who has not shared how much the thought of raising children Catholic troubles her.',
+      'Their higher-aligned categories are real and meaningful. Conflict (78%), Intimacy (82%), and Communication (71%) all reflect genuine strength. They fight well together. They are close physically and emotionally. They can have hard conversations when they decide to have them. The framework&rsquo;s guidance is not discouraging &mdash; it is structural. It makes no prediction about Sam and Iris&rsquo;s outcome. What the framework protects against is a wedding that happens before the conversations.'
+    ],
+    cats: [
+      {nu:'01', nm:'Location & Lifestyle',               sc:66, gap:'Aligned on city but differ on neighborhood and long-term. Sam wants to stay urban; Iris wants eventual access to a rural retreat space.'},
+      {nu:'02', nm:'Children & Family',                  sc:41, gap:'The largest structural gap. Sam assumed they both wanted children. Iris has been privately uncertain for the past year. This conversation has not yet happened honestly.'},
+      {nu:'03', nm:'Money & Financial Philosophy',       sc:34, gap:'Sam grew up in financial scarcity and treats money as survival. Iris grew up with plenty and treats money as a creative medium. They have not yet had a conversation about what their shared financial philosophy would look like.'},
+      {nu:'04', nm:'Career & Ambition',                  sc:68, gap:'Iris wants more risk-taking (startup, travel); Sam wants more stability. Solvable, but requires explicit negotiation before either of them makes a major move.'},
+      {nu:'05', nm:'Structure, Commitment & Loyalty',    sc:63, gap:'Iris comes from a family with multiple divorces and is cautious about commitment language. Sam assumes loyalty by default. They define fidelity similarly but weight commitment differently.'},
+      {nu:'06', nm:'Conflict & Emotional Regulation',    sc:78, gap:'One of their strongest categories. They fight well. Both take responsibility. Both can name their reactions. This is the foundation the other conversations will need.'},
+      {nu:'07', nm:'Sexual Connection & Emotional Closeness', sc:82, gap:'Strong and mutual. Both feel desired by the other. Both are emotionally available during conflict recovery. This is real compatibility.'},
+      {nu:'08', nm:'Social Life & Community',            sc:55, gap:'Sam is highly social; Iris needs significant alone time. They have been negotiating this implicitly but have not built an explicit weekly rhythm.'},
+      {nu:'09', nm:'Family & Social Boundaries',         sc:49, gap:'Sam&rsquo;s mother is very involved in his life and assumes access to him multiple times per week. Iris has felt this as an intrusion for over a year and has not said so clearly.'},
+      {nu:'10', nm:'Values & Growth Alignment',          sc:60, gap:'Converging but not converged. Both value honesty and growth. They differ on whether ambition is a virtue or a trap &mdash; Sam sees it as necessary; Iris sees it as a trap she wants to avoid.'},
+      {nu:'11', nm:'Communication',                      sc:71, gap:'Better than most. They can have hard conversations when they commit to having them. The weakness is not capability &mdash; it is willingness to name things before they become acute.'},
+      {nu:'12', nm:'Spirituality',                       sc:47, gap:'The quiet conflict. Sam is a lapsed Catholic who expects to return to the church when children arrive. Iris is a secular humanist who finds the thought of raising children Catholic deeply troubling. This has not been said out loud.'}
+    ],
+    priorities: {
+      a: {name:'Sam', list:['Children & Family','Money & Financial','Structure & Commitment']},
+      b: {name:'Iris', list:['Values & Growth','Conflict & Regulation','Career & Ambition']},
+      note: 'Sam&rsquo;s priorities are traditional foundation-building; Iris&rsquo;s are about values, growth, and how they navigate each other. They do not share a single top-three category. This is not inherently a problem, but it is an important signal: Sam and Iris are weighting the framework itself differently.'
+    },
+    capstone: {
+      a: {name:'Sam', body:'If we choose each other, we are committing to the conversations we have been avoiding. Money is the easy one. Children is the hard one. I am committing to hear Iris&rsquo;s uncertainty without making her responsible for my assumption that she shared it. I am committing to protect our ability to ask each other difficult questions without weaponizing the answers.'},
+      b: {name:'Iris', body:'I am committing to stop protecting Sam from the version of me that is afraid. I am committing to be clearer about what I want than I have been, even when I am not sure. And I am committing to the discipline of deciding &mdash; deciding whether to continue, deciding what we would need to agree on, deciding whether we are building the same thing or two different things in the same house.'}
+    }
+  }
+};
+
+function showFrameworkExample(key) {
+  const ex = frameworkExamples[key];
+  if (!ex) return;
+  const setEl = (id, html) => { const el = document.getElementById(id); if (el) el.innerHTML = html; };
+  setEl('ex-name', ex.hero);
+  setEl('ex-stage', ex.stage);
+  setEl('ex-score', ex.overall);
+  const fi = document.getElementById('ex-score-fi');
+  if (fi) fi.style.width = ex.overall + '%';
+  // Narrative paragraphs
+  setEl('ex-narrative', ex.narrative.map(p => '<p>' + p + '</p>').join(''));
+  // Category grid with tier counts for the breakdown pills
+  const grid = document.getElementById('ex-cat-grid');
+  const tiers = { high: 0, mid: 0, low: 0 };
+  if (grid) {
+    grid.innerHTML = ex.cats.map(c => {
+      const tone = c.sc >= 75 ? 'high' : (c.sc >= 55 ? 'mid' : 'low');
+      tiers[tone]++;
+      return '<div class="ex-cat-card ' + tone + '">' +
+        '<div class="ex-cat-row">' +
+          '<div class="ex-cat-ln"><div class="ex-cat-nu">' + c.nu + '</div><div class="ex-cat-nm">' + c.nm + '</div></div>' +
+          '<div class="ex-cat-sc ' + tone + '">' + c.sc + '<sup>%</sup></div>' +
+        '</div>' +
+        '<div class="ex-cat-bar"><div class="ex-cat-bar-fi ' + tone + '" style="width:' + c.sc + '%;"></div></div>' +
+        '<div class="ex-cat-gap">' + c.gap + '</div>' +
+      '</div>';
+    }).join('');
+  }
+  // Tier breakdown pills in the section label — only show tiers that exist
+  const breakdown = document.getElementById('ex-tier-breakdown');
+  if (breakdown) {
+    const pills = [];
+    if (tiers.high > 0) pills.push('<div class="ex-tier-pill"><div class="ex-tier-dot high"></div>' + tiers.high + ' aligned</div>');
+    if (tiers.mid > 0)  pills.push('<div class="ex-tier-pill"><div class="ex-tier-dot mid"></div>' + tiers.mid + ' growing</div>');
+    if (tiers.low > 0)  pills.push('<div class="ex-tier-pill"><div class="ex-tier-dot low"></div>' + tiers.low + ' critical</div>');
+    breakdown.innerHTML = pills.join('');
+  }
+  // Priority comparison
+  setEl('ex-pa-name', ex.priorities.a.name + '&rsquo;s top 3');
+  setEl('ex-pb-name', ex.priorities.b.name + '&rsquo;s top 3');
+  const paList = document.getElementById('ex-pa-list');
+  if (paList) paList.innerHTML = ex.priorities.a.list.map(t => '<li>' + t + '</li>').join('');
+  const pbList = document.getElementById('ex-pb-list');
+  if (pbList) pbList.innerHTML = ex.priorities.b.list.map(t => '<li>' + t + '</li>').join('');
+  setEl('ex-pr-note', ex.priorities.note);
+  // Capstone responses
+  setEl('ex-cap-a-name', ex.capstone.a.name);
+  setEl('ex-cap-a-body', '&ldquo;' + ex.capstone.a.body + '&rdquo;');
+  setEl('ex-cap-b-name', ex.capstone.b.name);
+  setEl('ex-cap-b-body', '&ldquo;' + ex.capstone.b.body + '&rdquo;');
+  nav('s-example');
+}
+
 
 // ── STATE ──────────────────────────────────────────────────────────────
 let curDomain = 'money';
@@ -1432,6 +1935,17 @@ let polyOn = false;
 let cdInterval = null;
 let npOpen = false;
 
+// Tracks this user's priority rankings across categories (each number used at most once).
+// Seeded from demo completedCats so the prototype starts in a realistic mid-framework state.
+let myRanks = {};
+Object.keys(completedCats).forEach(k => {
+  if (completedCats[k] && completedCats[k].yp) myRanks[k] = completedCats[k].yp;
+});
+
+// Whether this user is on a paid tier. Controls Premium-only features like priority ranking.
+// Default: false (free tier). Set to true by enterDemo() and unlockPremium().
+let isPaid = false;
+
 // ── NAVIGATION ──────────────────────────────────────────────────────────
 function nav(id) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
@@ -1441,6 +1955,17 @@ function nav(id) {
 }
 
 // ── AUTH ────────────────────────────────────────────────────────────────
+
+// Investor / visitor entry point — bypasses auth and lands in a populated home state
+function enterDemo() {
+  document.body.classList.add('demo-mode');
+  currentPartner = 'Alex';
+  isNewUser = false;
+  isPaid = true; // Investor demo sees the full product, including Premium-only ranking
+  // Jordan is mid-framework with demo-seeded completions (money, children)
+  nav('s-home');
+}
+
 function signIn() {
   if (pendingInviteFrom) { completeInviteConnection(); }
   else { nav('s-session'); }
@@ -1748,11 +2273,12 @@ function renderCatList() {
     html += '</div>';
   }
 
-  // Locked section
-  if (lockedCats.length) {
+  // Locked section — only show core 12 categories here. Year 2+ extras are hidden.
+  const coreLocked = lockedCats.filter(k => cats[k] && cats[k].tier !== 'y2');
+  if (coreLocked.length) {
     const firstLocked = unlockedCats.length + 1;
     html += '<div class="sh"><div class="sh-rule"></div><div class="sh-text">Unlock with Premium</div></div><div class="ct">';
-    lockedCats.forEach((key, idx) => {
+    coreLocked.forEach((key, idx) => {
       const c = cats[key];
       if (!c) return;
       html += `<div class="cr lk" onclick="nav('s-paywall')" style="opacity:.4;cursor:pointer;">
@@ -1793,18 +2319,87 @@ function startFreshCat(key) {
   setEl('cat-q', c.q);
   document.querySelectorAll('.fo').forEach(o => o.classList.remove('sel'));
   const notice = document.getElementById('cat-notice');
-  if (notice) notice.style.display = key === 'structure' ? 'block' : 'none';
+  if (notice) notice.style.display = 'none'; // No core 12 categories need a sensitive-content notice; retargeted for Year 2+ categories like Addiction in a future update
   const seal = document.getElementById('cat-seal');
   if (seal) seal.textContent = 'Your answer is sealed until ' + (currentPartner || 'your partner') + ' completes theirs. No peeking. No anchoring.';
-  // Build priority rank options based on available categories
-  const pSel = document.getElementById('priority-sel');
-  if (pSel) {
-    const count = unlockedCats.length;
-    pSel.innerHTML = Array.from({length: count}, (_,i) =>
-      `<option value="${i+1}"${i===2?' selected':''}>${i+1} of ${count}</option>`
-    ).join('');
+  // Example answer: show toggle only if category has one; collapse panel on open
+  const exToggle = document.getElementById('cat-ex-toggle');
+  const exPanel = document.getElementById('cat-example');
+  const exText = document.getElementById('cat-ex-text');
+  if (exToggle && exPanel) {
+    if (c.ex && c.ex.trim()) {
+      exToggle.classList.remove('hidden');
+      exToggle.innerHTML = 'See example answer &rarr;';
+      if (exText) exText.textContent = c.ex;
+      exPanel.classList.remove('open');
+    } else {
+      exToggle.classList.add('hidden');
+      exPanel.classList.remove('open');
+    }
   }
+  // Reset example panel to collapsed
+  const exPanelReset = document.getElementById('cat-example');
+  if (exPanelReset) exPanelReset.classList.remove('open');
+  // Set category-specific priority ranking question
+  const prTx = document.getElementById('cat-pr-tx');
+  if (prTx) prTx.innerHTML = 'Where does <em>' + c.nm + '</em> rank in your 12 core categories?';
+  // Build priority rank dropdown with used-rank detection
+  buildPrioritySelect(key);
+  // Show paid or locked variant of the ranking section depending on tier
+  refreshRankGate();
   nav('s-category');
+}
+
+// Builds the priority ranking dropdown for the given category key.
+// Each rank 1–12 is shown; ranks already used by OTHER categories are disabled
+// and annotated with the category that owns them. The category's own existing
+// rank (if any) is pre-selected; otherwise a "Select a rank" placeholder is shown.
+function buildPrioritySelect(currentKey) {
+  const pSel = document.getElementById('priority-sel');
+  if (!pSel) return;
+  const currentRank = myRanks[currentKey] || null;
+  let html = `<option value="" disabled${currentRank ? '' : ' selected'}>Select a rank</option>`;
+  for (let i = 1; i <= 12; i++) {
+    let label = `${i} of 12`;
+    if (i === 1) label += ' — Most important';
+    else if (i === 12) label += ' — Least important';
+    // Is rank i already used by a different category?
+    const usedByKey = Object.keys(myRanks).find(k => k !== currentKey && myRanks[k] === i);
+    let disabled = '';
+    if (usedByKey && cats[usedByKey]) {
+      label += ` · used by ${cats[usedByKey].nm}`;
+      disabled = ' disabled';
+    }
+    const selected = (i === currentRank) ? ' selected' : '';
+    html += `<option value="${i}"${selected}${disabled}>${label}</option>`;
+  }
+  pSel.innerHTML = html;
+}
+
+// Called on priority dropdown change — stores the user's selection
+function onRankChange(sel) {
+  if (sel.value) {
+    myRanks[curDomain] = parseInt(sel.value, 10);
+  }
+}
+
+function toggleExample() {
+  const panel = document.getElementById('cat-example');
+  const toggle = document.getElementById('cat-ex-toggle');
+  if (!panel) return;
+  const isOpen = panel.classList.contains('open');
+  panel.classList.toggle('open', !isOpen);
+  if (toggle) toggle.innerHTML = isOpen ? 'See example answer &rarr;' : 'Hide example &uarr;';
+}
+
+// Weekly check-in pulse selector (mockup screen — Coming Month 4)
+function selPulse(el) {
+  document.querySelectorAll('.pulse-dot').forEach(d => d.classList.remove('active'));
+  el.classList.add('active');
+}
+function selShift(el) {
+  el.parentElement.querySelectorAll('.ci-shift-btn').forEach(b => b.classList.remove('active'));
+  el.classList.add('active');
 }
 
 function renderDebrief(key, c, d) {
@@ -1937,20 +2532,77 @@ function toggleStageSelector() {
 
 // ── PREMIUM UNLOCK (simulated) ───────────────────────────────────────────
 function unlockPremium() {
-  // Move all cats to unlocked
-  unlockedCats = [...allCats];
-  lockedCats = [];
+  // Unlock the core 12 only; Year 2+ extras remain behind a future gate.
+  unlockedCats = allCats.filter(k => cats[k] && cats[k].tier !== 'y2');
+  lockedCats = allCats.filter(k => !unlockedCats.includes(k));
+  isPaid = true; // Priority ranking is a Premium feature — unlock it
   renderCatList();
-  // Rebuild rank selector if category screen is open
-  const pSel = document.getElementById('priority-sel');
-  if (pSel) {
-    const count = unlockedCats.length;
-    pSel.innerHTML = Array.from({length:count},(_,i)=>
-      `<option value="${i+1}"${i===2?' selected':''}>${i+1} of ${count}</option>`
-    ).join('');
-  }
-  showToast('Premium unlocked — all 16 categories available');
+  // Rebuild rank selector and refresh the rank gate if category screen is open
+  if (document.getElementById('priority-sel')) buildPrioritySelect(curDomain);
+  refreshRankGate();
+  showToast('Premium unlocked — all 12 core categories available');
   setTimeout(() => nav('s-home'), 800);
+}
+
+// Shows or hides the priority ranking section based on paid status.
+// Paid tier: always shows the ranking widget.
+// Free tier: allows 1 rank total. While at 0 or 1 ranks on the current category,
+// the widget is shown with a "Your 1 free rank" badge. Once a different category
+// already holds the free rank, this category shows a locked block with a
+// "Remove existing rank" escape hatch.
+function refreshRankGate() {
+  const paid = document.getElementById('prb-paid');
+  const locked = document.getElementById('prb-locked');
+  const freeBadge = document.getElementById('free-rank-badge');
+  if (!paid || !locked) return;
+
+  if (isPaid) {
+    paid.style.display = 'block';
+    locked.style.display = 'none';
+    if (freeBadge) freeBadge.style.display = 'none';
+    return;
+  }
+
+  // Free tier: allow exactly 1 rank at a time
+  const rankedKeys = Object.keys(myRanks);
+  const hasThisCategory = rankedKeys.includes(curDomain);
+  const canRank = rankedKeys.length === 0 || hasThisCategory;
+
+  if (canRank) {
+    paid.style.display = 'block';
+    locked.style.display = 'none';
+    if (freeBadge) freeBadge.style.display = 'inline-block';
+  } else {
+    paid.style.display = 'none';
+    locked.style.display = 'block';
+    if (freeBadge) freeBadge.style.display = 'none';
+    // Update locked block copy to reflect the existing free rank
+    const firstKey = rankedKeys[0];
+    const firstCat = cats[firstKey];
+    const thisCat = cats[curDomain];
+    const bodyEl = document.getElementById('prbl-body');
+    const removeEl = document.getElementById('prbl-remove');
+    if (bodyEl && firstCat && thisCat) {
+      bodyEl.innerHTML = 'You&rsquo;re using your 1 free priority rank on <em>' + firstCat.nm + '</em> (ranked #' + myRanks[firstKey] + ' of 12). Upgrade to rank all 12 categories, or remove your current rank to rank <em>' + thisCat.nm + '</em> instead.';
+    }
+    if (removeEl && firstCat) {
+      removeEl.innerHTML = 'Remove rank from ' + firstCat.nm + ' &larr;';
+      removeEl.style.display = 'inline-block';
+    }
+  }
+}
+
+// Free tier escape hatch: clear the user's single rank so they can re-allocate it
+function removeFreeRank() {
+  const rankedKeys = Object.keys(myRanks);
+  if (rankedKeys.length === 0) return;
+  const firstKey = rankedKeys[0];
+  const name = (cats[firstKey] && cats[firstKey].nm) || 'that category';
+  delete myRanks[firstKey];
+  // Rebuild current category's dropdown (nothing used now) and refresh the gate
+  if (document.getElementById('priority-sel')) buildPrioritySelect(curDomain);
+  refreshRankGate();
+  showToast('Rank removed from ' + name + ' &mdash; your 1 free rank is available again');
 }
 
 // ── TOAST ────────────────────────────────────────────────────────────────
